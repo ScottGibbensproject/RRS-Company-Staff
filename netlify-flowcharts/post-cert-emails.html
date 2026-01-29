@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post-Certification Email Sequences - Rate Remover Software</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+            color: #fff;
+        }
+
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 2rem;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #888;
+            margin-bottom: 40px;
+            font-size: 1rem;
+        }
+
+        /* Email Grid */
+        .email-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        @media (max-width: 1200px) {
+            .email-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 800px) {
+            .email-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Column Styles */
+        .email-column {
+            background: rgba(255,255,255,0.03);
+            border-radius: 16px;
+            overflow: hidden;
+            border: 2px solid;
+        }
+
+        .email-column.direct-agent {
+            border-color: #2196F3;
+        }
+
+        .email-column.iso-group {
+            border-color: #FF9800;
+        }
+
+        .email-column.referral-partner {
+            border-color: #9C27B0;
+        }
+
+        /* Column Header */
+        .column-header {
+            padding: 20px;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .direct-agent .column-header {
+            background: linear-gradient(135deg, #2196F3, #1976D2);
+        }
+
+        .iso-group .column-header {
+            background: linear-gradient(135deg, #FF9800, #F57C00);
+        }
+
+        .referral-partner .column-header {
+            background: linear-gradient(135deg, #9C27B0, #7B1FA2);
+        }
+
+        .column-header h2 {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+
+        .column-header .tag-name {
+            font-size: 0.8rem;
+            opacity: 0.9;
+            font-family: monospace;
+        }
+
+        .column-header .email-count {
+            margin-top: 10px;
+            font-size: 0.85rem;
+            opacity: 0.9;
+        }
+
+        /* Email List */
+        .email-list {
+            padding: 15px;
+            max-height: calc(100vh - 250px);
+            overflow-y: auto;
+        }
+
+        .email-item {
+            background: rgba(255,255,255,0.05);
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 12px;
+            border-left: 4px solid;
+            transition: all 0.2s ease;
+        }
+
+        .email-item:hover {
+            background: rgba(255,255,255,0.08);
+            transform: translateX(5px);
+        }
+
+        .direct-agent .email-item {
+            border-color: #2196F3;
+        }
+
+        .iso-group .email-item {
+            border-color: #FF9800;
+        }
+
+        .referral-partner .email-item {
+            border-color: #9C27B0;
+        }
+
+        .email-number {
+            display: inline-block;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 28px;
+            font-weight: bold;
+            font-size: 0.8rem;
+            margin-right: 10px;
+        }
+
+        .direct-agent .email-number {
+            background: rgba(33, 150, 243, 0.3);
+            color: #64B5F6;
+        }
+
+        .iso-group .email-number {
+            background: rgba(255, 152, 0, 0.3);
+            color: #FFB74D;
+        }
+
+        .referral-partner .email-number {
+            background: rgba(156, 39, 176, 0.3);
+            color: #CE93D8;
+        }
+
+        .email-title {
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: #fff;
+            display: inline;
+        }
+
+        .email-description {
+            margin-top: 8px;
+            font-size: 0.8rem;
+            color: #888;
+            padding-left: 38px;
+        }
+
+        .email-day {
+            display: inline-block;
+            margin-left: 10px;
+            font-size: 0.75rem;
+            padding: 2px 8px;
+            border-radius: 10px;
+            background: rgba(255,255,255,0.1);
+            color: #aaa;
+        }
+
+        /* Status indicators */
+        .email-item.not-created {
+            opacity: 0.6;
+            border-style: dashed;
+        }
+
+        .email-item.not-created .email-title {
+            color: #888;
+        }
+
+        .status-badge {
+            display: inline-block;
+            font-size: 0.7rem;
+            padding: 2px 8px;
+            border-radius: 10px;
+            margin-left: 8px;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        .status-badge.active {
+            background: rgba(76, 175, 80, 0.2);
+            color: #81C784;
+        }
+
+        .status-badge.draft {
+            background: rgba(255, 193, 7, 0.2);
+            color: #FFD54F;
+        }
+
+        .status-badge.tbd {
+            background: rgba(244, 67, 54, 0.2);
+            color: #E57373;
+        }
+
+        /* Divider */
+        .email-divider {
+            text-align: center;
+            padding: 15px;
+            color: #666;
+            font-size: 0.85rem;
+            border-top: 1px dashed rgba(255,255,255,0.1);
+            border-bottom: 1px dashed rgba(255,255,255,0.1);
+            margin: 10px 0;
+            background: rgba(0,0,0,0.2);
+        }
+
+        .email-divider span {
+            background: rgba(102, 126, 234, 0.2);
+            padding: 5px 15px;
+            border-radius: 20px;
+            color: #667eea;
+        }
+
+        /* Legend */
+        .legend {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.85rem;
+            color: #aaa;
+        }
+
+        .legend-color {
+            width: 16px;
+            height: 16px;
+            border-radius: 4px;
+        }
+
+        .legend-color.direct {
+            background: #2196F3;
+        }
+
+        .legend-color.iso {
+            background: #FF9800;
+        }
+
+        .legend-color.referral {
+            background: #9C27B0;
+        }
+
+        /* Stats Bar */
+        .stats-bar {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 12px;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Notes Section */
+        .notes-section {
+            margin-top: 40px;
+            padding: 25px;
+            background: rgba(255, 193, 7, 0.1);
+            border: 1px solid rgba(255, 193, 7, 0.3);
+            border-radius: 12px;
+        }
+
+        .notes-section h3 {
+            color: #FFD54F;
+            margin-bottom: 15px;
+            font-size: 1rem;
+        }
+
+        .notes-section ul {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 10px;
+        }
+
+        .notes-section li {
+            color: #ccc;
+            font-size: 0.85rem;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .notes-section li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #FFC107;
+        }
+
+        /* Scroll indicator */
+        .scroll-indicator {
+            text-align: center;
+            padding: 10px;
+            color: #666;
+            font-size: 0.8rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Post-Certification Email Sequences</h1>
+        <p class="subtitle">Email drip campaigns by reseller type after certification completion</p>
+
+        <!-- Legend -->
+        <div class="legend">
+            <div class="legend-item">
+                <div class="legend-color direct"></div>
+                <span>Direct Agent</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color iso"></div>
+                <span>ISO Group Agent</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color referral"></div>
+                <span>Referral Partner</span>
+            </div>
+        </div>
+
+        <!-- Stats -->
+        <div class="stats-bar">
+            <div class="stat-item">
+                <div class="stat-value">18</div>
+                <div class="stat-label">Direct Agent Emails</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">TBD</div>
+                <div class="stat-label">ISO Group Emails</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">TBD</div>
+                <div class="stat-label">Referral Partner Emails</div>
+            </div>
+        </div>
+
+        <!-- Email Columns -->
+        <div class="email-grid">
+            <!-- Direct Agent Column -->
+            <div class="email-column direct-agent">
+                <div class="column-header">
+                    <h2>Direct Agent</h2>
+                    <div class="tag-name">Tag: "rrs - direct agent"</div>
+                    <div class="email-count">18 emails + ongoing</div>
+                </div>
+                <div class="email-list">
+                    <div class="email-item">
+                        <span class="email-number">1</span>
+                        <span class="email-title">Here's What's Next</span>
+                        <span class="email-day">Day 1</span>
+                        <div class="email-description">Welcome email with immediate next steps after certification</div>
+                    </div>
+                    <div class="email-item">
+                        <span class="email-number">1a</span>
+                        <span class="email-title">Mobile Friendly Reseller Info Page</span>
+                        <span class="email-day">Day 1</span>
+                        <div class="email-description">Link to mobile-optimized resources</div>
+                    </div>
+                    <div class="email-item">
+                        <span class="email-number">2</span>
+                        <span class="email-title">Taking a Merchant Application</span>
+                        <span class="email-day">Day 2</span>
+                        <div class="email-description">How to properly complete merchant applications</div>
+                    </div>
+                    <div class="email-item">
+                        <span class="email-number">3</span>
+                        <span class="email-title">Earning Potential & Goals</span>
+                        <span class="email-day">Day 3</span>
+                        <div class="email-description">Commission structure and goal setting</div>
+                    </div>
+                    <div class="email-item">
+                        <span class="email-number">4</span>
+                        <span class="email-title">Become a Shop Software Expert</span>
+                        <span class="email-day">Day 4</span>
+                        <div class="email-description">Deep dive into competitor software knowledge</div>
+                    </div>
+                    <div class="email-item">
+                        <span class="email-number">5</span>
+                        <span class="email-title">Now What?</span>
+                        <span class="email-day">Day 5</span>
+                        <div class="email-description">Action items and next steps for new agents</div>
+                    </div>
+                    <div class="email-item">
+                        <span class="email-number">6</span>
+                        <span class="email-title">Demo Refreshers</span>
+                        <span class="email-day">Day 6</span>
+                        <div class="email-description">Tips for giving effective demos</div>
+                    </div>
+                    <div class="email-item">
+                        <span class="email-number">7</span>
+                        <span class="email-title">Accountability & Goals</span>
+                        <span class="email-day">Day 7</span>
+                        <div class="email-description">Tracking progress and staying accountable</div>
+                    </div>
+                    <div class="email-item">
+                        <span class="email-number">8</span>
+                        <span class="email-title">"We Already Have A System"</span>
+                        <span class="email-day">Day 8</span>
+                        <div class="email-description">Handling this common objection</div>
+                    </div>
+                    <div class="email-item">
+                        <span class="email-number">9</span>
+                        <span class="email-title">"I Need To Think About It"</span>
+                        <span class="email-day">Day 9</span>
+                        <div class="email-description">Overcoming hesitation objections</div>
+                    </div>
+                    <div class="email-item">
+                        <span class="email-number">10</span>
+                        <span class="email-title">Follow Up & Close</span>
+                        <span class="email-day">Day 10</span>
+                        <div class="email-description">Effective follow-up strategies</div>
+                    </div>
+                    <div class="email-item">
+                        <span class="email-number">11</span>
+                        <span class="email-title">Rejection Isn't Personal</span>
+                        <span class="email-day">Day 11</span>
+                        <div class="email-description">Mindset and handling rejection</div>
+                    </div>
+                    <div class="email-item">
+                        <span class="email-number">12</span>
+                        <span class="email-title">Card Fees</span>
+                        <span class="email-day">Day 12</span>
+                        <div class="email-description">Understanding and explaining card fees</div>
+                    </div>
+                    <div class="email-item">
+                        <span class="email-number">13</span>
+                        <span class="email-title">CRM is Your Weapon</span>
+                        <span class="email-day">Day 13</span>
+                        <div class="email-description">Using CRM effectively for sales</div>
+                    </div>
+                    <div class="email-item">
+                        <span class="email-number">14</span>
+                        <span class="email-title">Fell Off?</span>
+                        <span class="email-day">Day 14</span>
+                        <div class="email-description">Re-engagement for inactive agents</div>
+                    </div>
+                    <div class="email-item">
+                        <span class="email-number">15</span>
+                        <span class="email-title">Consistency</span>
+                        <span class="email-day">Day 15</span>
+                        <div class="email-description">Building consistent sales habits</div>
+                    </div>
+                    <div class="email-item">
+                        <span class="email-number">16</span>
+                        <span class="email-title">One into Three</span>
+                        <span class="email-day">Day 16</span>
+                        <div class="email-description">Referral strategy from existing merchants</div>
+                    </div>
+                    <div class="email-item">
+                        <span class="email-number">17</span>
+                        <span class="email-title">Terminal Install</span>
+                        <span class="email-day">Day 17</span>
+                        <div class="email-description">Installation process refresher</div>
+                    </div>
+                    <div class="email-item">
+                        <span class="email-number">18</span>
+                        <span class="email-title">Rep They Brag About</span>
+                        <span class="email-day">Day 18</span>
+                        <div class="email-description">Becoming a merchant's go-to representative</div>
+                    </div>
+
+                    <div class="email-divider">
+                        <span>+ New Content Below</span>
+                    </div>
+
+                    <div class="email-item not-created">
+                        <span class="email-number">19</span>
+                        <span class="email-title">Selling Confidence, Not Software</span>
+                        <span class="status-badge tbd">Not Created</span>
+                        <span class="email-day">Day 19+</span>
+                        <div class="email-description">Focus on confidence-based selling approach</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ISO Group Agent Column -->
+            <div class="email-column iso-group">
+                <div class="column-header">
+                    <h2>ISO Group Agent</h2>
+                    <div class="tag-name">Tag: "iso group agent"</div>
+                    <div class="email-count">TBD emails</div>
+                </div>
+                <div class="email-list">
+                    <div class="email-item not-created">
+                        <span class="email-number">1</span>
+                        <span class="email-title">Welcome - ISO Partner</span>
+                        <span class="status-badge tbd">TBD</span>
+                        <span class="email-day">Day 1</span>
+                        <div class="email-description">Welcome, connect with your ISO group</div>
+                    </div>
+                    <div class="email-item not-created">
+                        <span class="email-number">2</span>
+                        <span class="email-title">Your ISO Resources</span>
+                        <span class="status-badge tbd">TBD</span>
+                        <span class="email-day">Day 2</span>
+                        <div class="email-description">ISO-specific tools and contacts</div>
+                    </div>
+                    <div class="email-item not-created">
+                        <span class="email-number">3</span>
+                        <span class="email-title">Working with Your ISO</span>
+                        <span class="status-badge tbd">TBD</span>
+                        <span class="email-day">Day 3</span>
+                        <div class="email-description">Communication and reporting structure</div>
+                    </div>
+                    <div class="email-item not-created">
+                        <span class="email-number">4</span>
+                        <span class="email-title">ISO Commission Structure</span>
+                        <span class="status-badge tbd">TBD</span>
+                        <span class="email-day">Day 4</span>
+                        <div class="email-description">How commissions flow through ISO</div>
+                    </div>
+                    <div class="email-item not-created">
+                        <span class="email-number">...</span>
+                        <span class="email-title">Additional emails TBD</span>
+                        <span class="status-badge tbd">TBD</span>
+                        <div class="email-description">Content to be determined based on ISO needs</div>
+                    </div>
+
+                    <div class="scroll-indicator">
+                        <p style="color: #FFB74D; padding: 20px; background: rgba(255,152,0,0.1); border-radius: 8px;">
+                            ISO Group email sequence needs to be defined.<br>
+                            Consider: What's different for ISO agents?<br>
+                            • Different support channels<br>
+                            • ISO-specific reporting<br>
+                            • Commission structure differences
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Referral Partner Column -->
+            <div class="email-column referral-partner">
+                <div class="column-header">
+                    <h2>Referral Partner</h2>
+                    <div class="tag-name">Tag: "referral partner"</div>
+                    <div class="email-count">TBD emails</div>
+                </div>
+                <div class="email-list">
+                    <div class="email-item not-created">
+                        <span class="email-number">1</span>
+                        <span class="email-title">Welcome - Referral Partner</span>
+                        <span class="status-badge tbd">TBD</span>
+                        <span class="email-day">Day 1</span>
+                        <div class="email-description">Welcome and referral program overview</div>
+                    </div>
+                    <div class="email-item not-created">
+                        <span class="email-number">2</span>
+                        <span class="email-title">How to Refer</span>
+                        <span class="status-badge tbd">TBD</span>
+                        <span class="email-day">Day 2</span>
+                        <div class="email-description">Simple process for making referrals</div>
+                    </div>
+                    <div class="email-item not-created">
+                        <span class="email-number">3</span>
+                        <span class="email-title">Referral Compensation</span>
+                        <span class="status-badge tbd">TBD</span>
+                        <span class="email-day">Day 3</span>
+                        <div class="email-description">How and when you get paid</div>
+                    </div>
+                    <div class="email-item not-created">
+                        <span class="email-number">...</span>
+                        <span class="email-title">Additional emails TBD</span>
+                        <span class="status-badge tbd">TBD</span>
+                        <div class="email-description">Content to be determined</div>
+                    </div>
+
+                    <div class="scroll-indicator">
+                        <p style="color: #CE93D8; padding: 20px; background: rgba(156,39,176,0.1); border-radius: 8px;">
+                            Referral Partner sequence needs to be defined.<br>
+                            Consider: Simpler sequence since they don't sell directly<br>
+                            • How to identify opportunities<br>
+                            • Referral submission process<br>
+                            • Tracking and payment info
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Notes -->
+        <div class="notes-section">
+            <h3>Implementation Notes</h3>
+            <ul>
+                <li><strong>Trigger:</strong> Each workflow triggers when respective tag is added after certification</li>
+                <li><strong>Timing:</strong> Direct Agent emails sent ~1 per day for 18 days</li>
+                <li><strong>Existing Agents:</strong> Use "post-cert-continue" tag to skip to Email 19</li>
+                <li><strong>ISO Content:</strong> Should acknowledge ISO relationship, different support channel</li>
+                <li><strong>Referral Partners:</strong> Shorter sequence, focus on referral process only</li>
+                <li><strong>Goal:</strong> Move agents to "Agreement Signed" then "Active Reseller" status</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

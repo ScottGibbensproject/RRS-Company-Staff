@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Direct Agent Dashboard - Admin</title>
+    <style>
+        :root {
+            --primary: #1a365d;
+            --primary-light: #2c5282;
+            --success: #276749;
+            --bg: #f7fafc;
+            --card-bg: #ffffff;
+            --text: #2d3748;
+            --text-muted: #718096;
+            --border: #e2e8f0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .header {
+            background: var(--primary);
+            color: white;
+            padding: 1.5rem 2rem;
+        }
+
+        .header h1 {
+            font-size: 1.5rem;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .card h2 {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            color: var(--primary);
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.25rem;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            font-size: 1rem;
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: var(--primary-light);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .form-row-3 {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 1rem;
+        }
+
+        button {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-light);
+        }
+
+        .btn-success {
+            background: var(--success);
+            color: white;
+        }
+
+        .btn-secondary {
+            background: var(--border);
+            color: var(--text);
+        }
+
+        .section-title {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            margin: 1.5rem 0 0.5rem 0;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .agent-payout {
+            display: grid;
+            grid-template-columns: 1fr 2fr 1fr;
+            gap: 0.5rem;
+            align-items: center;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .agent-payout:last-child {
+            border-bottom: none;
+        }
+
+        .json-output {
+            background: #1a202c;
+            color: #68d391;
+            padding: 1rem;
+            border-radius: 6px;
+            font-family: monospace;
+            font-size: 0.85rem;
+            white-space: pre-wrap;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .instructions {
+            background: #ebf8ff;
+            border-left: 4px solid #4299e1;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+            border-radius: 0 6px 6px 0;
+        }
+
+        .instructions h3 {
+            color: #2b6cb0;
+            margin-bottom: 0.5rem;
+        }
+
+        .instructions ol {
+            margin-left: 1.5rem;
+            color: #2c5282;
+        }
+
+        .nav-link {
+            display: inline-block;
+            margin-bottom: 1rem;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .nav-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Direct Agent Dashboard - Admin</h1>
+    </div>
+
+    <div class="container">
+        <a href="index.html" class="nav-link">&larr; Back to Dashboard</a>
+
+        <div class="instructions">
+            <h3>How to Update Earnings</h3>
+            <ol>
+                <li>Select or enter the month</li>
+                <li>Fill in the earnings for each group</li>
+                <li>Add agent payouts if any agents had earnings</li>
+                <li>Click "Generate JSON" to see the output</li>
+                <li>Copy the JSON and paste it into data.json (replace the entire contents)</li>
+            </ol>
+        </div>
+
+        <div class="card">
+            <h2>Month</h2>
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Select Existing Month</label>
+                    <select id="existingMonth" onchange="loadMonth(this.value)">
+                        <option value="">-- New Month --</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Or Enter New Month (e.g., "Jan 2026")</label>
+                    <input type="text" id="newMonth" placeholder="Jan 2026">
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>RTRMVR - Rate Remover Software</h2>
+            <div class="form-row-3">
+                <div class="form-group">
+                    <label>Direct Merchant Residuals</label>
+                    <input type="number" step="0.01" id="rtrmvr_direct" placeholder="0.00">
+                </div>
+                <div class="form-group">
+                    <label>Agent Overrides (40%)</label>
+                    <input type="number" step="0.01" id="rtrmvr_overrides" placeholder="0.00">
+                </div>
+                <div class="form-group">
+                    <label>Nicole Commission (auto)</label>
+                    <input type="number" step="0.01" id="rtrmvr_nicole" readonly>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>SGINY - Scott Gibbens Group</h2>
+            <div class="form-row-3">
+                <div class="form-group">
+                    <label>Direct Merchant Residuals</label>
+                    <input type="number" step="0.01" id="sginy_direct" placeholder="0.00">
+                </div>
+                <div class="form-group">
+                    <label>Agent Overrides (40%/50%)</label>
+                    <input type="number" step="0.01" id="sginy_overrides" placeholder="0.00">
+                </div>
+                <div class="form-group">
+                    <label>Nicole Commission (auto)</label>
+                    <input type="number" step="0.01" id="sginy_nicole" readonly>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Agent Payouts</h2>
+            <p style="color: var(--text-muted); margin-bottom: 1rem; font-size: 0.9rem;">
+                Enter the amount each agent received (their portion, not the total residual)
+            </p>
+            <div id="agentPayouts">
+                <!-- Populated by JS -->
+            </div>
+        </div>
+
+        <div style="display: flex; gap: 1rem; margin-bottom: 1.5rem;">
+            <button class="btn-primary" onclick="generateJSON()">Generate JSON</button>
+            <button class="btn-secondary" onclick="clearForm()">Clear Form</button>
+        </div>
+
+        <div class="card">
+            <h2>JSON Output</h2>
+            <p style="color: var(--text-muted); margin-bottom: 1rem; font-size: 0.9rem;">
+                Copy this entire output and paste it into <code>data.json</code>
+            </p>
+            <div class="json-output" id="jsonOutput">Click "Generate JSON" to see output</div>
+            <button class="btn-success" style="margin-top: 1rem;" onclick="copyJSON()">Copy to Clipboard</button>
+        </div>
+    </div>
+
+    <script>
+        let data = null;
+
+        const agents = [
+            {code: "RTRM01", name: "John Mallory", group: "RTRMVR"},
+            {code: "RTRM02", name: "Gary Eubanks", group: "RTRMVR"},
+            {code: "RTRM03", name: "Steven Roberts", group: "RTRMVR"},
+            {code: "RTRM04", name: "Clayton Shivers", group: "RTRMVR"},
+            {code: "RTRM05", name: "Dora Galantai", group: "RTRMVR"},
+            {code: "RTRM06", name: "Scott Moore", group: "RTRMVR"},
+            {code: "RTRM07", name: "Steve Ivy", group: "RTRMVR"},
+            {code: "RTRM08", name: "Thomas Gallagher", group: "RTRMVR"},
+            {code: "RTRM09", name: "Andres Santiago", group: "RTRMVR"},
+            {code: "RTRM10", name: "Kermit Lowry", group: "RTRMVR"},
+            {code: "RTRM11", name: "Strider Devaney", group: "RTRMVR"},
+            {code: "RTRM12", name: "Leah Lanius", group: "RTRMVR"},
+            {code: "SGINY01", name: "Tyler Gibbens", group: "SGINY"},
+            {code: "SGINY02", name: "Elisabeth Geiwitz", group: "SGINY"},
+            {code: "SGINY07", name: "Steven C Roberts", group: "SGINY"}
+        ];
+
+        async function loadData() {
+            try {
+                const response = await fetch('data.json');
+                data = await response.json();
+                populateMonthSelector();
+                renderAgentPayouts();
+            } catch (error) {
+                console.error('Error loading data:', error);
+            }
+        }
+
+        function populateMonthSelector() {
+            const select = document.getElementById('existingMonth');
+            data.earnings.forEach(e => {
+                const option = document.createElement('option');
+                option.value = e.month;
+                option.textContent = e.month;
+                select.appendChild(option);
+            });
+        }
+
+        function renderAgentPayouts() {
+            const container = document.getElementById('agentPayouts');
+            container.innerHTML = agents.map(agent => `
+                <div class="agent-payout">
+                    <strong>${agent.code}</strong>
+                    <span>${agent.name} (${agent.group})</span>
+                    <input type="number" step="0.01" id="payout_${agent.code}" placeholder="0.00">
+                </div>
+            `).join('');
+        }
+
+        function loadMonth(month) {
+            if (!month) {
+                clearForm();
+                return;
+            }
+
+            const monthData = data.earnings.find(e => e.month === month);
+            if (!monthData) return;
+
+            document.getElementById('newMonth').value = month;
+
+            // RTRMVR
+            if (monthData.groups.RTRMVR) {
+                document.getElementById('rtrmvr_direct').value = monthData.groups.RTRMVR.directResidual || '';
+                document.getElementById('rtrmvr_overrides').value = monthData.groups.RTRMVR.agentOverrides || '';
+                document.getElementById('rtrmvr_nicole').value = monthData.groups.RTRMVR.nicoleCommission || '';
+            }
+
+            // SGINY
+            if (monthData.groups.SGINY) {
+                document.getElementById('sginy_direct').value = monthData.groups.SGINY.directResidual || '';
+                document.getElementById('sginy_overrides').value = monthData.groups.SGINY.agentOverrides || '';
+                document.getElementById('sginy_nicole').value = monthData.groups.SGINY.nicoleCommission || '';
+            }
+
+            // Agent payouts
+            agents.forEach(agent => {
+                const input = document.getElementById(`payout_${agent.code}`);
+                if (input && monthData.agentPayouts && monthData.agentPayouts[agent.code]) {
+                    input.value = monthData.agentPayouts[agent.code];
+                } else if (input) {
+                    input.value = '';
+                }
+            });
+        }
+
+        function clearForm() {
+            document.getElementById('existingMonth').value = '';
+            document.getElementById('newMonth').value = '';
+            document.getElementById('rtrmvr_direct').value = '';
+            document.getElementById('rtrmvr_overrides').value = '';
+            document.getElementById('rtrmvr_nicole').value = '';
+            document.getElementById('sginy_direct').value = '';
+            document.getElementById('sginy_overrides').value = '';
+            document.getElementById('sginy_nicole').value = '';
+
+            agents.forEach(agent => {
+                const input = document.getElementById(`payout_${agent.code}`);
+                if (input) input.value = '';
+            });
+        }
+
+        // Auto-calculate Nicole's commission when overrides change
+        document.getElementById('rtrmvr_overrides').addEventListener('input', function() {
+            const overrides = parseFloat(this.value) || 0;
+            document.getElementById('rtrmvr_nicole').value = (overrides * 0.20).toFixed(2);
+        });
+
+        document.getElementById('sginy_overrides').addEventListener('input', function() {
+            const overrides = parseFloat(this.value) || 0;
+            document.getElementById('sginy_nicole').value = (overrides * 0.20).toFixed(2);
+        });
+
+        function generateJSON() {
+            const month = document.getElementById('newMonth').value || document.getElementById('existingMonth').value;
+
+            if (!month) {
+                alert('Please enter or select a month');
+                return;
+            }
+
+            // Build agent payouts
+            const agentPayouts = {};
+            agents.forEach(agent => {
+                const value = parseFloat(document.getElementById(`payout_${agent.code}`).value);
+                if (value && value > 0) {
+                    agentPayouts[agent.code] = value;
+                }
+            });
+
+            const newEarning = {
+                month: month,
+                groups: {
+                    RTRMVR: {
+                        directResidual: parseFloat(document.getElementById('rtrmvr_direct').value) || 0,
+                        agentOverrides: parseFloat(document.getElementById('rtrmvr_overrides').value) || 0,
+                        nicoleCommission: parseFloat(document.getElementById('rtrmvr_nicole').value) || 0
+                    },
+                    SGINY: {
+                        directResidual: parseFloat(document.getElementById('sginy_direct').value) || 0,
+                        agentOverrides: parseFloat(document.getElementById('sginy_overrides').value) || 0,
+                        nicoleCommission: parseFloat(document.getElementById('sginy_nicole').value) || 0
+                    }
+                },
+                agentPayouts: agentPayouts
+            };
+
+            // Update or add the month
+            const existingIndex = data.earnings.findIndex(e => e.month === month);
+            if (existingIndex >= 0) {
+                data.earnings[existingIndex] = newEarning;
+            } else {
+                data.earnings.push(newEarning);
+            }
+
+            // Sort by date
+            data.earnings.sort((a, b) => {
+                const dateA = new Date(a.month);
+                const dateB = new Date(b.month);
+                return dateA - dateB;
+            });
+
+            document.getElementById('jsonOutput').textContent = JSON.stringify(data, null, 2);
+        }
+
+        function copyJSON() {
+            const output = document.getElementById('jsonOutput').textContent;
+            navigator.clipboard.writeText(output).then(() => {
+                alert('JSON copied to clipboard! Paste it into data.json');
+            });
+        }
+
+        loadData();
+    </script>
+</body>
+</html>

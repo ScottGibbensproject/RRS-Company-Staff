@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lifelong Merchant Services - Onboarding Plan</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px;
+            background: #fff;
+        }
+        .header {
+            text-align: center;
+            border-bottom: 3px solid #3b82f6;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+        .header-logos {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: -10px;
+            margin-left: -80px;
+        }
+        .header-logo {
+            height: 130px;
+            width: auto;
+        }
+        .header h1 {
+            color: #1e3a5f;
+            font-size: 28px;
+            margin-bottom: 0;
+        }
+        .header .subtitle {
+            color: #666;
+            font-size: 16px;
+            margin-top: 0;
+        }
+        .header .date {
+            color: #3b82f6;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+        .section {
+            margin-bottom: 30px;
+        }
+        .section h2 {
+            color: #1e3a5f;
+            font-size: 18px;
+            border-bottom: 2px solid #e5e7eb;
+            padding-bottom: 8px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .section h2::before {
+            content: '';
+            width: 4px;
+            height: 20px;
+            background: #3b82f6;
+            border-radius: 2px;
+        }
+        .contacts-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        .contact-card {
+            background: #f8fafc;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 16px;
+        }
+        .contact-card h3 {
+            color: #3b82f6;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .contact-item {
+            margin-bottom: 8px;
+        }
+        .contact-name {
+            font-weight: 600;
+            color: #1e3a5f;
+        }
+        .contact-role {
+            color: #666;
+            font-size: 14px;
+        }
+        .history-item {
+            background: #f0f9ff;
+            border-left: 4px solid #3b82f6;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 0 8px 8px 0;
+        }
+        .history-date {
+            font-weight: 600;
+            color: #3b82f6;
+            font-size: 14px;
+        }
+        .history-content {
+            margin-top: 5px;
+        }
+        .next-steps {
+            counter-reset: step-counter;
+        }
+        .step-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 16px;
+            padding: 16px;
+            background: #fff;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            transition: all 0.2s;
+        }
+        .step-item:hover {
+            border-color: #3b82f6;
+            box-shadow: 0 2px 8px rgba(59, 130, 246, 0.1);
+        }
+        .step-number {
+            counter-increment: step-counter;
+            background: #3b82f6;
+            color: white;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 14px;
+            margin-right: 14px;
+            flex-shrink: 0;
+        }
+        .step-number::before {
+            content: counter(step-counter);
+        }
+        .step-content h4 {
+            color: #1e3a5f;
+            margin-bottom: 4px;
+        }
+        .step-content p {
+            color: #666;
+            font-size: 14px;
+        }
+        .step-content .url {
+            color: #3b82f6;
+            font-family: monospace;
+            font-size: 13px;
+        }
+        .checkbox {
+            width: 18px;
+            height: 18px;
+            border: 2px solid #d1d5db;
+            border-radius: 4px;
+            margin-left: auto;
+            flex-shrink: 0;
+        }
+        .upcoming-box {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border: 1px solid #f59e0b;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+        .upcoming-box h3 {
+            color: #92400e;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .upcoming-box p {
+            color: #78350f;
+            font-size: 14px;
+        }
+        .footer {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #e5e7eb;
+            text-align: center;
+            color: #666;
+            font-size: 12px;
+        }
+        .logo-text {
+            font-weight: 700;
+            color: #3b82f6;
+        }
+        .images-section {
+            margin-top: 30px;
+        }
+        .images-section h2 {
+            margin-bottom: 20px;
+        }
+        .onboarding-images {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+        .image-container {
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            overflow: hidden;
+            background: #f8fafc;
+        }
+        .image-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        .image-caption {
+            padding: 12px;
+            background: #f1f5f9;
+            font-size: 14px;
+            color: #64748b;
+            text-align: center;
+            border-top: 1px solid #e5e7eb;
+        }
+        @media print {
+            body {
+                padding: 20px;
+            }
+            .step-item:hover {
+                border-color: #e5e7eb;
+                box-shadow: none;
+            }
+            .image-container {
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-logos">
+            <img src="rrs-logo.png" alt="Rate Remover Software" class="header-logo">
+            <h1>Lifelong Merchant Services</h1>
+        </div>
+        <div class="subtitle">Reseller Onboarding Plan</div>
+        <div class="date">Kickoff Meeting: January 9, 2026</div>
+    </div>
+
+    <div class="section">
+        <h2>Key Contacts</h2>
+        <div class="contacts-grid">
+            <div class="contact-card">
+                <h3>Lifelong Merchant Services</h3>
+                <div class="contact-item">
+                    <div class="contact-name">Kermit Lowry</div>
+                    <div class="contact-role">CEO & Founder</div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-name">Nick Ruggiero</div>
+                    <div class="contact-role">Chief Operating Officer</div>
+                </div>
+            </div>
+            <div class="contact-card">
+                <h3>Rate Remover Software</h3>
+                <div class="contact-item">
+                    <div class="contact-name">Scott Gibbens</div>
+                    <div class="contact-role">CEO & Founder</div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-name">Nicole Devery</div>
+                    <div class="contact-role">Director of Reseller Development</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>History</h2>
+        <div class="history-item">
+            <div class="history-date">December 2, 2025</div>
+            <div class="history-content">
+                Equity Partner Agreement signed between Lifelong Merchant Services and Rate Remover Software.
+            </div>
+        </div>
+        <div class="history-item">
+            <div class="history-date">December 29, 2025</div>
+            <div class="history-content">
+                Equity shares issued to Lifelong Merchant Services.
+            </div>
+        </div>
+        <div class="history-item">
+            <div class="history-date">January 9, 2026</div>
+            <div class="history-content">
+                First meeting held to plan and strategize the partnership. Discussed agent training, merchant onboarding process, and upcoming platform changes.
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Next Steps</h2>
+        <div class="next-steps">
+            <div class="step-item">
+                <div class="step-number"></div>
+                <div class="step-content">
+                    <h4>Agent Self-Enrollment</h4>
+                    <p>Lifelong agents complete self-enrollment registration</p>
+                    <div class="url">agents.myrateremover.com</div>
+                </div>
+                <div class="checkbox"></div>
+            </div>
+            <div class="step-item">
+                <div class="step-number"></div>
+                <div class="step-content">
+                    <h4>Complete Reseller Certification Course</h4>
+                    <p>All agents must complete the certification training program</p>
+                </div>
+                <div class="checkbox"></div>
+            </div>
+            <div class="step-item">
+                <div class="step-number"></div>
+                <div class="step-content">
+                    <h4>Schedule Live Training Session</h4>
+                    <p>Coordinate first live training with Nicole Devery and Lifelong agents</p>
+                </div>
+                <div class="checkbox"></div>
+            </div>
+            <div class="step-item">
+                <div class="step-number"></div>
+                <div class="step-content">
+                    <h4>ISO Portal Merchant Onboarding Training</h4>
+                    <p>Learn how to onboard merchants through the ISO portal system</p>
+                    <p style="color: #dc2626; font-size: 13px; margin-top: 6px;"><strong>Action Required:</strong> Lifelong to provide separate email address for ISO portal access</p>
+                </div>
+                <div class="checkbox"></div>
+            </div>
+            <div class="step-item">
+                <div class="step-number"></div>
+                <div class="step-content">
+                    <h4>Access Merchant Demo Accounts</h4>
+                    <p>Provide demo account access for training and sales demonstrations</p>
+                </div>
+                <div class="checkbox"></div>
+            </div>
+        </div>
+
+        <div class="upcoming-box">
+            <h3>Coming Soon: New Onboarding Process</h3>
+            <p><strong>Expected Launch:</strong> Early to Mid-February 2026</p>
+            <p style="margin-top: 8px;">A streamlined 3-step merchant signup process is currently in development featuring:</p>
+            <ul style="margin-top: 8px; margin-left: 20px; color: #78350f; font-size: 14px;">
+                <li>Simplified account creation with business type selection</li>
+                <li>Reseller/Agent attribution tracking</li>
+                <li>Integrated PartsTech and QuickBooks setup</li>
+                <li>Plan selection (Essentials $59/mo or Pro $119/mo)</li>
+                <li>Optional merchant services account application</li>
+            </ul>
+            <p style="margin-top: 10px; font-style: italic;">Additional training will be provided once the new system is live.</p>
+        </div>
+    </div>
+
+    <div class="section images-section">
+        <h2>New Onboarding Process Preview</h2>
+        <div class="onboarding-images">
+            <div class="image-container">
+                <img src="onboarding-1.png" alt="Step 1: Account Creation">
+                <div class="image-caption">Step 1: Create Account - Business type selection and reseller information</div>
+            </div>
+            <div class="image-container">
+                <img src="onboarding-2.png" alt="Step 2: Business Information">
+                <div class="image-caption">Step 2: Business Information - Contact details, address, and tax settings</div>
+            </div>
+            <div class="image-container">
+                <img src="onboarding-3.png" alt="Step 3: User & Plan Selection">
+                <div class="image-caption">Step 3: Create User & Choose Plan - Essentials ($59/mo) or Pro ($119/mo)</div>
+            </div>
+            <div class="image-container">
+                <img src="onboarding-4.png" alt="Step 4: Merchant Services">
+                <div class="image-caption">Step 4: Merchant Services Account - Optional payment processing setup</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p><span class="logo-text">Rate Remover Software</span> | Lifelong Merchant Services Partnership</p>
+        <p style="margin-top: 5px;">Document generated January 9, 2026</p>
+    </div>
+</body>
+</html>

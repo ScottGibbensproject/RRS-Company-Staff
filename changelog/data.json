@@ -1,0 +1,210 @@
+{
+  "changelog": [
+    {
+      "id": "20",
+      "title": "Technician Features & Consolidated Line Items",
+      "description": "Add or remove technicians from Administration → Configurations. Select a Lead Technician when creating estimates. Custom and PartsTech line items now display together on a single screen. Assign labor to technicians via drop-down menu. Technician labor time now appears in the Job P/L Summary with names on Repair Order labor line items.",
+      "date": "2025-10-12"
+    },
+    {
+      "id": "19",
+      "title": "Retail Pricing Matrix and Digital Estimates",
+      "description": "Merchants can now send estimates via text for customer approval. PartsTech Retail Configurations allow users to choose their preferred pricing method instead of the default List Price. A paid PartsTech subscription is required for Retail Settings.",
+      "date": "2025-08-10"
+    },
+    {
+      "id": "18",
+      "title": "Clickable PO Numbers, Advanced Search, P/L Reports & More",
+      "description": "PO numbers on closed invoices are now clickable to view parts and order information. Added Profit/Loss Per Job Report. Merchants can upload their logo for documents. Unpaid invoices are now editable. Advanced search options allow filtering by part name, document number, PO Number, and more. PartsTech labor is now combined on one line for customer-facing documents.",
+      "date": "2025-07-01"
+    },
+    {
+      "id": "17",
+      "title": "Digital Estimates, Advanced PartsTech Features, Split Payments & More",
+      "description": "New Quick Search by plate or VIN. PartsTech Retail Configurations for custom pricing methods. Split Payment Methods allow multiple payment types on a single invoice. Updated phone input field with Primary label and optional Home/Work/Other. New Save & View Customer option opens full customer profile after creation.",
+      "date": "2025-06-01"
+    },
+    {
+      "id": "16",
+      "title": "QuickBooks Integration Approval",
+      "description": "It took a while, but our integration with QuickBooks has been approved. We have our production credentials and are ready to go.",
+      "date": "2025-04-23"
+    },
+    {
+      "id": "15",
+      "title": "Digital Estimates Development",
+      "description": "We are starting the process for digital estimates. This will allow our users to send an estimate for digital signature by text or email.",
+      "date": "2025-04-05"
+    },
+    {
+      "id": "14",
+      "title": "Updated Home Screen",
+      "description": "Our home screen has a few changes to provide a better snapshot for the user. Open repair orders now display at the top of the screen with clickable links to open and edit.",
+      "date": "2025-03-07"
+    },
+    {
+      "id": "13",
+      "title": "Integrated Payment Processing",
+      "description": "Integrated payment processing is live. Accept card payments on location or send a payment link via email or text.",
+      "date": "2025-02-02"
+    },
+    {
+      "id": "12",
+      "title": "Second PartsTech User",
+      "description": "Our second live PartsTech user was activated this morning. Several people have asked about importing customers. We do have the ability to import customers but not all of their previous repairs.",
+      "date": "2025-01-23"
+    },
+    {
+      "id": "11",
+      "title": "First PartsTech User",
+      "description": "Our first live PartsTech user was activated this morning. They have also agreed to be a referral partner. Several people have asked about importing customers. We do have the ability to import customers but not all their previous repairs. We may offer this in the future.",
+      "date": "2025-01-17"
+    },
+    {
+      "id": "10",
+      "title": "PartsTech Approval",
+      "description": "Our integration has been approved! We are waiting for our production credentials and should be live within a few weeks. Stay tuned!",
+      "date": "2024-12-02"
+    },
+    {
+      "id": "9",
+      "title": "Miscellaneous Updates",
+      "description": "This month we are working on user experience related items. We have consolidated our line items for custom and PartsTech to appear in the same tab. PartsTech reviewed our integration and requested a few changes. We have submitted our changes and are waiting for approval.",
+      "date": "2024-11-10"
+    },
+    {
+      "id": "8",
+      "title": "PartsTech Integration Live",
+      "description": "Our integration is live! We are waiting for the final approval from PartsTech. We are very excited to offer this amazing addition to our users.",
+      "date": "2024-10-01"
+    },
+    {
+      "id": "7",
+      "title": "QuickBooks Integration",
+      "description": "Our software is now integrated with QuickBooks and pending approval. Currently, we are only syncing invoices and not estimates. When an invoice is created, it sends the higher card amount to QB. Once payment is made, the payment and invoice amount is updated.",
+      "date": "2024-09-18"
+    },
+    {
+      "id": "6",
+      "title": "PartsTech Agreement Signed",
+      "description": "The feedback from potential users has been good, but we are missing a key element that auto repair shops depend on. The ability to search for and order parts, access a labor guide, and look up vehicles is vital for repair shops. We have signed an agreement to integrate our software with PartsTech so our users can connect their supplier accounts.",
+      "date": "2024-07-03"
+    },
+    {
+      "id": "5",
+      "title": "PDF Generation",
+      "description": "Our PDF documents are now appearing properly after a minor glitch. Estimates & invoices can be quickly turned into a PDF for emailing or printing.",
+      "date": "2024-07-01"
+    },
+    {
+      "id": "4",
+      "title": "Payment Tracking",
+      "description": "Payment method and amount is now live and appearing on paid invoices. We also have a daily transaction report that summarizes all payments, payment methods, card fees collected, and card fees to be charged. This will make reconciling daily much easier.",
+      "date": "2024-05-29"
+    },
+    {
+      "id": "3",
+      "title": "General Business Version",
+      "description": "We have created a second version of the software for non-auto repair shop users. The general version provides the same experience without specific auto repair related components. We have also added a customer quick search box and basic reporting.",
+      "date": "2024-03-28"
+    },
+    {
+      "id": "2",
+      "title": "Our First User",
+      "description": "We signed a new auto shop today who will be the first end user of our software. We are very excited to start receiving feedback and ideas from live use.",
+      "date": "2024-03-22"
+    },
+    {
+      "id": "1",
+      "title": "Working Prototype",
+      "description": "We are live with a working prototype and ready for BETA users. We are looking for auto repair shops to use and provide feedback. Stay tuned!",
+      "date": "2024-02-29"
+    },
+    {
+      "id": "1768498140013",
+      "title": "Advanced Global Search & Estimate Tooltips",
+      "description": "Our new advanced global search box is now live! Search for documents by number, lookup customers by name, plate, vin. We also added a tooltip while creating estimates to display customer pricing options. ",
+      "date": "2026-01-15"
+    }
+  ],
+  "inProgress": [
+    {
+      "id": "1766793441198",
+      "title": "New Layout, & Advanced Global Search",
+      "description": "We are working on a new layout to provide our users with a more modern and consolidated workflow. ",
+      "estimatedDate": "2026-01-28"
+    },
+    {
+      "id": "1766854811104",
+      "title": "New Merchant Onboarding Checkout",
+      "description": "Our development team is working on a new merchant checkout to automate & simplify adding new merchants. This will allow our resellers to immediately enter and activate a new software account.\n\nWorkflow:\n•\tCreate merchant software account\n•\tAdd the merchant user\n•\tSelect plan and make payment\n•\tOptional – add additional information to generate a merchant service application with Docusign\n\n",
+      "estimatedDate": "2026-02-28"
+    }
+  ],
+  "upcoming": [
+    {
+      "id": "1766852191194",
+      "title": "Customer Communication",
+      "description": "\n\n    Appointment Reminders\n    • Automated text and/or email reminders to reduce no-shows\n\n    Two-Way SMS Communication\n    • Real-time messaging between shop and customer for approvals, updates, and follow-ups\n    Text/email special offers & coupons\n",
+      "estimatedDate": "2026-03-27"
+    },
+    {
+      "id": "1766852357878",
+      "title": "Digital Inspections",
+      "description": "Technicians can upload photos and videos of needed repairs. Customers will receive a clear, visual explanation before authorizing work.",
+      "estimatedDate": "2026-06-28"
+    },
+    {
+      "id": "1766853898357",
+      "title": "Advanced Detailed Reporting ",
+      "description": "Track your sales, expenses, technician time etc. A full suite of reporting tools to manage your business.",
+      "estimatedDate": "2026-02-12"
+    },
+    {
+      "id": "1766853935639",
+      "title": "Technician Features",
+      "description": "Advanced time tracking, technician pay matrix, advanced user permissions, job assignments, technician schedule, etc.",
+      "estimatedDate": "2026-04-26"
+    },
+    {
+      "id": "1766854035891",
+      "title": "Vehicle Data & Maintenance Warranty Tracking",
+      "description": "Record and monitor warranty details on repairs and parts.\nAccess recall information & suggested maintenance schedules.\nProvide proactive recommendations based on mileage and manufacturer guidelines.\n",
+      "estimatedDate": "2026-05-08"
+    },
+    {
+      "id": "1766855251314",
+      "title": "Batch Settlement & Reporting Alerts",
+      "description": "A daily confirmation to check the previous day’s card settlement(s) per merchant and records status, totals, and processor references. When an admin opens the app the next morning, a clear banner appears at the top of the homepage: green (settled) with auto-close, or red (unsettled) that persists until acknowledged. An activity log shows historical settlements and any errors.",
+      "estimatedDate": "2026-04-10"
+    },
+    {
+      "id": "1766855496329",
+      "title": "Complete Repair & Diagnostic Platform",
+      "description": "Technicians can look up diagnostic codes, view OEM/aftermarket repair steps, diagrams, and TSBs inside the app. Advisors can one-click add recommended repairs to an estimate/RO. All results save to vehicle history. ",
+      "estimatedDate": "2027-03-31"
+    },
+    {
+      "id": "1766855521192",
+      "title": "Inventory Management",
+      "description": "The Inventory Management module tracks parts, quantities on hand, cost updates, and usage across the shop. When parts are added to a job or estimate, the system automatically deducts them from inventory. Owners can view low-stock alerts, cost history, vendor details, and usage reports. The module integrates with PartsTech (if enabled for Auto Repair Version) but functions as a standalone system for the General Business Version.",
+      "estimatedDate": "2026-09-01"
+    },
+    {
+      "id": "1766855588283",
+      "title": "Vendor Management ",
+      "description": "Enable shop owners to easily add and manage vendors inside the software. This feature should allow creation of vendor records, linking vendors to purchase orders, and basic payables tracking. Goal: give shops a lightweight but effective tool to track who they buy from, how much they owe, and when payments are due.",
+      "estimatedDate": "2026-08-12"
+    }
+  ],
+  "knownIssues": [
+    {
+      "id": "1768615917625",
+      "title": "Rounding Issue",
+      "description": "There's a rounding discrepancy between the frontend and backend invoice calculations causing occasional penny differences in labor totals. We have a solution to implement and are working on it now.",
+      "dateReported": "2026-01-17",
+      "status": "resolved",
+      "dateResolved": "2026-01-18"
+    }
+  ]
+}

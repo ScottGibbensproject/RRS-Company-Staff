@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pipeline Builder Program - Task Assignments</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px;
+            background: #fff;
+        }
+        .header {
+            text-align: center;
+            border-bottom: 3px solid #2c5aa0;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+        .header h1 {
+            color: #2c5aa0;
+            font-size: 28px;
+            margin-bottom: 5px;
+        }
+        .header .subtitle {
+            color: #666;
+            font-size: 16px;
+        }
+        .header .date {
+            color: #888;
+            font-size: 14px;
+            margin-top: 8px;
+        }
+        .person-section {
+            margin-bottom: 30px;
+            background: #f8fafc;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .person-header {
+            background: #2c5aa0;
+            color: white;
+            padding: 12px 20px;
+            font-size: 18px;
+            font-weight: 600;
+        }
+        .person-header.nicole {
+            background: #7c3aed;
+        }
+        .person-header.scott {
+            background: #059669;
+        }
+        .person-header.elisabeth {
+            background: #dc2626;
+        }
+        .person-header.all {
+            background: #d97706;
+        }
+        .task-list {
+            padding: 20px;
+        }
+        .task-item {
+            display: flex;
+            align-items: flex-start;
+            padding: 10px 0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        .task-item:last-child {
+            border-bottom: none;
+        }
+        .checkbox {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #cbd5e1;
+            border-radius: 4px;
+            margin-right: 12px;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+        .task-content {
+            flex: 1;
+        }
+        .task-title {
+            font-weight: 500;
+            color: #1e293b;
+        }
+        .task-note {
+            font-size: 13px;
+            color: #64748b;
+            margin-top: 3px;
+        }
+        .priority-high {
+            border-left: 4px solid #dc2626;
+            padding-left: 12px;
+            margin-left: -16px;
+        }
+        .summary-box {
+            background: #f0f5fa;
+            border: 2px solid #2c5aa0;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 30px;
+        }
+        .summary-box h3 {
+            color: #2c5aa0;
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            text-align: center;
+        }
+        .summary-item {
+            background: white;
+            padding: 15px;
+            border-radius: 6px;
+        }
+        .summary-count {
+            font-size: 28px;
+            font-weight: 700;
+            color: #2c5aa0;
+        }
+        .summary-label {
+            font-size: 12px;
+            color: #64748b;
+            text-transform: uppercase;
+        }
+        .footer {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+            text-align: center;
+            color: #666;
+            font-size: 12px;
+        }
+        @media print {
+            body {
+                padding: 20px;
+            }
+            .person-section {
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Pipeline Builder Program</h1>
+        <div class="subtitle">Task Assignments</div>
+        <div class="date">January 2026</div>
+    </div>
+
+    <div class="person-section">
+        <div class="person-header nicole">Nicole</div>
+        <div class="task-list">
+            <div class="task-item">
+                <div class="checkbox"></div>
+                <div class="task-content">
+                    <div class="task-title">Contact all direct agents and schedule a call</div>
+                    <div class="task-note">Use 2026 Goal & Accountability Form</div>
+                </div>
+            </div>
+            <div class="task-item">
+                <div class="checkbox"></div>
+                <div class="task-content">
+                    <div class="task-title">Learn about GHL email</div>
+                </div>
+            </div>
+            <div class="task-item">
+                <div class="checkbox"></div>
+                <div class="task-content">
+                    <div class="task-title">Confirm with Elisabeth</div>
+                </div>
+            </div>
+            <div class="task-item">
+                <div class="checkbox"></div>
+                <div class="task-content">
+                    <div class="task-title">Weekly check-in plan for direct agents</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="person-section">
+        <div class="person-header scott">Scott</div>
+        <div class="task-list">
+            <div class="task-item">
+                <div class="checkbox"></div>
+                <div class="task-content">
+                    <div class="task-title">Finish myrateremover.com</div>
+                </div>
+            </div>
+            <div class="task-item">
+                <div class="checkbox"></div>
+                <div class="task-content">
+                    <div class="task-title">Merchant intake form for new merchants</div>
+                </div>
+            </div>
+            <div class="task-item">
+                <div class="checkbox"></div>
+                <div class="task-content">
+                    <div class="task-title">Email sequence for new merchants</div>
+                </div>
+            </div>
+            <div class="task-item">
+                <div class="checkbox"></div>
+                <div class="task-content">
+                    <div class="task-title">Update merchant training videos</div>
+                </div>
+            </div>
+            <div class="task-item">
+                <div class="checkbox"></div>
+                <div class="task-content">
+                    <div class="task-title">Add ACH options to checkout form</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="person-section">
+        <div class="person-header elisabeth">Elisabeth</div>
+        <div class="task-list">
+            <div class="task-item">
+                <div class="checkbox"></div>
+                <div class="task-content">
+                    <div class="task-title">Draft plan for advanced training</div>
+                </div>
+            </div>
+            <div class="task-item">
+                <div class="checkbox"></div>
+                <div class="task-content">
+                    <div class="task-title">Explore Invideo AI</div>
+                </div>
+            </div>
+            <div class="task-item">
+                <div class="checkbox"></div>
+                <div class="task-content">
+                    <div class="task-title">Update new merchant email links</div>
+                </div>
+            </div>
+            <div class="task-item">
+                <div class="checkbox"></div>
+                <div class="task-content">
+                    <div class="task-title">Draft plan for post certification emails</div>
+                    <div class="task-note">Include how to add tags as resellers progress</div>
+                </div>
+            </div>
+            <div class="task-item">
+                <div class="checkbox"></div>
+                <div class="task-content">
+                    <div class="task-title">Draft plan for pre member emails</div>
+                </div>
+            </div>
+            <div class="task-item">
+                <div class="checkbox"></div>
+                <div class="task-content">
+                    <div class="task-title">Draft plan for moving agent course & member area to GHL</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="person-section">
+        <div class="person-header all">All Team Members</div>
+        <div class="task-list">
+            <div class="task-item">
+                <div class="checkbox"></div>
+                <div class="task-content">
+                    <div class="task-title">Master GHL (GoHighLevel)</div>
+                </div>
+            </div>
+            <div class="task-item">
+                <div class="checkbox"></div>
+                <div class="task-content">
+                    <div class="task-title">Set personal results goals</div>
+                </div>
+            </div>
+            <div class="task-item">
+                <div class="checkbox"></div>
+                <div class="task-content">
+                    <div class="task-title">Plan webinars</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="summary-box">
+        <h3>Task Summary</h3>
+        <div class="summary-grid">
+            <div class="summary-item">
+                <div class="summary-count">4</div>
+                <div class="summary-label">Nicole</div>
+            </div>
+            <div class="summary-item">
+                <div class="summary-count">5</div>
+                <div class="summary-label">Scott</div>
+            </div>
+            <div class="summary-item">
+                <div class="summary-count">6</div>
+                <div class="summary-label">Elisabeth</div>
+            </div>
+            <div class="summary-item">
+                <div class="summary-count">3</div>
+                <div class="summary-label">All</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>Pipeline Builder Program - RRS Company</p>
+        <p>Task Assignment Document | January 2026</p>
+    </div>
+</body>
+</html>

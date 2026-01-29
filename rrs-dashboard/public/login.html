@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RRS Dashboard - Login</title>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body class="login-page">
+  <div class="login-container">
+    <div class="login-card">
+      <div class="login-header">
+        <h1>RRS Dashboard</h1>
+        <p>Enter your password to continue</p>
+      </div>
+
+      <form id="loginForm" class="login-form">
+        <div class="form-group">
+          <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder="Password"
+            required
+            autofocus
+          >
+        </div>
+
+        <div id="error" class="error-message" style="display: none;"></div>
+
+        <button type="submit" class="btn btn-primary btn-full">
+          <span class="btn-text">Login</span>
+          <span class="btn-loading" style="display: none;">Logging in...</span>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    const form = document.getElementById('loginForm');
+    const error = document.getElementById('error');
+    const btn = form.querySelector('button');
+    const btnText = btn.querySelector('.btn-text');
+    const btnLoading = btn.querySelector('.btn-loading');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      error.style.display = 'none';
+      btnText.style.display = 'none';
+      btnLoading.style.display = 'inline';
+      btn.disabled = true;
+
+      try {
+        const res = await fetch('/auth/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            password: document.getElementById('password').value
+          })
+        });
+
+        const data = await res.json();
+
+        if (data.success) {
+          window.location.href = data.redirect;
+        } else {
+          error.textContent = data.error || 'Login failed';
+          error.style.display = 'block';
+        }
+      } catch (err) {
+        error.textContent = 'Connection error. Please try again.';
+        error.style.display = 'block';
+      } finally {
+        btnText.style.display = 'inline';
+        btnLoading.style.display = 'none';
+        btn.disabled = false;
+      }
+    });
+  </script>
+</body>
+</html>

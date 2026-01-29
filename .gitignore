@@ -1,0 +1,14 @@
+# Dependencies
+node_modules/
+
+# Temp files
+tmpclaude-*
+nul
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Environment
+.env
+.env.local

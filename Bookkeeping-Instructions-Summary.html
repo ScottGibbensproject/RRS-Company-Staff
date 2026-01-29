@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bookkeeping Instructions - Scott Gibbens / Rate Remover Software</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 16px;
+            line-height: 1.6;
+            color: #333;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            background: #fff;
+        }
+
+        @media print {
+            body {
+                padding: 20px;
+                font-size: 11pt;
+            }
+            .page-break {
+                page-break-before: always;
+            }
+            .no-print {
+                display: none;
+            }
+            /* Keep sections together */
+            section {
+                page-break-inside: avoid;
+            }
+            /* Keep tables together */
+            table {
+                page-break-inside: avoid;
+            }
+            /* Keep entity boxes together */
+            .entity-box {
+                page-break-inside: avoid;
+            }
+            /* Keep alerts together */
+            .alert {
+                page-break-inside: avoid;
+            }
+            /* Keep checklists together */
+            .checklist {
+                page-break-inside: avoid;
+            }
+            /* Keep h2 with following content */
+            h2 {
+                page-break-after: avoid;
+            }
+            /* Keep h3 with following content */
+            h3 {
+                page-break-after: avoid;
+            }
+            /* Keep h4 with following content */
+            h4 {
+                page-break-after: avoid;
+            }
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #E05A33;
+        }
+
+        h1 {
+            color: #2D2D2D;
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #666;
+            font-size: 16px;
+        }
+
+        h2 {
+            color: #E05A33;
+            font-size: 24px;
+            margin: 30px 0 15px 0;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #E05A33;
+        }
+
+        h3 {
+            color: #2D2D2D;
+            font-size: 18px;
+            margin: 20px 0 10px 0;
+        }
+
+        h4 {
+            color: #555;
+            font-size: 16px;
+            margin: 15px 0 8px 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 15px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px 12px;
+            text-align: left;
+        }
+
+        th {
+            background: #f5f5f5;
+            font-weight: 600;
+            color: #2D2D2D;
+        }
+
+        tr:nth-child(even) {
+            background: #fafafa;
+        }
+
+        .entity-box {
+            border: 2px solid #E05A33;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            background: #fff9f7;
+        }
+
+        .entity-box h3 {
+            color: #E05A33;
+            margin-top: 0;
+        }
+
+        .contact-info {
+            background: #f5f5f5;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        .contact-info p {
+            margin: 5px 0;
+        }
+
+        .alert {
+            background: #fff3cd;
+            border: 1px solid #ffc107;
+            border-radius: 6px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+
+        .alert-title {
+            font-weight: 600;
+            color: #856404;
+            margin-bottom: 5px;
+        }
+
+        ul, ol {
+            margin: 10px 0 10px 25px;
+        }
+
+        li {
+            margin: 5px 0;
+        }
+
+        .checklist {
+            list-style: none;
+            margin-left: 0;
+        }
+
+        .checklist li {
+            padding: 5px 0 5px 28px;
+            position: relative;
+        }
+
+        .checklist li::before {
+            content: "☐";
+            position: absolute;
+            left: 0;
+            color: #E05A33;
+        }
+
+        .section-divider {
+            border: none;
+            border-top: 1px solid #ddd;
+            margin: 30px 0;
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        @media (max-width: 600px) {
+            .two-column {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .print-btn {
+            background: #E05A33;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            display: block;
+            margin: 20px auto;
+        }
+
+        .print-btn:hover {
+            background: #c74a28;
+        }
+
+        footer {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+            text-align: center;
+            color: #666;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <button class="print-btn no-print" onclick="window.print()">Download as PDF / Print</button>
+
+    <header>
+        <h1>Bookkeeping Instructions</h1>
+        <p class="subtitle">Scott Gibbens Group, LLC & Rate Remover Software, Inc.</p>
+        <p class="subtitle">Prepared: January 2026</p>
+    </header>
+
+    <!-- SECTION 1: OVERVIEW -->
+    <section>
+        <h2>Contact Information</h2>
+        <div class="contact-info">
+            <p><strong>Scott & Dana Gibbens</strong></p>
+            <p>14505 Fancher Ave, Sterling, NY 13156</p>
+            <p>Phone: 315 751 0882</p>
+            <p>Email: scott@scottgibbens.com / danagibbens@yahoo.com</p>
+        </div>
+
+        <h2>Business Entities</h2>
+        <table>
+            <tr>
+                <th>Entity</th>
+                <th>EIN</th>
+                <th>Type</th>
+                <th>Formed</th>
+            </tr>
+            <tr>
+                <td><strong>Scott Gibbens Group, LLC</strong></td>
+                <td>92-1029041</td>
+                <td>LLC (Schedule C)</td>
+                <td>Nov 14, 2022</td>
+            </tr>
+            <tr>
+                <td><strong>Rate Remover Software, Inc.</strong></td>
+                <td>39-3925356</td>
+                <td>Delaware C Corp</td>
+                <td>Aug 20, 2025</td>
+            </tr>
+        </table>
+        <div class="alert">
+            <p class="alert-title">Operational Division - Effective January 1, 2026</p>
+            <p>Currently, all operations have been done through <strong>Scott Gibbens Group, LLC DBA Shop Rate Remover</strong>. Effective January 1, 2026, the operation is being divided.</p>
+        </div>
+
+        <h3>Rate Remover Software, Inc. (RTRMVR) will handle:</h3>
+        <ul>
+            <li>Collecting all SaaS fees</li>
+            <li>Depositing all investor funds</li>
+            <li>Paying all expenses related to RRS and development</li>
+        </ul>
+
+        <h3>Scott Gibbens Group, LLC (SGINY) will handle:</h3>
+        <ul>
+            <li>All payment processing income/expense from Electronic Payments, Inc.</li>
+            <li>Payroll for all payment agents & employees</li>
+            <li>Expenses related to payment processing</li>
+        </ul>
+
+        <p><em>Once the new bank account for RRS is open, deposits & expenses will be transferred.</em></p>
+
+        <h3>Investor Equity Deposits (Log Entry Only - No Cash Transfer)</h3>
+        <p><em>These deposits were made to SGG accounts but belong to RRS. Record as journal entries only - no physical cash transfer required.</em></p>
+        <table>
+            <tr>
+                <th>Date</th>
+                <th>Amount</th>
+                <th>Deposited To</th>
+                <th>Notes</th>
+            </tr>
+            <tr>
+                <td>12/29/2025</td>
+                <td>$10,000</td>
+                <td>SGG Savannah Bank</td>
+                <td>Eric Cote - log as RRS equity (CS-11)</td>
+            </tr>
+            <tr>
+                <td>12/29/2025</td>
+                <td>$25,000</td>
+                <td>SGG PathFinder Bank</td>
+                <td>KLIV, LLC - log as RRS equity (CS-9)</td>
+            </tr>
+        </table>
+
+        <h2>Bank Accounts</h2>
+        <table>
+            <tr>
+                <th>Bank</th>
+                <th>Purpose</th>
+                <th>Deposits From</th>
+            </tr>
+            <tr>
+                <td><strong>PathFinder Bank</strong></td>
+                <td>Merchant Service Residuals</td>
+                <td>EPI (Fiserv + Cygma), PayBright, HOST</td>
+            </tr>
+            <tr>
+                <td><strong>Savannah Bank</strong></td>
+                <td>SaaS & Recurring Fees</td>
+                <td>WooCommerce/Stripe, Dejavoo iPos, Web Hosting, Consulting</td>
+            </tr>
+        </table>
+
+        <div class="alert">
+            <p class="alert-title">Important: RTRMVR Bank Account Pending</p>
+            <p>Rate Remover Software, Inc. does not have a dedicated bank account yet (waiting on Certificate of Authority from NY). Currently, RTRMVR income deposits to Savannah Bank mixed with SGINY funds. Track separately until new account is opened.</p>
+        </div>
+
+        <div class="alert">
+            <p class="alert-title">Planned: Consolidate to PathFinder Bank</p>
+            <p>Planning to <strong>close the Savannah Bank account</strong> and consolidate all SGG banking to PathFinder Bank. This will simplify reconciliation by having all SGG income and expenses flow through one account.</p>
+        </div>
+
+        <h2>Credit/Debit Cards</h2>
+        <table>
+            <tr>
+                <th>Card</th>
+                <th>Last 4</th>
+                <th>Owner/Entity</th>
+                <th>Purpose</th>
+            </tr>
+            <tr>
+                <td>Savannah Bank Debit</td>
+                <td>2231</td>
+                <td>SGG (SGINY)</td>
+                <td>Monthly recurring bills</td>
+            </tr>
+            <tr>
+                <td>PathFinder Debit</td>
+                <td>8797</td>
+                <td>SGG (SGINY)</td>
+                <td>Linked to PathFinder checking</td>
+            </tr>
+            <tr>
+                <td>Capital One</td>
+                <td>5080</td>
+                <td>Scott Gibbens (personal)</td>
+                <td>Recurring bills</td>
+            </tr>
+            <tr>
+                <td>Dana Gibbens</td>
+                <td>2858</td>
+                <td>Dana Gibbens (personal)</td>
+                <td>TBD</td>
+            </tr>
+            <tr>
+                <td>Dana Gibbens</td>
+                <td>7577</td>
+                <td>Dana Gibbens (personal)</td>
+                <td>TBD</td>
+            </tr>
+        </table>
+
+        <h2>Monthly Income Calendar</h2>
+
+        <div class="alert">
+            <p class="alert-title">Important: EPI Residual Payment Flow</p>
+            <p><strong>All EPI merchant residuals are paid to SGG</strong> (PathFinder Bank), including those labeled "RTRMVR". The RTRMVR label identifies residuals from software-related merchants. <strong>SGG then pays RRS its share</strong> of the RTRMVR-labeled residuals each month.</p>
+        </div>
+
+        <table>
+            <tr>
+                <th>Day</th>
+                <th>Payment</th>
+                <th>Paid To</th>
+                <th>Source</th>
+                <th>Bank</th>
+            </tr>
+            <tr>
+                <td>1st</td>
+                <td>Web Hosting CC (3 clients)</td>
+                <td>SGINY</td>
+                <td>Dejavoo iPos</td>
+                <td>Savannah</td>
+            </tr>
+            <tr>
+                <td>1st</td>
+                <td>SaaS Fees (~$651/mo)</td>
+                <td>RTRMVR</td>
+                <td>WooCommerce/Stripe</td>
+                <td>Savannah</td>
+            </tr>
+            <tr>
+                <td>5th</td>
+                <td>EPI Cygma (SGINY + RTRMVR)</td>
+                <td>SGG*</td>
+                <td>EPI</td>
+                <td>PathFinder</td>
+            </tr>
+            <tr>
+                <td>16th</td>
+                <td>EPI Fiserv (SGINY + RTRMVR)</td>
+                <td>SGG*</td>
+                <td>EPI</td>
+                <td>PathFinder</td>
+            </tr>
+            <tr>
+                <td>24th</td>
+                <td>PayBright Residuals</td>
+                <td>SGINY</td>
+                <td>PayBright</td>
+                <td>PathFinder</td>
+            </tr>
+            <tr>
+                <td>30th</td>
+                <td>HOST Merchant Svc</td>
+                <td>SGINY</td>
+                <td>HOST</td>
+                <td>PathFinder</td>
+            </tr>
+            <tr>
+                <td>Various</td>
+                <td>Sign On Bonus ($200 each)</td>
+                <td>SGINY</td>
+                <td>EPI</td>
+                <td>PathFinder</td>
+            </tr>
+            <tr>
+                <td>Monthly</td>
+                <td>Consulting Fees</td>
+                <td>SGINY</td>
+                <td>Albany cleaning business</td>
+                <td>Savannah</td>
+            </tr>
+            <tr>
+                <td>Monthly</td>
+                <td>RTRMVR Residual Share</td>
+                <td>RRS (from SGG)</td>
+                <td>Internal transfer</td>
+                <td>TBD</td>
+            </tr>
+        </table>
+        <p><em>*All EPI residuals deposit to SGG. SGG pays RRS its RTRMVR-labeled portion monthly.</em></p>
+    </section>
+
+    <!-- SECTION 2: SGINY -->
+    <section>
+        <h2>Entity 1: Scott Gibbens Group, LLC (SGINY)</h2>
+
+        <div class="entity-box">
+            <h3>Entity Details</h3>
+            <div class="two-column">
+                <div>
+                    <p><strong>EIN:</strong> 92-1029041</p>
+                    <p><strong>Formed:</strong> November 14, 2022</p>
+                    <p><strong>Structure:</strong> LLC</p>
+                    <p><strong>Tax Status:</strong> Schedule C</p>
+                </div>
+                <div>
+                    <p><strong>EPI Code:</strong> SGINY</p>
+                    <p><strong>Ownership:</strong> 50% Scott, 50% Dana</p>
+                    <p><strong>Payroll:</strong> ADP (1 PT employee, 12-15 hrs/wk)</p>
+                </div>
+            </div>
+        </div>
+
+        <h3>Income Sources</h3>
+        <h4>Merchant Service Residuals (PathFinder Bank)</h4>
+        <table>
+            <tr>
+                <th>Source</th>
+                <th>Portal</th>
+                <th>Payment Date</th>
+            </tr>
+            <tr><td>EPI Cygma SGINY</td><td>Cygma</td><td>5th of month</td></tr>
+            <tr><td>EPI Fiserv SGINY</td><td>Fiserv</td><td>16th of month</td></tr>
+            <tr><td>PayBright</td><td>—</td><td>24th of month</td></tr>
+            <tr><td>HOST Merchant Svc</td><td>—</td><td>30th of month</td></tr>
+            <tr><td>Sign On Bonus</td><td>—</td><td>Various ($200 each)</td></tr>
+        </table>
+
+        <h4>Recurring Income (Savannah Bank)</h4>
+        <table>
+            <tr>
+                <th>Source</th>
+                <th>Payment Date</th>
+            </tr>
+            <tr><td>Web Hosting (3 clients)</td><td>1st of month</td></tr>
+            <tr><td>Consulting Fees (Albany cleaning business)</td><td>Monthly</td></tr>
+        </table>
+
+        <h3>Expenses</h3>
+        <ul>
+            <li>Office rent</li>
+            <li>Phone</li>
+            <li>Internet</li>
+            <li>Terminal paper for merchants</li>
+            <li>Payroll (ADP) - track as expense</li>
+            <li>Technology services (Google, Zoho, etc.)</li>
+            <li>Marketing materials</li>
+        </ul>
+
+        <h3>Agent Commission Payouts</h3>
+        <div class="alert">
+            <p class="alert-title">Important: EPI Pays Agents Directly</p>
+            <p>Agent residual commissions are paid directly to each agent by EPI. <strong>EPI handles all agent 1099s.</strong> SGG only tracks and pays account sign-on bonuses.</p>
+        </div>
+
+        <h4>SGG Pays (Track for 1099)</h4>
+        <table>
+            <tr>
+                <th>Payment Type</th>
+                <th>Amount</th>
+                <th>Notes</th>
+            </tr>
+            <tr>
+                <td>Account Sign-On Bonus</td>
+                <td>$200</td>
+                <td>Per new merchant activated</td>
+            </tr>
+            <tr>
+                <td>Nicole Devery Override</td>
+                <td>20%</td>
+                <td>Of agent overrides only</td>
+            </tr>
+        </table>
+
+        <h4>EPI Pays Directly (Reference Only)</h4>
+        <table>
+            <tr>
+                <th>Recipient</th>
+                <th>Commission</th>
+                <th>Notes</th>
+            </tr>
+            <tr>
+                <td>Direct Agents</td>
+                <td>60%</td>
+                <td>EPI pays directly; EPI issues 1099</td>
+            </tr>
+            <tr>
+                <td>Steven C Roberts (SGINY07)</td>
+                <td>50%</td>
+                <td>Exception rate; EPI pays directly</td>
+            </tr>
+            <tr>
+                <td>Steve Ivy</td>
+                <td>—</td>
+                <td>Independent agent; EPI pays directly</td>
+            </tr>
+        </table>
+
+        <h3>Monthly Reconciliation Checklist - SGINY</h3>
+        <h4>Week 1 (After 5th)</h4>
+        <ul class="checklist">
+            <li>Verify EPI Cygma SGINY deposit in PathFinder</li>
+            <li>Reconcile against EPI Cygma portal statement</li>
+            <li>Calculate Nicole's 20% of agent overrides</li>
+            <li>Process Nicole override payment</li>
+        </ul>
+
+        <h4>Week 2 (After 16th)</h4>
+        <ul class="checklist">
+            <li>Verify EPI Fiserv SGINY deposit in PathFinder</li>
+            <li>Reconcile against EPI Fiserv portal statement</li>
+            <li>Calculate Nicole's 20% of agent overrides</li>
+            <li>Process Nicole override payment</li>
+        </ul>
+
+        <h4>Week 3-4</h4>
+        <ul class="checklist">
+            <li>Verify PayBright deposit (24th)</li>
+            <li>Verify HOST Merchant deposit (30th)</li>
+            <li>Reconcile web hosting income (Savannah)</li>
+            <li>Reconcile consulting income (Savannah)</li>
+            <li>Record any sign-on bonuses paid ($200/merchant)</li>
+            <li>Reconcile ADP payroll withdrawals</li>
+        </ul>
+
+        <h4>End of Month</h4>
+        <ul class="checklist">
+            <li>Complete bank reconciliation (PathFinder)</li>
+            <li>Complete bank reconciliation (Savannah - SGINY portion)</li>
+            <li>Update QuickBooks</li>
+        </ul>
+    </section>
+
+    <!-- SECTION 3: RTRMVR -->
+    <section>
+        <h2>Entity 2: Rate Remover Software, Inc. (RTRMVR)</h2>
+
+        <div class="entity-box">
+            <h3>Entity Details</h3>
+            <div class="two-column">
+                <div>
+                    <p><strong>EIN:</strong> 39-3925356</p>
+                    <p><strong>Formed:</strong> August 20, 2025</p>
+                    <p><strong>Structure:</strong> Delaware C Corporation</p>
+                    <p><strong>CEO:</strong> Scott Gibbens</p>
+                </div>
+                <div>
+                    <p><strong>EPI Code:</strong> RTRMVR</p>
+                    <p><strong>Authorized Shares:</strong> 10,000,000</p>
+                    <p><strong>Equity Management:</strong> Carta</p>
+                </div>
+            </div>
+        </div>
+
+        <h3>Income Sources</h3>
+        <h4>SaaS Revenue (Currently: Savannah Bank) - ~$651/month</h4>
+        <table>
+            <tr>
+                <th>Source</th>
+                <th>Payment Date</th>
+                <th>Notes</th>
+            </tr>
+            <tr><td>Monthly SaaS Fees (~$651)</td><td>1st of month</td><td>Billed in advance; new signups prorated</td></tr>
+            <tr><td>Monthly Reseller Support Fees</td><td>Monthly</td><td>Recurring support subscriptions</td></tr>
+            <tr><td>Reseller Signup Fees</td><td>As received</td><td>One-time onboarding fees</td></tr>
+        </table>
+
+        <h4>Merchant Service Residuals (PathFinder Bank)</h4>
+        <table>
+            <tr>
+                <th>Source</th>
+                <th>Portal</th>
+                <th>Payment Date</th>
+            </tr>
+            <tr><td>EPI Cygma RTRMVR</td><td>Cygma</td><td>5th of month</td></tr>
+            <tr><td>EPI Fiserv RTRMVR</td><td>Fiserv</td><td>16th of month</td></tr>
+        </table>
+
+        <h3>Expenses</h3>
+        <h4>Development Contractors (1099 Required)</h4>
+        <table>
+            <tr>
+                <th>Vendor</th>
+                <th>Monthly Amount</th>
+                <th>Notes</th>
+            </tr>
+            <tr><td>JMA Resources</td><td>$2,500</td><td>Development services</td></tr>
+            <tr><td>FYC Labs</td><td>$2,500</td><td>Development services</td></tr>
+        </table>
+
+        <h4>Staff & Contractors</h4>
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Role</th>
+                <th>Compensation</th>
+                <th>1099 Required</th>
+            </tr>
+            <tr><td>Nicole Devery</td><td>Director of Reseller Development</td><td>$400 base + $50/onboarding call + residual overrides on Direct Agents</td><td>Yes</td></tr>
+            <tr><td>RJ Caruso Bookkeeping</td><td>Bookkeeping Services</td><td>$350 - $500/month</td><td>Yes</td></tr>
+        </table>
+
+        <h4>Other Expenses</h4>
+        <ul>
+            <li>Technology services (Google, Twilio, Zapier, etc.)</li>
+            <li>Platform fees (Vercel, Railway, etc.)</li>
+            <li>Marketing materials</li>
+            <li>Subagents - Paid directly by EPI (pass-through, no RTRMVR payment needed)</li>
+        </ul>
+
+        <h3>Monthly Reconciliation Checklist - RTRMVR</h3>
+        <h4>Week 1</h4>
+        <ul class="checklist">
+            <li>Verify SaaS fee deposits in Savannah Bank</li>
+            <li>Reconcile against WooCommerce/Stripe reports</li>
+            <li>Record any new reseller signup fees</li>
+            <li>Verify EPI Cygma RTRMVR deposit in PathFinder (5th)</li>
+        </ul>
+
+        <h4>Week 2</h4>
+        <ul class="checklist">
+            <li>Verify EPI Fiserv RTRMVR deposit in PathFinder (16th)</li>
+            <li>Reconcile against EPI Fiserv portal statement</li>
+        </ul>
+
+        <h4>Throughout Month</h4>
+        <ul class="checklist">
+            <li>Record developer contractor payments (track for 1099)</li>
+            <li>Record platform subscription expenses</li>
+            <li>Record technology service expenses</li>
+        </ul>
+
+        <h4>End of Month</h4>
+        <ul class="checklist">
+            <li>Separate RTRMVR transactions from SGINY in Savannah Bank</li>
+            <li>Complete PathFinder reconciliation (RTRMVR portion)</li>
+            <li>Update QuickBooks</li>
+            <li>Review developer/contractor YTD payments for 1099 threshold</li>
+        </ul>
+
+        <h3>C Corp Tax Considerations</h3>
+        <table>
+            <tr>
+                <th>Filing</th>
+                <th>Deadline</th>
+                <th>Notes</th>
+            </tr>
+            <tr><td>Form 1120</td><td>April 15 (or extension)</td><td>Corporate income tax return</td></tr>
+            <tr><td>Quarterly estimates</td><td>15th of 4th, 6th, 9th, 12th month</td><td>If applicable</td></tr>
+            <tr><td>1099-NEC</td><td>January 31</td><td>For contractors >$600</td></tr>
+            <tr><td>Delaware franchise tax</td><td>March 1</td><td>Annual requirement</td></tr>
+        </table>
+    </section>
+
+    <!-- SECTION 4: CORP DOCS -->
+    <section>
+        <h2>RRS Corp Documents: Board Approvals & Equity</h2>
+
+        <p>All equity for Rate Remover Software, Inc. is managed on <strong>Carta</strong>.</p>
+        <p><strong>Total Outstanding Shares: 6,470,700</strong></p>
+
+        <h3>Complete Cap Table (from Carta)</h3>
+        <table>
+            <tr>
+                <th>Security</th>
+                <th>Stakeholder</th>
+                <th>Shares</th>
+                <th>Price/Share</th>
+                <th>Value</th>
+                <th>Issue Date</th>
+            </tr>
+            <tr><td>CS-1</td><td>Scott Gibbens (Founder)</td><td>5,800,000</td><td>$0.00</td><td>$580.00</td><td>Aug 26, 2025</td></tr>
+            <tr><td>CS-2</td><td>Zac Mason</td><td>125,000</td><td>$0.00</td><td>$0.00</td><td>Aug 26, 2025</td></tr>
+            <tr><td>CS-3</td><td>Adrian Iannacito</td><td>50,000</td><td>$0.00</td><td>$0.00</td><td>Aug 30, 2025</td></tr>
+            <tr><td>CS-4</td><td>Shannon Devery</td><td>50,000</td><td>$0.00</td><td>$0.00</td><td>Aug 30, 2025</td></tr>
+            <tr><td>CS-5</td><td>Nicole Devery</td><td>50,000</td><td>$0.00</td><td>$0.00</td><td>Aug 30, 2025</td></tr>
+            <tr><td>CS-6</td><td>Steve Roberts</td><td>50,000</td><td>$0.00</td><td>$0.00</td><td>Aug 30, 2025</td></tr>
+            <tr><td>CS-7</td><td>Elisabeth Geiwitz</td><td>50,000</td><td>$0.00</td><td>$0.00</td><td>Sep 17, 2025</td></tr>
+            <tr><td>CS-8</td><td>Paul McGetrick Jr.</td><td>25,000</td><td>$0.01</td><td>$0.00</td><td>Nov 3, 2025</td></tr>
+            <tr><td>CS-9</td><td>KLIV, LLC</td><td>96,000</td><td>$0.26</td><td>$25,000.00</td><td>Dec 29, 2025</td></tr>
+            <tr><td>CS-10</td><td>Eric Cote (Consultant)</td><td>49,700</td><td>$0.08</td><td>$0.00</td><td>Jan 5, 2026</td></tr>
+            <tr><td>CS-11</td><td>Eric Cote (Cash Purchase)</td><td>125,000</td><td>$0.08</td><td>$10,000.00</td><td>Jan 7, 2026</td></tr>
+        </table>
+
+        <h3>Cash Investments Summary</h3>
+        <table>
+            <tr>
+                <th>Investor</th>
+                <th>Shares</th>
+                <th>Amount Paid</th>
+                <th>Price/Share</th>
+                <th>Date</th>
+            </tr>
+            <tr><td>KLIV, LLC</td><td>96,000</td><td>$25,000</td><td>$0.26</td><td>Dec 29, 2025</td></tr>
+            <tr><td>Eric Cote</td><td>125,000</td><td>$10,000</td><td>$0.08</td><td>Jan 7, 2026</td></tr>
+            <tr><td colspan="2"><strong>Total Cash Invested</strong></td><td><strong>$35,000</strong></td><td>—</td><td>—</td></tr>
+        </table>
+
+        <h3>Board Approvals Issued</h3>
+        <table>
+            <tr>
+                <th>Approval</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td>General Board Consent - Equity Issuance</td>
+                <td>Blanket approval covering multiple issuances</td>
+            </tr>
+            <tr>
+                <td>Convertible Promissory Note Offering</td>
+                <td>Authorization to issue $10,000 convertible notes</td>
+            </tr>
+        </table>
+
+        <h3>Bookkeeping Implications</h3>
+        <ul>
+            <li><strong>Cash Investments:</strong> $35,000 total - record as capital contributions (KLIV $25K, Eric Cote $10K)</li>
+            <li><strong>Stock Compensation Expense:</strong> Service-based grants may require expense recognition</li>
+            <li><strong>1099 for Consultants:</strong> Eric Cote consultant grant = $3,976 value (49,700 × $0.08)</li>
+            <li><strong>Convertible Notes:</strong> Track any notes issued, interest accrual, conversion terms</li>
+        </ul>
+    </section>
+
+    <!-- SECTION 5: SUBSCRIPTIONS -->
+    <section>
+        <h2>Monthly Subscriptions & Recurring Expenses</h2>
+        <p><strong>Estimated Monthly Total: ~$2,615</strong></p>
+
+        <h3>Summary by Card</h3>
+        <table>
+            <tr>
+                <th>Card</th>
+                <th>Last 4</th>
+                <th>Monthly Total</th>
+                <th># of Charges</th>
+            </tr>
+            <tr><td>Savannah Bank Debit</td><td>2231</td><td>~$858</td><td>8</td></tr>
+            <tr><td>PathFinder Debit</td><td>8797</td><td>~$785</td><td>14</td></tr>
+            <tr><td>Dana Gibbens</td><td>7577</td><td>~$569</td><td>2</td></tr>
+            <tr><td>Dana Gibbens</td><td>2858</td><td>~$39</td><td>1</td></tr>
+            <tr><td>Scott Capital One</td><td>3337</td><td>$70</td><td>1</td></tr>
+            <tr><td>Scott Mastercard</td><td>2718</td><td>$108</td><td>1</td></tr>
+            <tr><td>ACH (Savannah)</td><td>ACH</td><td>~$375</td><td>3</td></tr>
+            <tr><td>Unknown/TBD</td><td>—</td><td>~$46</td><td>1</td></tr>
+        </table>
+
+        <h3>Entity Totals</h3>
+        <table>
+            <tr>
+                <th>Entity</th>
+                <th>Monthly Total</th>
+            </tr>
+            <tr><td><strong>Rate Remover Software (RTRMVR)</strong></td><td>~$1,789</td></tr>
+            <tr><td><strong>Scott Gibbens Group (SGINY)</strong></td><td>~$1,011</td></tr>
+        </table>
+
+        <h3>Subscriptions by Date</h3>
+        <table>
+            <tr>
+                <th>Day</th>
+                <th>Service</th>
+                <th>Amount</th>
+                <th>Card</th>
+                <th>Entity</th>
+                <th>Notes</th>
+            </tr>
+            <tr><td>1</td><td>Google Console</td><td>$400.00</td><td>2231</td><td>RRS</td><td>Software Hosting</td></tr>
+            <tr><td>1</td><td>SiteGround</td><td>$24.99</td><td>8797</td><td>SGG</td><td>mypaymentgroup.com</td></tr>
+            <tr><td>1</td><td>Google Gsuite</td><td>$70.00</td><td>3337</td><td>RRS</td><td>Email</td></tr>
+            <tr><td>3</td><td>QuickBooks Payment</td><td>$94.00</td><td>2231</td><td>SGG</td><td>Camilia Auto</td></tr>
+            <tr><td>3</td><td>EPI Merchant Fees</td><td>$60.13</td><td>ACH</td><td>SGG</td><td>Sav SGG</td></tr>
+            <tr><td>3</td><td>SiteGround</td><td>$24.99</td><td>8797</td><td>SGG</td><td>scottgibbens.com</td></tr>
+            <tr><td>5</td><td>Railway</td><td>$20.00</td><td>2231</td><td>RRS</td><td>Hosting RR Pay</td></tr>
+            <tr><td>5</td><td>Claude AI</td><td>$108.00</td><td>2718</td><td>SGG</td><td>—</td></tr>
+            <tr><td>5</td><td>Twilio/Sendgrid</td><td>$89.95</td><td>8797</td><td>RRS</td><td>Rate Remover Software</td></tr>
+            <tr><td>5</td><td>Legal Zoom Mail</td><td>$31.32</td><td>8797</td><td>RRS</td><td>Rate Remover Software</td></tr>
+            <tr><td>6</td><td>Open AI</td><td>$20.00</td><td>2231</td><td>RRS</td><td>Chat Bot</td></tr>
+            <tr><td>6</td><td>MailChimp</td><td>$76.88</td><td>2231</td><td>SGG</td><td>—</td></tr>
+            <tr><td>10</td><td>Userback</td><td>$69.00</td><td>7577</td><td>RRS</td><td>Rate Remover Software</td></tr>
+            <tr><td>11</td><td>Invideo</td><td>$130.00</td><td>2231</td><td>RRS</td><td>—</td></tr>
+            <tr><td>12</td><td>ADP</td><td>$132.00</td><td>ACH</td><td>SGG</td><td>Payroll fees</td></tr>
+            <tr><td>13</td><td>Evoice</td><td>$45.95</td><td>TBD</td><td>RRS</td><td>Phone Service</td></tr>
+            <tr><td>14</td><td>SiteGround</td><td>$9.99</td><td>8797</td><td>RRS</td><td>scan-myrateremover</td></tr>
+            <tr><td>14</td><td>Calendly</td><td>$38.88</td><td>2858</td><td>RRS</td><td>—</td></tr>
+            <tr><td>17</td><td>SiteGround</td><td>$34.99</td><td>8797</td><td>SGG</td><td>—</td></tr>
+            <tr><td>17</td><td>WA Hosting</td><td>$49.00</td><td>8797</td><td>SGG</td><td>—</td></tr>
+            <tr><td>17</td><td>Adobe</td><td>$21.59</td><td>8797</td><td>SGG</td><td>—</td></tr>
+            <tr><td>18</td><td>Intuit</td><td>$82.00</td><td>2231</td><td>SGG</td><td>QuickBooks</td></tr>
+            <tr><td>18</td><td>SiteGround</td><td>$34.99</td><td>8797</td><td>SGG</td><td>screwylouies.com</td></tr>
+            <tr><td>19</td><td>Go High Level</td><td>$500.00</td><td>7577</td><td>RRS</td><td>CRM</td></tr>
+            <tr><td>21</td><td>SiteGround</td><td>$49.99</td><td>8797</td><td>RRS</td><td>myrateremover.com</td></tr>
+            <tr><td>21</td><td>Vonage</td><td>$178.00</td><td>8797</td><td>RRS</td><td>Phone Service</td></tr>
+            <tr><td>24</td><td>Chat GPT</td><td>$21.60</td><td>8797</td><td>RRS</td><td>—</td></tr>
+            <tr><td>24</td><td>SiteGround</td><td>$49.99</td><td>8797</td><td>SGG</td><td>deluxehomecleaning.com</td></tr>
+            <tr><td>26</td><td>Posh Answering Svc</td><td>$114.00</td><td>8797</td><td>RRS</td><td>Rate Remover Software</td></tr>
+            <tr><td>27</td><td>NBL</td><td>$182.44</td><td>ACH</td><td>SGG</td><td>Life Insurance</td></tr>
+            <tr><td>30</td><td>SiteGround</td><td>$34.99</td><td>2231</td><td>SGG</td><td>dcfreestreamnow.com</td></tr>
+        </table>
+
+        <h3>Additional Cards Identified</h3>
+        <ul>
+            <li><strong>Card 3337:</strong> Scott Gibbens Capital One (Google Gsuite $70/mo)</li>
+            <li><strong>Card 2718:</strong> Scott Gibbens Mastercard (Claude AI $108/mo)</li>
+            <li><strong>Card 2858:</strong> Dana Gibbens (Calendly $38.88/mo)</li>
+        </ul>
+
+        <h3>Pending Action Items</h3>
+        <ul class="checklist">
+            <li>Assign card for: Evoice ($45.95)</li>
+            <li>Confirm entity assignment for shared services (Google Console, GHL, AI tools, Vonage)</li>
+            <li>Review if NBL (Life Insurance) is personal or business expense</li>
+        </ul>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- ACTION ITEMS -->
+    <section>
+        <h2>Action Items Summary</h2>
+
+        <h3>Immediate</h3>
+        <ul class="checklist">
+            <li>Assign card for Evoice ($45.95)</li>
+            <li>Open bank account for Rate Remover Software, Inc. (pending Certificate of Authority from NY)</li>
+            <li>Track RTRMVR income separately until dedicated account opened</li>
+            <li>Record investor equity deposits ($35,000) as journal entries for RRS</li>
+        </ul>
+
+        <h3>Ongoing</h3>
+        <ul class="checklist">
+            <li>Reconcile RTRMVR income separately (currently in Savannah Bank with SGINY)</li>
+            <li>Track 1099 contractor payments for year-end reporting</li>
+            <li>Reconcile Carta cap table with internal records (monthly/quarterly)</li>
+            <li>Organize scattered financial records (currently in email, Drive)</li>
+        </ul>
+
+        <h3>Documents to Locate</h3>
+        <ul class="checklist">
+            <li>Locate and store all equity grant/board approval documents (see Corp Docs section)</li>
+        </ul>
+    </section>
+
+    <footer>
+        <p><strong>Accounting Software:</strong> QuickBooks (both entities already set up)</p>
+        <p>Document prepared January 2026</p>
+    </footer>
+
+    <button class="print-btn no-print" onclick="window.print()">Download as PDF / Print</button>
+</body>
+</html>

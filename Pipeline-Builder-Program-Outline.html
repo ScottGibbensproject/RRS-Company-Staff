@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pipeline Builder Program - RRS Company</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px;
+        }
+        .header {
+            text-align: center;
+            border-bottom: 3px solid #2c5aa0;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+        .header h1 {
+            color: #2c5aa0;
+            font-size: 28px;
+            margin-bottom: 5px;
+        }
+        .header .subtitle {
+            color: #666;
+            font-size: 16px;
+        }
+        .section {
+            margin-bottom: 30px;
+        }
+        .section h2 {
+            color: #2c5aa0;
+            font-size: 18px;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 8px;
+            margin-bottom: 15px;
+        }
+        .section h3 {
+            color: #444;
+            font-size: 15px;
+            margin: 15px 0 10px 0;
+        }
+        .highlight-box {
+            background: #f0f5fa;
+            border-left: 4px solid #2c5aa0;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        .highlight-box strong {
+            color: #2c5aa0;
+        }
+        ul {
+            margin-left: 25px;
+            margin-bottom: 10px;
+        }
+        li {
+            margin-bottom: 5px;
+        }
+        .two-column {
+            display: flex;
+            gap: 30px;
+        }
+        .two-column > div {
+            flex: 1;
+        }
+        .workflow-box {
+            background: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 20px;
+            margin: 15px 0;
+        }
+        .workflow-step {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+        .step-number {
+            background: #2c5aa0;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+        .step-content h4 {
+            color: #2c5aa0;
+            margin-bottom: 5px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background: #2c5aa0;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background: #f9f9f9;
+        }
+        .footer {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+            text-align: center;
+            color: #666;
+            font-size: 12px;
+        }
+        @media print {
+            body {
+                padding: 20px;
+            }
+            .section {
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Pipeline Builder Program</h1>
+        <div class="subtitle">RRS Company - Software Reseller Lead Generation Resource</div>
+    </div>
+
+    <div class="section">
+        <h2>Program Overview</h2>
+        <p>The Pipeline Builder Program is a subscription resource for RRS software resellers to grow their portfolio through prospecting and lead generation support.</p>
+
+        <div class="highlight-box">
+            <strong>Qualification Requirements:</strong><br>
+            <ul style="margin-top: 10px;">
+                <li>Monthly Subscription: <strong>$29/month</strong></li>
+                <li>Must complete RRS Advanced Training</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Phase 1: Initial Setup (Before Launch)</h2>
+
+        <h3>1.1 Company Workflow Development</h3>
+        <ul>
+            <li>Document complete onboarding workflow</li>
+            <li>Create step-by-step process maps</li>
+            <li>Define roles and responsibilities</li>
+            <li>Establish turnaround times and SLAs</li>
+        </ul>
+
+        <h3>1.2 GHL Training Module Setup</h3>
+        <p>Create training module in GoHighLevel covering:</p>
+        <table>
+            <tr>
+                <th>Topic</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td>What We Do</td>
+                <td>Services included in Pipeline Builder Program</td>
+            </tr>
+            <tr>
+                <td>What We Don't Do</td>
+                <td>Clear boundaries and exclusions</td>
+            </tr>
+            <tr>
+                <td>What to Expect</td>
+                <td>Timeline, deliverables, communication cadence</td>
+            </tr>
+            <tr>
+                <td>How to Use GHL</td>
+                <td>GoHighLevel platform training and best practices</td>
+            </tr>
+            <tr>
+                <td>Expectations</td>
+                <td>Reseller responsibilities and participation requirements</td>
+            </tr>
+        </table>
+
+        <h3>1.3 GHL Intake Form Setup</h3>
+        <ul>
+            <li>Build intake form in GoHighLevel</li>
+            <li>Configure form fields</li>
+            <li>Set up automation triggers on form submission</li>
+            <li>Create notification workflow for RRS team</li>
+        </ul>
+
+        <h3>1.4 Payment & Subscription Setup</h3>
+        <ul>
+            <li>Create $29/month subscription product in GHL</li>
+            <li>Set up payment button/checkout page</li>
+            <li>Configure recurring billing</li>
+            <li>Create confirmation emails/automations</li>
+            <li>Link subscription to training module access</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>Phase 2: Implementation (Reseller Workflow)</h2>
+
+        <div class="workflow-box">
+            <div class="workflow-step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h4>Sign-Up & Payment</h4>
+                    <p>Reseller subscribes ($29/month via GHL), receives automatic access to training module, and welcome email is triggered.</p>
+                </div>
+            </div>
+            <div class="workflow-step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h4>Training Completion</h4>
+                    <p>Reseller completes Pipeline Builder training in GHL covering program details and platform usage.</p>
+                </div>
+            </div>
+            <div class="workflow-step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h4>Intake Form Submission</h4>
+                    <p>Reseller completes intake form in GHL specifying target industries, geographic focus, company size preferences, and lead volume goals.</p>
+                </div>
+            </div>
+            <div class="workflow-step">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                    <h4>List Building & Approval</h4>
+                    <p>RRS creates prospect list based on intake criteria, sends for reseller approval before campaign launch.</p>
+                </div>
+            </div>
+            <div class="workflow-step">
+                <div class="step-number">5</div>
+                <div class="step-content">
+                    <h4>Campaign Execution</h4>
+                    <p>RRS manages postcard/mailing campaign and email campaign via Mailchimp.</p>
+                </div>
+            </div>
+            <div class="workflow-step">
+                <div class="step-number">6</div>
+                <div class="step-content">
+                    <h4>Results & Follow-Up</h4>
+                    <p>Leads delivered to reseller who follows up and closes deals.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Intake Form Fields</h2>
+        <table>
+            <tr>
+                <th>Field</th>
+                <th>Purpose</th>
+            </tr>
+            <tr>
+                <td>Target Industry/Vertical</td>
+                <td>Define prospect business types</td>
+            </tr>
+            <tr>
+                <td>Geographic Focus</td>
+                <td>City, state, or region to target</td>
+            </tr>
+            <tr>
+                <td>Exclusions/Restrictions</td>
+                <td>Industries or companies to avoid</td>
+            </tr>
+            <tr>
+                <td>Current Pipeline Status</td>
+                <td>Existing leads or starting fresh</td>
+            </tr>
+            <tr>
+                <td>Monthly Lead Volume Goals</td>
+                <td>Expected volume of leads desired</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="section">
+        <h2>Campaign Deliverables</h2>
+        <div class="two-column">
+            <div>
+                <h3>Postcard & Mailing Campaign</h3>
+                <ul>
+                    <li>Finalize mailing list</li>
+                    <li>Customize messaging</li>
+                    <li>Submit to print/mail vendor</li>
+                    <li>Track delivery and response</li>
+                    <li>Report results</li>
+                </ul>
+            </div>
+            <div>
+                <h3>Email Campaign (Mailchimp)</h3>
+                <ul>
+                    <li>Import prospect list</li>
+                    <li>Segment audience</li>
+                    <li>Schedule email sequence</li>
+                    <li>Monitor engagement</li>
+                    <li>Provide performance reports</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Tasks To Complete Before Launch</h2>
+        <table>
+            <tr>
+                <th>Task</th>
+                <th>Owner</th>
+                <th>Status</th>
+            </tr>
+            <tr>
+                <td>Document onboarding workflow</td>
+                <td></td>
+                <td>Pending</td>
+            </tr>
+            <tr>
+                <td>Create GHL training module</td>
+                <td></td>
+                <td>Pending</td>
+            </tr>
+            <tr>
+                <td>Build training content</td>
+                <td></td>
+                <td>Pending</td>
+            </tr>
+            <tr>
+                <td>Build intake form in GHL</td>
+                <td></td>
+                <td>Pending</td>
+            </tr>
+            <tr>
+                <td>Set up $29/month subscription in GHL</td>
+                <td></td>
+                <td>Pending</td>
+            </tr>
+            <tr>
+                <td>Configure GHL automations</td>
+                <td></td>
+                <td>Pending</td>
+            </tr>
+            <tr>
+                <td>Create postcard templates</td>
+                <td></td>
+                <td>Pending</td>
+            </tr>
+            <tr>
+                <td>Set up Mailchimp workspace</td>
+                <td></td>
+                <td>Pending</td>
+            </tr>
+            <tr>
+                <td>Test complete workflow</td>
+                <td></td>
+                <td>Pending</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="footer">
+        <p>Pipeline Builder Program - RRS Company</p>
+        <p>Document Version 1.0 | January 2026</p>
+    </div>
+</body>
+</html>

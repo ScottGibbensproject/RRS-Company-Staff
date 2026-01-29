@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rate Remover Software - Development Overview</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="changelog-header" style="text-align: center;">
+    <h1 style="margin-bottom: 0;">Rate Remover Software</h1>
+    <h3 style="font-weight: 400; color: var(--color-text-secondary); margin-top: 0;">Development Overview</h3>
+    <p style="margin-top: 0.75rem;">Track our progress and see what's coming next.</p>
+    <div id="pulsetic-badge" style="display: flex; justify-content: center; margin-top: 1rem;"></div>
+  </header>
+
+  <!-- Tabs -->
+  <div class="tabs">
+    <button class="tab active" data-tab="changelog">Changelog</button>
+    <button class="tab" data-tab="in-progress">In Progress</button>
+    <button class="tab" data-tab="upcoming">Upcoming Features</button>
+    <button class="tab" data-tab="known-issues">Known Issues</button>
+  </div>
+
+  <!-- Tab Contents -->
+  <div id="changelog" class="tab-content active">
+    <div class="timeline" id="changelog-list"></div>
+  </div>
+
+  <div id="in-progress" class="tab-content">
+    <div id="in-progress-list"></div>
+  </div>
+
+  <div id="upcoming" class="tab-content">
+    <p style="color: var(--color-text-secondary); font-size: 0.85rem; font-style: italic; margin-bottom: 1.5rem;">Development timeline is estimated and subject to change.</p>
+    <div id="upcoming-list"></div>
+  </div>
+
+  <div id="known-issues" class="tab-content">
+    <div id="active-issues"></div>
+    <div id="resolved-issues"></div>
+  </div>
+
+  <script src="app.js"></script>
+  <script>
+    // Tab switching
+    document.querySelectorAll('.tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        // Remove active from all tabs and contents
+        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+
+        // Add active to clicked tab and its content
+        tab.classList.add('active');
+        document.getElementById(tab.dataset.tab).classList.add('active');
+      });
+    });
+
+    // Load and render data
+    document.addEventListener('DOMContentLoaded', async () => {
+      try {
+        const response = await fetch('data.json');
+        const data = await response.json();
+
+        // Render Changelog
+        const changelogList = document.getElementById('changelog-list');
+        if (data.changelog && data.changelog.length > 0) {
+          const sorted = [...data.changelog].sort((a, b) => new Date(b.date) - new Date(a.date));
+          changelogList.innerHTML = sorted.map(item => renderChangelogEntry(item)).join('');
+        } else {
+          changelogList.innerHTML = '<div class="empty-state"><p>No changelog entries yet.</p></div>';
+        }
+
+        // Render In Progress (sorted by estimated date, earliest first)
+        const inProgressList = document.getElementById('in-progress-list');
+        if (data.inProgress && data.inProgress.length > 0) {
+          const sortedInProgress = [...data.inProgress].sort((a, b) => {
+            if (!a.estimatedDate) return 1;
+            if (!b.estimatedDate) return -1;
+            return new Date(a.estimatedDate) - new Date(b.estimatedDate);
+          });
+          inProgressList.innerHTML = sortedInProgress.map(item => renderFeatureCard(item, 'in-progress')).join('');
+        } else {
+          inProgressList.innerHTML = '<div class="empty-state"><p>Nothing currently in progress.</p></div>';
+        }
+
+        // Render Upcoming (sorted by estimated date, earliest first)
+        const upcomingList = document.getElementById('upcoming-list');
+        if (data.upcoming && data.upcoming.length > 0) {
+          const sortedUpcoming = [...data.upcoming].sort((a, b) => {
+            if (!a.estimatedDate) return 1;
+            if (!b.estimatedDate) return -1;
+            return new Date(a.estimatedDate) - new Date(b.estimatedDate);
+          });
+          upcomingList.innerHTML = sortedUpcoming.map(item => renderFeatureCard(item, 'upcoming')).join('');
+        } else {
+          upcomingList.innerHTML = '<div class="empty-state"><p>No upcoming features announced yet.</p></div>';
+        }
+
+        // Render Known Issues
+        const activeIssuesDiv = document.getElementById('active-issues');
+        const resolvedIssuesDiv = document.getElementById('resolved-issues');
+
+        if (data.knownIssues && data.knownIssues.length > 0) {
+          const activeIssues = data.knownIssues.filter(i => i.status === 'researching');
+          const resolvedIssues = data.knownIssues.filter(i => i.status === 'resolved');
+
+          // Sort active by date reported (newest first)
+          activeIssues.sort((a, b) => new Date(b.dateReported) - new Date(a.dateReported));
+          // Sort resolved by date resolved (newest first)
+          resolvedIssues.sort((a, b) => new Date(b.dateResolved) - new Date(a.dateResolved));
+
+          if (activeIssues.length > 0) {
+            activeIssuesDiv.innerHTML = activeIssues.map(item => renderIssueCard(item)).join('');
+          } else {
+            activeIssuesDiv.innerHTML = '<div class="no-issues"><p>No current issues</p></div>';
+          }
+
+          if (resolvedIssues.length > 0) {
+            resolvedIssuesDiv.innerHTML = '<h3 class="section-subtitle">Previous Issues</h3>' +
+              resolvedIssues.map(item => renderIssueCard(item)).join('');
+          } else {
+            resolvedIssuesDiv.innerHTML = '';
+          }
+        } else {
+          activeIssuesDiv.innerHTML = '<div class="no-issues"><p>No current issues</p></div>';
+          resolvedIssuesDiv.innerHTML = '';
+        }
+
+      } catch (error) {
+        console.error('Failed to load data:', error);
+        document.getElementById('changelog-list').innerHTML = '<div class="empty-state"><p>Unable to load updates.</p></div>';
+      }
+    });
+  </script>
+
+  <!-- Pulsetic Status Badge -->
+  <script src="https://cdn.pulsetic.com/index.js" async></script>
+  <script>
+    window.onload = function () {
+      Pulsetic.init({
+        monitor_id: 81853,
+        element_id: "pulsetic-badge",
+        theme: "dark"
+      });
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(powershell -ExecutionPolicy Bypass -File \"C:\\\\Users\\\\scott\\\\Desktop\\\\RRS Company\\\\list_desktop.ps1\")",
+      "Bash(powershell \"Move-Item -Path ''C:/Users/scott/Desktop/Client Images'' -Destination ''C:/Users/scott/Desktop/Media Assets/''\")",
+      "Bash(powershell:*)",
+      "Bash(mkdir:*)",
+      "Bash(npm start)",
+      "Bash(dir \"C:\\\\Program Files\")",
+      "Bash(findstr:*)",
+      "Bash(start \"\" \"c:\\\\Users\\\\scott\\\\Desktop\\\\RRS Company\\\\changelog\\\\admin.html\")",
+      "Bash(dir:*)",
+      "Bash(python -m http.server:*)",
+      "Bash(start \"\" \"C:\\\\Users\\\\scott\\\\Desktop\\\\RRS Company\\\\direct-agents\\\\index.html\")",
+      "Bash(start \"\" \"http://localhost:8080\")",
+      "Bash(npm run init-db:*)",
+      "Bash(curl:*)",
+      "Bash(pm2 logs:*)",
+      "Bash(pm2 restart:*)",
+      "Bash(taskkill:*)",
+      "Bash(pm2 delete:*)",
+      "Bash(pm2 start:*)",
+      "Bash(netstat:*)",
+      "Bash(pm2 status:*)",
+      "Bash(pm2 save:*)",
+      "Bash(npm run setup-hooks:*)",
+      "Bash(cat:*)",
+      "Bash(sqlite3:*)",
+      "Bash(node -e:*)",
+      "Bash(copy \"C:\\\\Users\\\\scott\\\\Downloads\\\\New Merchant Onboarding\\\\1.png\" \"c:\\\\Users\\\\scott\\\\Desktop\\\\RRS Company\\\\onboarding-1.png\")",
+      "Bash(copy \"C:\\\\Users\\\\scott\\\\Downloads\\\\New Merchant Onboarding\\\\2.png\" \"c:\\\\Users\\\\scott\\\\Desktop\\\\RRS Company\\\\onboarding-2.png\")",
+      "Bash(copy \"C:\\\\Users\\\\scott\\\\Downloads\\\\New Merchant Onboarding\\\\3.png\" \"c:\\\\Users\\\\scott\\\\Desktop\\\\RRS Company\\\\onboarding-3.png\")",
+      "Bash(copy \"C:\\\\Users\\\\scott\\\\Downloads\\\\New Merchant Onboarding\\\\4.png\" \"c:\\\\Users\\\\scott\\\\Desktop\\\\RRS Company\\\\onboarding-4.png\")",
+      "Read(//c/Users/scott/Desktop/rate-remover-auto-repair-website/.github/**)",
+      "Bash(git add:*)"
+    ]
+  }
+}
