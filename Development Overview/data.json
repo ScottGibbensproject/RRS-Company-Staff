@@ -132,20 +132,44 @@
       "id": "1766793441198",
       "title": "New Layout, & Advanced Global Search",
       "description": "We are working on a new layout to provide our users with a more modern and consolidated workflow. ",
-      "estimatedDate": "2026-01-28"
+      "estimatedDate": "2026-02-28"
     },
     {
       "id": "1766854811104",
       "title": "New Merchant Onboarding Checkout",
       "description": "Our development team is working on a new merchant checkout to automate & simplify adding new merchants. This will allow our resellers to immediately enter and activate a new software account.\n\nWorkflow:\n•\tCreate merchant software account\n•\tAdd the merchant user\n•\tSelect plan and make payment\n•\tOptional – add additional information to generate a merchant service application with Docusign\n\n",
       "estimatedDate": "2026-02-28"
+    },
+    {
+      "id": "1770336435374",
+      "title": "Appointment Reminders",
+      "description": "Appointment reminders by text or email is done and in testing. We are excited to launch this feature as we have had many requests for it.",
+      "estimatedDate": "2026-02-20"
+    },
+    {
+      "id": "1770336693241",
+      "title": "Technician Time Blocking on Calendar",
+      "description": "We are updating the calendar to allow blocking technician time for an appointment. The new expanded calendar will have options to view by day, week, or month and allow the user to click a time block to schedule or change an appointment.",
+      "estimatedDate": "2026-02-20"
+    },
+    {
+      "id": "1770336840579",
+      "title": "Fluid Measurements on Line Items",
+      "description": "We're adding the ability to enter fluid measurement quantities directly on line items. Users will be able to select common fluid units (ounces, quarts, gallons, liters, etc.) when building estimates and invoices, making it easier to accurately bill for fluids like oil, coolant, refrigerant, and other shop materials.",
+      "estimatedDate": "2026-02-20"
+    },
+    {
+      "id": "1770336911706",
+      "title": "Print Button",
+      "description": "A print button is being added to make printing RO's, estimates, and invoices more efficient. This will eliminate the need to download a PDF.",
+      "estimatedDate": "2026-02-20"
     }
   ],
   "upcoming": [
     {
       "id": "1766852191194",
       "title": "Customer Communication",
-      "description": "\n\n    Appointment Reminders\n    • Automated text and/or email reminders to reduce no-shows\n\n    Two-Way SMS Communication\n    • Real-time messaging between shop and customer for approvals, updates, and follow-ups\n    Text/email special offers & coupons\n",
+      "description": "\n\n Two-Way SMS Communication\n    • Real-time messaging between shop and customer for approvals, updates, and follow-ups\n    Text/email special offers & coupons\n",
       "estimatedDate": "2026-03-27"
     },
     {

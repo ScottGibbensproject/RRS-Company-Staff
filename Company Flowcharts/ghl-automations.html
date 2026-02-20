@@ -235,7 +235,7 @@
         <div class="header">
             <h1><span>&#9889;</span> GHL Automations & Workflows</h1>
             <p>Track and document all GoHighLevel automations, campaigns, triggers, and workflow configurations</p>
-            <p class="last-updated">Last Updated: January 27, 2026</p>
+            <p class="last-updated">Last Updated: February 9, 2026</p>
         </div>
 
         <!-- Active Workflows Section -->
@@ -337,9 +337,99 @@
                         </td>
                         <td><span class="status-badge status-active">Active</span></td>
                     </tr>
+                    <tr>
+                        <td>
+                            <div class="automation-name">Merchant Demo Form Submission</div>
+                            <div class="automation-desc">Workflow triggered by merchant demo contact form submission (booking calendar) to create pipeline opportunity</div>
+                        </td>
+                        <td><span class="trigger-tag">Form Submitted</span><span class="trigger-tag">Merchant Demo Calendar</span></td>
+                        <td>
+                            <strong>Trigger:</strong> Contact form submitted (merchant demo calendar)<br>
+                            <strong>Step 1:</strong> 15-minute delay (allows GHL to auto-create contact)<br>
+                            <strong>Step 2:</strong> Find Contact (search CRM by email)<br>
+                            <div style="margin-left: 15px; margin-top: 8px; padding: 10px; background: rgba(76, 175, 80, 0.1); border-radius: 6px;">
+                                <strong style="color: #81C784;">✓ Contact Found:</strong><br>
+                                Create or Update Opportunity → Add to pipeline
+                            </div>
+                            <div style="margin-left: 15px; margin-top: 8px; padding: 10px; background: rgba(255, 152, 0, 0.1); border-radius: 6px;">
+                                <strong style="color: #FFB74D;">✗ Contact Not Found:</strong><br>
+                                END (no action)
+                            </div>
+                        </td>
+                        <td><span class="status-badge status-active">Active</span></td>
+                    </tr>
                     <!-- Add more workflows as needed -->
                 </tbody>
             </table>
+
+            <!-- Merchant Demo Form Submission Flowchart -->
+            <div style="margin-top: 30px; padding: 25px; background: rgba(76, 175, 80, 0.08); border: 1px solid rgba(76, 175, 80, 0.2); border-radius: 12px;">
+                <h3 style="color: #81C784; margin-bottom: 20px; font-size: 1.1rem;">📋 Merchant Demo Form Submission Flow</h3>
+
+                <div style="display: flex; flex-direction: column; align-items: center; gap: 0;">
+
+                    <!-- Step 1: Trigger -->
+                    <div style="background: linear-gradient(135deg, #E91E63, #C2185B); color: white; padding: 20px 30px; border-radius: 12px; text-align: center; min-width: 300px; max-width: 450px; box-shadow: 0 4px 20px rgba(0,0,0,0.3);">
+                        <h4>Contact Form Submitted</h4>
+                        <p style="font-size: 0.85rem; opacity: 0.9; margin-top: 5px;">Merchant Demo Calendar</p>
+                    </div>
+
+                    <div style="width: 3px; height: 30px; background: #4a4a6a; position: relative;"></div>
+                    <div style="width: 0; height: 0; border-left: 8px solid transparent; border-right: 8px solid transparent; border-top: 10px solid #4a4a6a;"></div>
+
+                    <!-- Step 2: Delay -->
+                    <div style="background: linear-gradient(135deg, #FF9800, #F57C00); color: white; padding: 20px 30px; border-radius: 12px; text-align: center; min-width: 300px; max-width: 450px; box-shadow: 0 4px 20px rgba(0,0,0,0.3); margin-top: -2px;">
+                        <h4>15-Minute Delay</h4>
+                        <p style="font-size: 0.85rem; opacity: 0.9; margin-top: 5px;">Allows GHL to auto-create the contact</p>
+                    </div>
+
+                    <div style="width: 3px; height: 30px; background: #4a4a6a;"></div>
+                    <div style="width: 0; height: 0; border-left: 8px solid transparent; border-right: 8px solid transparent; border-top: 10px solid #4a4a6a;"></div>
+
+                    <!-- Step 3: Find Contact -->
+                    <div style="background: linear-gradient(135deg, #2196F3, #1976D2); color: white; padding: 20px 30px; border-radius: 12px; text-align: center; min-width: 300px; max-width: 450px; box-shadow: 0 4px 20px rgba(0,0,0,0.3); border: 3px solid #64B5F6; margin-top: -2px; position: relative;">
+                        <div style="position: absolute; top: -10px; right: -10px; background: #FFC107; color: #333; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold;">?</div>
+                        <h4>Find Contact</h4>
+                        <p style="font-size: 0.85rem; opacity: 0.9; margin-top: 5px;">Search CRM by email</p>
+                    </div>
+
+                    <!-- Branch Split -->
+                    <div style="display: flex; gap: 40px; align-items: flex-start; justify-content: center; margin: 20px 0;">
+                        <!-- Left Branch: Contact Found -->
+                        <div style="display: flex; flex-direction: column; align-items: center;">
+                            <span style="background: rgba(76, 175, 80, 0.3); color: #81C784; padding: 4px 12px; border-radius: 15px; font-size: 0.85rem; margin-bottom: 10px;">Contact Found</span>
+                            <div style="width: 3px; height: 30px; background: #4a4a6a;"></div>
+                            <div style="width: 0; height: 0; border-left: 8px solid transparent; border-right: 8px solid transparent; border-top: 10px solid #4a4a6a;"></div>
+                            <div style="background: linear-gradient(135deg, #009688, #00796B); color: white; padding: 20px 30px; border-radius: 12px; text-align: center; min-width: 220px; box-shadow: 0 4px 20px rgba(0,0,0,0.3); margin-top: -2px;">
+                                <h4>Create / Update Opportunity</h4>
+                                <p style="font-size: 0.85rem; opacity: 0.9; margin-top: 5px;">Add to pipeline</p>
+                            </div>
+                        </div>
+
+                        <!-- Right Branch: Contact Not Found -->
+                        <div style="display: flex; flex-direction: column; align-items: center;">
+                            <span style="background: rgba(244, 67, 54, 0.3); color: #E57373; padding: 4px 12px; border-radius: 15px; font-size: 0.85rem; margin-bottom: 10px;">Not Found</span>
+                            <div style="width: 3px; height: 30px; background: #4a4a6a;"></div>
+                            <div style="width: 0; height: 0; border-left: 8px solid transparent; border-right: 8px solid transparent; border-top: 10px solid #4a4a6a;"></div>
+                            <div style="background: linear-gradient(135deg, #607D8B, #455A64); color: white; padding: 20px 30px; border-radius: 12px; text-align: center; min-width: 220px; box-shadow: 0 4px 20px rgba(0,0,0,0.3); margin-top: -2px;">
+                                <h4>END</h4>
+                                <p style="font-size: 0.85rem; opacity: 0.9; margin-top: 5px;">No action</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Workflow Notes -->
+                <div style="margin-top: 25px; padding: 15px; background: rgba(0,0,0,0.2); border-radius: 8px;">
+                    <h4 style="color: #FFC107; margin-bottom: 10px; font-size: 0.9rem;">Workflow Notes</h4>
+                    <ul style="color: #aaa; font-size: 0.85rem; margin-left: 20px;">
+                        <li style="margin-bottom: 5px;">The calendar's built-in confirmation email remains unchanged and fires immediately upon booking</li>
+                        <li style="margin-bottom: 5px;">GHL auto-creates the contact on form submission; the 15-minute delay ensures the contact exists before the Find Contact lookup runs</li>
+                        <li style="margin-bottom: 5px;">No Create Contact step was added since GHL handles contact creation automatically</li>
+                        <li style="margin-bottom: 5px;">Contact Not Found branch currently ends with no action — may add a safety net (notification or create contact) in the future</li>
+                    </ul>
+                </div>
+            </div>
 
             <!-- Direct Agent Onboarding Flowchart -->
             <div style="margin-top: 30px; padding: 25px; background: rgba(102, 126, 234, 0.08); border: 1px solid rgba(102, 126, 234, 0.2); border-radius: 12px;">
@@ -434,7 +524,7 @@
             <div class="notes-box" style="background: rgba(255, 152, 0, 0.1); border-color: rgba(255, 152, 0, 0.3);">
                 <h4 style="color: #FFB74D;">TO DO - Workflows</h4>
                 <ul>
-                    <li>Create opportunity workflow pipeline for Merchant Demo Auto Repair</li>
+                    <li><s style="color: #666;">Create opportunity workflow pipeline for Merchant Demo Auto Repair</s> <span style="color: #81C784; font-size: 0.85rem;">✓ Done (2/9/2026)</span></li>
                     <li>Automate checkout to GHL integration for new merchants</li>
                 </ul>
             </div>

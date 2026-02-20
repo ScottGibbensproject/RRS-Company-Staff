@@ -288,7 +288,7 @@ Create a clean CSV with these fields:
 A public-facing changelog page hosted on Netlify to display software updates. Can be embedded on the website.
 
 ### Files Location
-`RRS Company/changelog/`
+`RRS Company/Development Overview/`
 - `index.html` - Public changelog page (what visitors see)
 - `admin.html` - Admin form to add/edit updates (use locally)
 - `data.json` - Changelog data (update this before deploying)
@@ -305,7 +305,7 @@ A public-facing changelog page hosted on Netlify to display software updates. Ca
 
 ### Deploying to Netlify
 1. Go to [app.netlify.com](https://app.netlify.com)
-2. Drag the entire `changelog` folder onto the deploy area
+2. Drag the entire `Development Overview` folder onto the deploy area
 3. Done - you get a live URL
 
 ### Embedding on Website
@@ -424,19 +424,10 @@ These fees are deducted from gross profit before calculating the 90% payout:
 
 ### Earnings Tracking
 
-**Dashboard:** `RRS Company/direct-agents/index.html`
+**Dashboard:** `C:\Users\scott\Desktop\RRS Bookkeeping` (moved from project)
 - Open locally in browser to view monthly summaries
 - Shows totals by group (RTRMVR, SGINY)
 - Displays agent payouts and Nicole's commission
-
-**Admin:** `RRS Company/direct-agents/admin.html`
-- Use to enter new month data
-- Auto-calculates Nicole's 20% commission
-- Generates JSON to paste into data.json
-
-**Data File:** `RRS Company/direct-agents/data.json`
-- Stores all earnings data
-- Update via admin page or edit directly
 
 ---
 

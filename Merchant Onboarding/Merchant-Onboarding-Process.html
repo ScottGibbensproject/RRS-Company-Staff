@@ -1,0 +1,1009 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RRS Merchant Onboarding Process</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #E05A33;
+            --primary-dark: #C74A28;
+            --primary-light: #F07050;
+            --secondary: #2D2D2D;
+            --accent: #4CAF50;
+            --blue: #2196F3;
+            --purple: #7C4DFF;
+            --amber: #FF9800;
+            --teal: #009688;
+            --bg: #F5F5F5;
+            --card-bg: #FFFFFF;
+            --border: #E0E0E0;
+            --text: #333333;
+            --text-light: #666666;
+            --radius-sm: 6px;
+            --radius-md: 10px;
+            --radius-lg: 16px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--secondary) 0%, #3D3D3D 50%, #4D4D4D 100%);
+            color: white;
+            padding: 32px 40px;
+        }
+
+        .header h1 { font-size: 28px; font-weight: 800; margin-bottom: 4px; }
+        .header .subtitle { font-size: 14px; color: #BBBBBB; }
+        .header .doc-meta { margin-top: 12px; display: flex; gap: 24px; font-size: 13px; color: #999; }
+        .header .doc-meta span { display: flex; align-items: center; gap: 6px; }
+
+        .nav-bar {
+            background: white;
+            border-bottom: 2px solid var(--primary);
+            padding: 0 24px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            overflow-x: auto;
+            white-space: nowrap;
+        }
+
+        .nav-bar a {
+            display: inline-block;
+            padding: 12px 16px;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-light);
+            text-decoration: none;
+            border-bottom: 3px solid transparent;
+            transition: all 0.2s;
+        }
+
+        .nav-bar a:hover { color: var(--primary); border-bottom-color: var(--primary); }
+
+        .content { max-width: 1000px; margin: 0 auto; padding: 32px 24px; }
+
+        .section {
+            background: var(--card-bg);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border);
+            margin-bottom: 24px;
+            overflow: hidden;
+        }
+
+        .section-header {
+            padding: 20px 24px 16px;
+            border-bottom: 1px solid #F0F0F0;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-header .section-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+
+        .section-header h2 { font-size: 18px; font-weight: 700; }
+        .section-header .section-desc { font-size: 12px; color: var(--text-light); margin-top: 2px; }
+
+        .section-body { padding: 20px 24px 24px; }
+
+        h3 {
+            font-size: 15px;
+            font-weight: 700;
+            margin: 20px 0 10px;
+            padding-bottom: 6px;
+            border-bottom: 1px solid #F0F0F0;
+            color: var(--secondary);
+        }
+
+        h3:first-child { margin-top: 0; }
+        h4 { font-size: 13px; font-weight: 700; margin: 14px 0 6px; color: var(--text); }
+        p { font-size: 14px; margin-bottom: 10px; }
+        ul, ol { font-size: 14px; padding-left: 20px; margin-bottom: 10px; }
+        li { margin-bottom: 4px; }
+        strong { color: var(--secondary); }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+            margin: 10px 0 16px;
+        }
+
+        th {
+            background: #F8F8F8;
+            text-align: left;
+            padding: 8px 12px;
+            font-weight: 600;
+            border-bottom: 2px solid var(--border);
+            font-size: 12px;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        td {
+            padding: 8px 12px;
+            border-bottom: 1px solid #F0F0F0;
+            vertical-align: top;
+        }
+
+        tr:last-child td { border-bottom: none; }
+
+        .callout {
+            border-radius: var(--radius-sm);
+            padding: 12px 16px;
+            margin: 12px 0;
+            font-size: 13px;
+        }
+
+        .callout-important { background: #FFF3E0; border-left: 4px solid var(--amber); }
+        .callout-tip { background: #E8F5E9; border-left: 4px solid var(--accent); }
+        .callout-warning { background: #FFEBEE; border-left: 4px solid #D32F2F; }
+        .callout-info { background: #E3F2FD; border-left: 4px solid var(--blue); }
+        .callout-ghl { background: #F3E5F5; border-left: 4px solid var(--purple); }
+        .callout strong { display: block; font-size: 12px; margin-bottom: 2px; }
+
+        .icon-orange { background: #FFF3E0; }
+        .icon-green { background: #E8F5E9; }
+        .icon-blue { background: #E3F2FD; }
+        .icon-purple { background: #F3E5F5; }
+        .icon-teal { background: #E0F2F1; }
+        .icon-amber { background: #FFF8E1; }
+
+        /* Journey Timeline */
+        .timeline {
+            display: flex;
+            align-items: flex-start;
+            gap: 0;
+            margin: 16px 0 24px;
+            overflow-x: auto;
+            padding-bottom: 8px;
+        }
+
+        .timeline-step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-width: 130px;
+            position: relative;
+            flex: 1;
+        }
+
+        .timeline-step::after {
+            content: '';
+            position: absolute;
+            top: 18px;
+            left: calc(50% + 20px);
+            right: calc(-50% + 20px);
+            height: 3px;
+            background: var(--border);
+        }
+
+        .timeline-step:last-child::after { display: none; }
+
+        .timeline-dot {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 700;
+            color: white;
+            z-index: 1;
+            flex-shrink: 0;
+        }
+
+        .timeline-label {
+            margin-top: 8px;
+            font-size: 11px;
+            font-weight: 600;
+            text-align: center;
+            color: var(--text);
+            line-height: 1.3;
+        }
+
+        .timeline-sublabel {
+            font-size: 10px;
+            color: var(--text-light);
+            text-align: center;
+            margin-top: 2px;
+            font-weight: 400;
+        }
+
+        /* Email Draft Blocks */
+        .email-draft {
+            background: #FAFAFA;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            margin: 16px 0;
+            overflow: hidden;
+        }
+
+        .email-draft-header {
+            background: var(--secondary);
+            color: white;
+            padding: 10px 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .email-draft-header .email-number {
+            background: var(--primary);
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .email-draft-header .email-meta {
+            flex: 1;
+        }
+
+        .email-draft-header .email-subject {
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .email-draft-header .email-trigger {
+            font-size: 11px;
+            color: #BBB;
+        }
+
+        .email-draft-body {
+            padding: 20px;
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        .email-draft-body .email-section-title {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin: 16px 0 8px;
+            padding-top: 12px;
+            border-top: 1px dashed #E0E0E0;
+        }
+
+        .email-draft-body .email-section-title:first-child {
+            margin-top: 0;
+            padding-top: 0;
+            border-top: none;
+        }
+
+        .email-draft-body .email-greeting {
+            font-style: italic;
+            color: var(--text-light);
+            margin-bottom: 12px;
+        }
+
+        .email-draft-body ul { margin: 8px 0 8px 16px; }
+
+        .email-draft-body .email-signature {
+            margin-top: 16px;
+            padding-top: 12px;
+            border-top: 1px solid #E0E0E0;
+            color: var(--text-light);
+            font-size: 13px;
+        }
+
+        .placeholder {
+            background: #FFF9C4;
+            border: 1px dashed #FBC02D;
+            border-radius: 4px;
+            padding: 2px 8px;
+            font-size: 12px;
+            color: #F57F17;
+            font-weight: 600;
+        }
+
+        /* Booking form mockup */
+        .form-mockup {
+            background: #FAFAFA;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 20px;
+            margin: 12px 0;
+        }
+
+        .form-mockup .form-title {
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: var(--secondary);
+        }
+
+        .form-field {
+            margin-bottom: 12px;
+            padding: 10px 14px;
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+        }
+
+        .form-field .field-label {
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .form-field .field-options {
+            display: flex;
+            gap: 16px;
+            font-size: 13px;
+            color: var(--text-light);
+        }
+
+        .form-field .field-note {
+            font-size: 11px;
+            color: #D32F2F;
+            margin-top: 4px;
+            font-weight: 500;
+        }
+
+        /* Steps */
+        .steps { counter-reset: step; list-style: none; padding-left: 0; }
+
+        .steps li {
+            counter-increment: step;
+            padding: 8px 0 8px 36px;
+            position: relative;
+            border-bottom: 1px solid #F8F8F8;
+        }
+
+        .steps li::before {
+            content: counter(step);
+            position: absolute;
+            left: 0;
+            top: 8px;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: white;
+            font-size: 12px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .steps li:last-child { border-bottom: none; }
+
+        /* GHL Workflow diagram */
+        .workflow-block {
+            background: #F3E5F5;
+            border: 2px solid var(--purple);
+            border-radius: var(--radius-md);
+            padding: 16px;
+            margin: 12px 0;
+        }
+
+        .workflow-block .wf-title {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--purple);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+
+        .workflow-block .wf-name {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--secondary);
+            margin-bottom: 4px;
+        }
+
+        .workflow-block .wf-trigger {
+            font-size: 13px;
+            color: var(--text-light);
+        }
+
+        @media print {
+            body { background: white; }
+            .header { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            .nav-bar { display: none; }
+            .section { break-inside: avoid; page-break-inside: avoid; }
+            .content { padding: 16px; }
+            .email-draft-header { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            .timeline-dot { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+        }
+
+        @media (max-width: 768px) {
+            .timeline { flex-wrap: wrap; }
+            .timeline-step { min-width: 100px; }
+            .timeline-step::after { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ================================================================ -->
+<!-- HEADER                                                            -->
+<!-- ================================================================ -->
+<div class="header">
+    <h1>Merchant Onboarding Process</h1>
+    <div class="subtitle">From demo follow-up through pre-onboarding to install &mdash; complete workflow and email content</div>
+    <div class="doc-meta">
+        <span>Rate Remover Software</span>
+        <span>February 2026</span>
+        <span>Internal Process Document</span>
+    </div>
+</div>
+
+<!-- ================================================================ -->
+<!-- NAVIGATION                                                        -->
+<!-- ================================================================ -->
+<nav class="nav-bar">
+    <a href="#journey">Journey Overview</a>
+    <a href="#demo-followup">Post-Demo Follow-Up</a>
+    <a href="#pre-onboarding">Pre-Onboarding Workflow</a>
+    <a href="#scheduling">Onboarding Scheduling</a>
+    <a href="#ghl-config">GHL Configuration</a>
+</nav>
+
+<div class="content">
+
+<!-- ================================================================ -->
+<!-- JOURNEY OVERVIEW                                                  -->
+<!-- ================================================================ -->
+<div class="section" id="journey">
+    <div class="section-header">
+        <div class="section-icon icon-teal">&#128506;</div>
+        <div>
+            <h2>Merchant Journey Overview</h2>
+            <div class="section-desc">The complete path from demo to onboarding</div>
+        </div>
+    </div>
+    <div class="section-body">
+
+        <div class="timeline">
+            <div class="timeline-step">
+                <div class="timeline-dot" style="background: var(--blue);">1</div>
+                <div class="timeline-label">Merchant Demo</div>
+                <div class="timeline-sublabel">Round Robin calendar</div>
+            </div>
+            <div class="timeline-step">
+                <div class="timeline-dot" style="background: var(--teal);">2</div>
+                <div class="timeline-label">Demo Follow-Up</div>
+                <div class="timeline-sublabel">Auto email + Q&amp;A</div>
+            </div>
+            <div class="timeline-step">
+                <div class="timeline-dot" style="background: var(--primary);">3</div>
+                <div class="timeline-label">Application Submitted</div>
+                <div class="timeline-sublabel">Agent + merchant</div>
+            </div>
+            <div class="timeline-step">
+                <div class="timeline-dot" style="background: var(--purple);">4</div>
+                <div class="timeline-label">Pre-Onboarding Emails</div>
+                <div class="timeline-sublabel">PartsTech setup + welcome</div>
+            </div>
+            <div class="timeline-step">
+                <div class="timeline-dot" style="background: var(--amber);">5</div>
+                <div class="timeline-label">Application Approved</div>
+                <div class="timeline-sublabel">1&ndash;2 business days</div>
+            </div>
+            <div class="timeline-step">
+                <div class="timeline-dot" style="background: var(--accent);">6</div>
+                <div class="timeline-label">Software Account Created</div>
+                <div class="timeline-sublabel">Can send payment links</div>
+            </div>
+            <div class="timeline-step">
+                <div class="timeline-dot" style="background: var(--secondary);">7</div>
+                <div class="timeline-label">Onboarding Call</div>
+                <div class="timeline-sublabel">Scheduled via GHL form</div>
+            </div>
+        </div>
+
+        <h3>Key Timing</h3>
+        <table>
+            <tr><th>Milestone</th><th>Timeline</th><th>Notes</th></tr>
+            <tr><td>Demo Follow-Up Email</td><td>Immediately after demo</td><td>Auto-sent via GHL workflow</td></tr>
+            <tr><td>Application Submitted</td><td>During or after demo</td><td>Agent should schedule onboarding while still with merchant</td></tr>
+            <tr><td>Pre-Onboarding Email 1</td><td>Immediately on application</td><td>Welcome + PartsTech instructions</td></tr>
+            <tr><td>Application Approval</td><td>1&ndash;2 business days</td><td>Software account created upon approval</td></tr>
+            <tr><td>Terminal Arrival</td><td>5&ndash;7 business days typical</td><td>Allow 6&ndash;10 days when scheduling onboarding</td></tr>
+            <tr><td>Onboarding Call</td><td>6&ndash;10 days after application</td><td>Requires PartsTech connected + terminal ready</td></tr>
+        </table>
+
+        <div class="callout callout-important">
+            <strong>Critical:</strong>
+            The agent should schedule the onboarding appointment <strong>while they are still with the merchant</strong> after the application is submitted. This ensures the appointment is booked and the merchant has a clear next date to work toward.
+        </div>
+
+    </div>
+</div>
+
+<!-- ================================================================ -->
+<!-- POST-DEMO FOLLOW-UP                                               -->
+<!-- ================================================================ -->
+<div class="section" id="demo-followup">
+    <div class="section-header">
+        <div class="section-icon icon-blue">&#128172;</div>
+        <div>
+            <h2>Post-Demo Follow-Up</h2>
+            <div class="section-desc">Automatic email after merchant demo is completed</div>
+        </div>
+    </div>
+    <div class="section-body">
+
+        <div class="workflow-block">
+            <div class="wf-title">GHL Workflow</div>
+            <div class="wf-name">Merchant Demo Follow-Up</div>
+            <div class="wf-trigger">Trigger: Demo appointment status changed to "Completed"</div>
+        </div>
+
+        <p>This email is automatically sent after a merchant demo is completed. It thanks the merchant, reinforces the value they saw during the demo, and provides everything they need to make a decision and get started.</p>
+
+        <!-- EMAIL DRAFT -->
+        <div class="email-draft">
+            <div class="email-draft-header">
+                <div class="email-number">&#9993;</div>
+                <div class="email-meta">
+                    <div class="email-subject">Thanks for Your Time &mdash; Here's Everything You Need to Know</div>
+                    <div class="email-trigger">Auto-sent after demo appointment completed</div>
+                </div>
+            </div>
+            <div class="email-draft-body">
+
+                <div class="email-greeting">Hi {{contact.first_name}},</div>
+
+                <p>Thank you for taking the time to see Rate Remover Software in action. We're excited about the opportunity to help your shop save on card processing costs while making your invoicing and estimates easier.</p>
+
+                <p>Below is a summary of everything we covered, along with answers to the most common questions we hear after a demo.</p>
+
+                <!-- PRICING -->
+                <div class="email-section-title">Software Pricing</div>
+
+                <table>
+                    <tr><th>Plan</th><th>Monthly</th><th>What's Included</th></tr>
+                    <tr>
+                        <td><strong>Essentials</strong></td>
+                        <td>$59/mo</td>
+                        <td>Invoicing, estimates, dual pricing, PartsTech integration, Dejavoo terminal payments, daily reports, CSV exports</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Pro</strong></td>
+                        <td>$119/mo</td>
+                        <td>Everything in Essentials + send estimates by text &amp; email, customer approval links, digital signatures</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Labor Guide</strong></td>
+                        <td>Included with Pro</td>
+                        <td>MOTOR labor time guides (comparable to Mitchell1). Included at no extra cost with the Pro plan. Works with free or paid PartsTech.</td>
+                    </tr>
+                </table>
+
+                <!-- HOW CALCULATIONS WORK -->
+                <div class="email-section-title">How Dual Pricing Works on Your Estimates</div>
+
+                <p>When you create an estimate in Rate Remover, you enter your <strong>cash price</strong> &mdash; the base price for parts, labor, and any other charges. The software automatically calculates the <strong>card price</strong> by adding your configured non-cash rate (typically 4%).</p>
+
+                <p>Both prices appear side-by-side on every estimate and invoice your customer sees. There's no separate "surcharge" line &mdash; just two clear prices, exactly like a gas station.</p>
+
+                <p><strong>Example:</strong></p>
+                <ul>
+                    <li>Brake job (cash price): $350.00</li>
+                    <li>Brake job (card price at 4%): $364.00</li>
+                    <li>Customer chooses how to pay &mdash; cash gets the lower price, card gets the adjusted price</li>
+                </ul>
+
+                <p>The non-cash fee applies only to the sale amount, not to sales tax. The software handles this automatically.</p>
+
+                <!-- DAILY DISCOUNTING -->
+                <div class="email-section-title">Daily Discounting &amp; Deposits</div>
+
+                <p>When your customers pay by card, the processing fees are deducted <strong>daily</strong> from each deposit &mdash; not at the end of the month. This is called "daily discounting" and it means:</p>
+
+                <ul>
+                    <li>You receive your card payment deposits <strong>every business day</strong></li>
+                    <li>Each deposit is the <strong>net amount</strong> (card sales minus processing fees)</li>
+                    <li>No surprise monthly fee bill &mdash; fees are already accounted for in each deposit</li>
+                </ul>
+
+                <p>The software's <strong>Daily Transaction Report</strong> shows you exactly what to expect in each deposit, so reconciling is straightforward.</p>
+
+                <!-- COMMON Q&A -->
+                <div class="email-section-title">Common Questions</div>
+
+                <p><strong>Is dual pricing legal?</strong><br>
+                Yes. Dual pricing (showing a cash price and a card price) is legal in all 50 states. It is different from "surcharging," which adds a fee as a separate line item and is restricted in some states. Our software implements true dual pricing, not surcharging.</p>
+
+                <p><strong>Will my customers be upset about two prices?</strong><br>
+                Most shop owners find that customers understand it immediately &mdash; it's the same concept as gas station pricing. The vast majority of customers have no issue. Many choose to pay by card anyway because the convenience is worth the small difference.</p>
+
+                <p><strong>Can I use the software without a terminal?</strong><br>
+                Yes. Once your account is active, you can create estimates and invoices and send payment links by text or email. You don't need the physical terminal to get started.</p>
+
+                <p><strong>What about PartsTech?</strong><br>
+                PartsTech integrates directly with Rate Remover for parts lookup, VIN decoding, and labor guides. A free PartsTech account works great &mdash; and if you already use PartsTech, it connects right in.</p>
+
+                <p><strong>How long does setup take?</strong><br>
+                Your application is typically approved within 1&ndash;2 business days. Your terminal arrives in 5&ndash;7 business days. Your onboarding call walks you through everything from start to finish.</p>
+
+                <!-- REQUIREMENTS -->
+                <div class="email-section-title">What You Need to Get Started</div>
+
+                <ol>
+                    <li><strong>Submit your application</strong> &mdash; your agent can help you complete this</li>
+                    <li><strong>Set up a PartsTech account</strong> &mdash; free to create, and we'll walk you through connecting your parts suppliers</li>
+                    <li><strong>Terminal arrives</strong> &mdash; typically 5&ndash;7 business days after approval</li>
+                    <li><strong>Onboarding call</strong> &mdash; we'll set everything up together and make sure you're comfortable before going live</li>
+                </ol>
+
+                <p>If you're ready to move forward, let your agent know and they'll get the application started. If you have any questions at all, reply to this email or call us at <strong>(855) 446-3483</strong>.</p>
+
+                <div class="email-signature">
+                    Looking forward to working with you,<br>
+                    <strong>The Rate Remover Software Team</strong><br>
+                    support@shoprateremover.com | (855) 446-3483
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- ================================================================ -->
+<!-- PRE-ONBOARDING WORKFLOW                                           -->
+<!-- ================================================================ -->
+<div class="section" id="pre-onboarding">
+    <div class="section-header">
+        <div class="section-icon icon-purple">&#128231;</div>
+        <div>
+            <h2>Pre-Onboarding Workflow</h2>
+            <div class="section-desc">"Pre Onboarding RRS Auto Repair" &mdash; triggered when application is received</div>
+        </div>
+    </div>
+    <div class="section-body">
+
+        <div class="workflow-block">
+            <div class="wf-title">GHL Workflow</div>
+            <div class="wf-name">Pre Onboarding RRS Auto Repair</div>
+            <div class="wf-trigger">Trigger: Merchant application received</div>
+        </div>
+
+        <p>This email sequence begins the moment a merchant's application is submitted. The goal is to prepare the merchant for their onboarding call by getting PartsTech set up, building excitement, and setting clear expectations.</p>
+
+        <h3>Email Sequence Overview</h3>
+        <table>
+            <tr><th>#</th><th>Email</th><th>Timing</th><th>Purpose</th></tr>
+            <tr><td>1</td><td>Welcome &amp; Here's What's Next</td><td>Immediately</td><td>Thank them, set expectations, PartsTech setup instructions</td></tr>
+            <tr><td>2</td><td>Why I Started Rate Remover</td><td>Day 2</td><td>Personal note from Scott &mdash; builds trust and connection</td></tr>
+            <tr><td>3</td><td>PartsTech &mdash; Your Shop's Secret Weapon</td><td>Day 4</td><td>PartsTech success story &amp; value reinforcement</td></tr>
+        </table>
+
+        <!-- ==================== EMAIL 1 ==================== -->
+        <h3>Email 1: Welcome &amp; Here's What's Next</h3>
+
+        <div class="email-draft">
+            <div class="email-draft-header">
+                <div class="email-number">1</div>
+                <div class="email-meta">
+                    <div class="email-subject">Welcome to Rate Remover &mdash; Here's What Happens Next</div>
+                    <div class="email-trigger">Sent immediately when application is received</div>
+                </div>
+            </div>
+            <div class="email-draft-body">
+
+                <div class="email-greeting">Hi {{contact.first_name}},</div>
+
+                <p>Thank you for choosing Rate Remover Software! We're excited to get your shop set up and saving on processing costs.</p>
+
+                <p>Your application has been received and is being processed. Here's what to expect over the next few days:</p>
+
+                <div class="email-section-title">What Happens Now</div>
+
+                <ol>
+                    <li><strong>Application approval</strong> &mdash; typically 1&ndash;2 business days. We'll notify you as soon as your account is ready.</li>
+                    <li><strong>Software access</strong> &mdash; once approved, you'll receive login credentials. You can start using the software right away &mdash; create estimates, invoices, and even send payment links to customers before your terminal arrives.</li>
+                    <li><strong>Terminal delivery</strong> &mdash; your card terminal will ship after approval. Expect delivery in 5&ndash;7 business days (it can arrive sooner).</li>
+                    <li><strong>Onboarding call</strong> &mdash; your agent has scheduled (or will schedule) a time for us to walk through everything together and get you fully set up.</li>
+                </ol>
+
+                <div class="email-section-title">One Thing You Can Do Right Now: Set Up PartsTech</div>
+
+                <p>PartsTech is integrated directly into Rate Remover for parts lookup, VIN decoding, and labor guides. To hit the ground running on your onboarding call, we recommend setting up your PartsTech account now.</p>
+
+                <h4>If you don't have a PartsTech account yet:</h4>
+                <ol>
+                    <li>Create a <strong>free account</strong> at <strong>partstech.com</strong></li>
+                    <li>Once your account is created, you'll need to <strong>connect at least one supplier</strong></li>
+                </ol>
+
+                <h4>Connecting a supplier in PartsTech:</h4>
+                <p>To connect a supplier, you'll need your <strong>account credentials</strong> (username and password) for each parts supplier you use. This is the login you use to order parts directly from that supplier.</p>
+
+                <p>PartsTech has a helpful video walking through the process:<br>
+                <span class="placeholder">[INSERT PARTSTECH SUPPLIER CONNECTION VIDEO LINK]</span></p>
+
+                <div class="callout callout-tip" style="margin: 12px 0;">
+                    <strong>Tip:</strong>
+                    If you're not sure what your supplier credentials are, call your parts supplier rep and ask for your online ordering login. Most suppliers can provide this quickly.
+                </div>
+
+                <h4>If you already have PartsTech:</h4>
+                <p>Great! Just make sure you have at least one supplier account connected. We'll link it to Rate Remover during your onboarding call.</p>
+
+                <div class="email-section-title">Questions?</div>
+
+                <p>Reply to this email or call us at <strong>(855) 446-3483</strong>. We're here to help.</p>
+
+                <div class="email-signature">
+                    Welcome aboard,<br>
+                    <strong>The Rate Remover Software Team</strong><br>
+                    support@shoprateremover.com | (855) 446-3483
+                </div>
+            </div>
+        </div>
+
+        <div class="callout callout-important">
+            <strong>Why PartsTech setup matters now:</strong>
+            The GHL booking form for the onboarding call asks: "Does the merchant have a PartsTech account with at least one supplier connected?" If the answer is No, the booking is declined. Getting this done during pre-onboarding prevents scheduling delays.
+        </div>
+
+        <!-- ==================== EMAIL 2 ==================== -->
+        <h3>Email 2: Why I Started Rate Remover</h3>
+
+        <div class="email-draft">
+            <div class="email-draft-header">
+                <div class="email-number">2</div>
+                <div class="email-meta">
+                    <div class="email-subject">Why I Built Rate Remover Software</div>
+                    <div class="email-trigger">Sent Day 2 (1 day after Email 1)</div>
+                </div>
+            </div>
+            <div class="email-draft-body">
+
+                <div class="email-greeting">Hi {{contact.first_name}},</div>
+
+                <p>I wanted to take a moment to introduce myself. My name is Scott Gibbens, and I'm the founder of Rate Remover Software.</p>
+
+                <p>I started this company because I saw firsthand how much independent shop owners were paying in card processing fees &mdash; and how few good options existed to do anything about it. The solutions on the market were either non-compliant, overly complicated, or built for big chains, not for shops like yours.</p>
+
+                <p>I believed there had to be a better way: software that handles dual pricing correctly, integrates with the tools you already use, and doesn't require a degree in payment processing to understand.</p>
+
+                <p>That's what Rate Remover is. We built it specifically for independent auto repair shops because that's the industry we know, and those are the business owners we want to help.</p>
+
+                <p>Your onboarding is coming up soon, and I want you to know that our team is here to make this transition as smooth as possible. If you ever have questions or feedback, you can reach me directly by replying to this email.</p>
+
+                <div class="email-signature">
+                    Thanks for trusting us with your shop,<br>
+                    <strong>Scott Gibbens</strong><br>
+                    Founder, Rate Remover Software
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== EMAIL 3 ==================== -->
+        <h3>Email 3: PartsTech &mdash; Your Shop's Secret Weapon</h3>
+
+        <div class="email-draft">
+            <div class="email-draft-header">
+                <div class="email-number">3</div>
+                <div class="email-meta">
+                    <div class="email-subject">PartsTech + Rate Remover &mdash; A Combination Your Shop Will Love</div>
+                    <div class="email-trigger">Sent Day 4 (3 days after Email 1)</div>
+                </div>
+            </div>
+            <div class="email-draft-body">
+
+                <div class="email-greeting">Hi {{contact.first_name}},</div>
+
+                <p>If you've already set up your PartsTech account &mdash; great, you're ahead of the game. If not, here's why it's worth the few minutes it takes.</p>
+
+                <div class="email-section-title">Why Shops Love the PartsTech Integration</div>
+
+                <p>One of the first things our merchants notice after onboarding is how much faster their estimate process becomes. Instead of calling suppliers, looking up part numbers, and manually entering prices, everything happens inside Rate Remover:</p>
+
+                <ul>
+                    <li><strong>Look up any part by VIN or license plate</strong> &mdash; the right parts for the right vehicle, every time</li>
+                    <li><strong>See real-time pricing and availability</strong> from your connected suppliers</li>
+                    <li><strong>Add parts directly to your estimate</strong> with one click &mdash; no retyping</li>
+                    <li><strong>Labor guides</strong> give you accurate repair times so you can quote confidently</li>
+                </ul>
+
+                <p>Shops that use PartsTech with Rate Remover tell us they build estimates in a fraction of the time it used to take. Less time on paperwork means more time turning wrenches.</p>
+
+                <div class="email-section-title">Quick Reminder: Get Connected Before Your Onboarding Call</div>
+
+                <p>To make the most of your onboarding call, please make sure you have:</p>
+                <ol>
+                    <li>A PartsTech account (free at partstech.com)</li>
+                    <li>At least one supplier connected (you'll need your supplier login credentials)</li>
+                </ol>
+
+                <p>Need help? Reply to this email and we'll walk you through it.</p>
+
+                <div class="email-signature">
+                    See you at onboarding,<br>
+                    <strong>The Rate Remover Software Team</strong><br>
+                    support@shoprateremover.com | (855) 446-3483
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- ================================================================ -->
+<!-- ONBOARDING SCHEDULING                                             -->
+<!-- ================================================================ -->
+<div class="section" id="scheduling">
+    <div class="section-header">
+        <div class="section-icon icon-green">&#128197;</div>
+        <div>
+            <h2>Onboarding Scheduling</h2>
+            <div class="section-desc">How and when to book the onboarding call</div>
+        </div>
+    </div>
+    <div class="section-body">
+
+        <h3>When to Schedule</h3>
+        <p>The agent should schedule the onboarding call <strong>while they are still with the merchant</strong>, immediately after the application is submitted. This ensures the merchant has a concrete date and stays engaged through the pre-onboarding period.</p>
+
+        <h3>Scheduling Timeline</h3>
+        <div class="callout callout-info">
+            <strong>Rule of Thumb:</strong>
+            Schedule the onboarding call <strong>6&ndash;10 business days</strong> after the application date. Terminals typically arrive in 5&ndash;7 business days, but allowing a buffer prevents rescheduling if delivery is slightly delayed.
+        </div>
+
+        <h3>How to Book</h3>
+        <ol class="steps">
+            <li>Open the <strong>GHL booking link</strong> for "New Merchant Onboarding"</li>
+            <li>Select a date <strong>6&ndash;10 business days out</strong> from the application date</li>
+            <li>Complete the <strong>New Merchant Onboarding</strong> form (see below)</li>
+            <li>Confirm the appointment with the merchant before leaving</li>
+        </ol>
+
+        <h3>Booking Form: "New Merchant Onboarding"</h3>
+        <p>The GHL booking form includes two qualifying questions:</p>
+
+        <div class="form-mockup">
+            <div class="form-title">New Merchant Onboarding</div>
+
+            <div class="form-field">
+                <div class="field-label">Does the merchant have a PartsTech account with at least one supplier account connected?</div>
+                <div class="field-options">
+                    <span>&#9675; Yes</span>
+                    <span>&#9675; No</span>
+                </div>
+                <div class="field-note">If "No" is selected, the booking will be declined.</div>
+            </div>
+
+            <div class="form-field">
+                <div class="field-label">Do you have a terminal ready to install?</div>
+                <div class="field-options">
+                    <span>&#9675; Yes</span>
+                    <span>&#9675; No</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="callout callout-warning">
+            <strong>PartsTech is a hard requirement.</strong>
+            If the merchant does not have a PartsTech account with at least one connected supplier, the booking form will decline the appointment. This is why the pre-onboarding emails emphasize PartsTech setup &mdash; it must be done before the onboarding call can be scheduled.
+        </div>
+
+        <h3>What Happens If the Terminal Hasn't Arrived?</h3>
+        <p>The terminal question ("Do you have a terminal ready to install?") is informational, not a blocker. If the terminal hasn't arrived yet:</p>
+        <ul>
+            <li>The onboarding call can still proceed &mdash; we'll set up the software, connect PartsTech, and configure the account</li>
+            <li>The merchant can start using the software immediately by sending <strong>payment links</strong> to customers (no terminal needed)</li>
+            <li>Terminal installation can be completed in a brief follow-up call or self-service with our support team</li>
+        </ul>
+
+        <h3>Agent Responsibilities at Scheduling</h3>
+        <table>
+            <tr><th>Task</th><th>Details</th></tr>
+            <tr><td>Schedule while with merchant</td><td>Don't leave without a booked appointment</td></tr>
+            <tr><td>Set expectations on PartsTech</td><td>Tell the merchant they'll receive an email with setup instructions. Stress that PartsTech must be connected before onboarding.</td></tr>
+            <tr><td>Confirm contact info</td><td>Verify merchant's email and phone &mdash; pre-onboarding emails go to the email on file</td></tr>
+            <tr><td>Provide timeline</td><td>"Your terminal will arrive in about a week. You'll get some emails from us in the meantime to help you prepare."</td></tr>
+        </table>
+
+    </div>
+</div>
+
+<!-- ================================================================ -->
+<!-- GHL CONFIGURATION                                                 -->
+<!-- ================================================================ -->
+<div class="section" id="ghl-config">
+    <div class="section-header">
+        <div class="section-icon icon-purple">&#9881;</div>
+        <div>
+            <h2>GHL Configuration Reference</h2>
+            <div class="section-desc">Workflow setup, triggers, and tags for implementation</div>
+        </div>
+    </div>
+    <div class="section-body">
+
+        <h3>Workflows to Create / Update</h3>
+        <table>
+            <tr><th>Workflow</th><th>Trigger</th><th>Action</th></tr>
+            <tr>
+                <td><strong>Merchant Demo Follow-Up</strong></td>
+                <td>Demo appointment status = "Completed"</td>
+                <td>Send post-demo follow-up email (Section 1 content)</td>
+            </tr>
+            <tr>
+                <td><strong>Pre Onboarding RRS Auto Repair</strong></td>
+                <td>Merchant application received</td>
+                <td>Send 3-email sequence (Section 2 content): Email 1 immediately, Email 2 at Day 2, Email 3 at Day 4</td>
+            </tr>
+        </table>
+
+        <h3>Email Sequence Timing</h3>
+        <table>
+            <tr><th>Email</th><th>Delay</th><th>Subject Line</th></tr>
+            <tr><td>Post-Demo Follow-Up</td><td>Immediate (on demo completion)</td><td>Thanks for Your Time &mdash; Here's Everything You Need to Know</td></tr>
+            <tr><td>Pre-Onboarding #1</td><td>Immediate (on application)</td><td>Welcome to Rate Remover &mdash; Here's What Happens Next</td></tr>
+            <tr><td>Pre-Onboarding #2</td><td>1 day after #1</td><td>Why I Built Rate Remover Software</td></tr>
+            <tr><td>Pre-Onboarding #3</td><td>3 days after #1</td><td>PartsTech + Rate Remover &mdash; A Combination Your Shop Will Love</td></tr>
+        </table>
+
+        <h3>Booking Form Configuration</h3>
+        <table>
+            <tr><th>Field</th><th>Type</th><th>Validation</th></tr>
+            <tr>
+                <td>PartsTech account with supplier connected?</td>
+                <td>Yes / No</td>
+                <td><strong>"No" declines booking</strong> &mdash; configure as required field with conditional logic</td>
+            </tr>
+            <tr>
+                <td>Terminal ready to install?</td>
+                <td>Yes / No</td>
+                <td>Informational only &mdash; does not block booking</td>
+            </tr>
+        </table>
+
+        <h3>Tags to Use</h3>
+        <table>
+            <tr><th>Tag</th><th>Applied When</th><th>Used By</th></tr>
+            <tr><td>RRS Merchant</td><td>Application received</td><td>Pre Onboarding workflow trigger</td></tr>
+            <tr><td>RRS - Auto Repair</td><td>Industry = Auto Repair</td><td>Workflow routing</td></tr>
+            <tr><td>onboarding in progress - merchant</td><td>Pre-onboarding workflow starts</td><td>Status tracking</td></tr>
+            <tr><td>onboarding complete - merchant</td><td>Onboarding call completed</td><td>Status tracking</td></tr>
+        </table>
+
+        <div class="callout callout-ghl">
+            <strong>Implementation Note:</strong>
+            The "Scott's Why I Started Rate Remover" email (Pre-Onboarding #2) is currently in the post-onboarding workflow. It should be <strong>moved to this pre-onboarding sequence</strong> so merchants receive it before their onboarding call, building connection and trust earlier in the process.
+        </div>
+
+    </div>
+</div>
+
+</div><!-- end .content -->
+
+</body>
+</html>

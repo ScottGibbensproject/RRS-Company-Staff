@@ -14,14 +14,41 @@ This document provides context for AI assistants working on Rate Remover Softwar
 
 ```
 RRS Company/
-├── docs/
-│   └── payment-integration-guide.md    # Payment SDK & API reference
-├── direct-agents/
-│   └── index.html                      # Agent earnings dashboard
-├── project-tracker/                    # Task management dashboard
-├── rrs-dashboard/                      # Main RRS dashboard (Node.js)
-├── Lifelong-Merchant-Services-*.html   # Reseller onboarding docs
-├── Pipeline-Builder-*.html             # Pipeline Builder program docs
+├── Company Flowcharts/                 # GHL & process flowcharts (Netlify deploy)
+│   ├── index.html                      # Landing page
+│   ├── ghl-automations.html
+│   ├── ghl-cheatsheet.html
+│   ├── direct-agent-onboarding-flowchart.html
+│   ├── merchant-onboarding-ghl-tagging.html
+│   ├── reseller-onboarding-ghl-flowchart.html
+│   ├── post-cert-emails.html
+│   ├── workflow-project.html
+│   └── processes/                      # Markdown process docs
+├── Company Procedures/                 # Internal procedures & guides
+│   ├── payment-integration-guide.md    # Payment SDK & API reference
+│   ├── Phone-Support-Map.html          # Phone routing flowchart
+│   └── Phone-Support-Rep-Guide.html    # Support rep info sheets
+├── Development Overview/               # Software changelog (Netlify deploy)
+│   ├── index.html                      # Public changelog page
+│   ├── admin.html                      # Admin form for updates
+│   ├── data.json                       # Changelog data
+│   ├── app.js                          # Rendering logic
+│   └── styles.css
+├── knowledge-base/                     # Knowledge base articles
+│   ├── internal-kb.md
+│   ├── public-kb.md
+│   └── reseller-kb.md
+├── Merchant Onboarding/                # Onboarding docs & assets
+│   ├── Merchant-Onboarding-Process.html
+│   ├── Lifelong-Merchant-Services-Onboarding.html
+│   └── onboarding-*.png                # Onboarding screenshots
+├── Pipeline Builder Plan/              # Pipeline Builder program docs
+│   ├── Pipeline-Builder-Program-Outline.html
+│   ├── Pipeline-Builder-Program-Plan.md
+│   └── Pipeline-Builder-Task-Assignments.html
+├── RRS-Knowledge-Base.md               # Master knowledge base
+├── website-projects-summary.md         # Website project details
+├── rrs-logo.png                        # Company logo
 └── CLAUDE.md                           # This file
 ```
 
@@ -31,6 +58,10 @@ RRS Company/
 |---------|----------|-------------|
 | **epi-pay-gateway** | `C:\Users\scott\Desktop\epi-pay-gateway` | Payment gateway server & SDK |
 | **myrateremover.com** | TBD | Public website (uses payment SDK) |
+| **RRS Bookkeeping** | `C:\Users\scott\Desktop\RRS Bookkeeping` | Confidential bookkeeping data |
+| **Investor Information** | `C:\Users\scott\Desktop\RRS Apps\Investor Information` | Investor docs (Netlify deploy) |
+| **LifeLong** | `C:\Users\scott\Desktop\LifeLong` | Lifelong Merchant Services collaboration |
+| **Project Tracker** | `C:\Users\scott\Desktop\Project Tracker` | Task management dashboard (Node.js) |
 
 ### Key Files in epi-pay-gateway
 
@@ -46,7 +77,7 @@ RRS Company/
 ## Key Documentation
 
 ### Payment Integration
-See `docs/payment-integration-guide.md` for:
+See `Company Procedures/payment-integration-guide.md` for:
 - RR Pay SDK usage
 - API endpoints
 - Dejavoo configuration
@@ -141,7 +172,7 @@ RRPay.createSubscription({
 - Follow brand color palette
 
 ### Working with Agent Data
-- Agent data stored in `direct-agents/index.html`
+- Agent earnings data moved to `C:\Users\scott\Desktop\RRS Bookkeeping`
 - Earnings tracked by month
 - Groups: RTRMVR, SGINY
 
@@ -187,5 +218,3 @@ RRPay.createSubscription({
 | Nicole | Sales Director |
 | Elisabeth | Training/Content |
 | Beth | GHL Specialist |
-| Nick Garten | Onboarding Specialist |
-| Rick Arnold | Head of Hardware |

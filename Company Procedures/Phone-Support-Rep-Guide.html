@@ -1,0 +1,1154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RRS Phone Support Rep Guide</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #E05A33;
+            --primary-dark: #C74A28;
+            --primary-light: #F07050;
+            --secondary: #2D2D2D;
+            --accent: #4CAF50;
+            --blue: #2196F3;
+            --purple: #7C4DFF;
+            --amber: #FF9800;
+            --teal: #009688;
+            --bg: #F5F5F5;
+            --card-bg: #FFFFFF;
+            --border: #E0E0E0;
+            --text: #333333;
+            --text-light: #666666;
+            --radius-sm: 6px;
+            --radius-md: 10px;
+            --radius-lg: 16px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, var(--secondary) 0%, #3D3D3D 50%, #4D4D4D 100%);
+            color: white;
+            padding: 32px 40px;
+        }
+
+        .header h1 { font-size: 28px; font-weight: 800; margin-bottom: 4px; }
+        .header .subtitle { font-size: 14px; color: #BBBBBB; }
+        .header .doc-meta { margin-top: 12px; display: flex; gap: 24px; font-size: 13px; color: #999; }
+        .header .doc-meta span { display: flex; align-items: center; gap: 6px; }
+
+        /* Navigation */
+        .nav-bar {
+            background: white;
+            border-bottom: 2px solid var(--primary);
+            padding: 0 24px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            overflow-x: auto;
+            white-space: nowrap;
+        }
+
+        .nav-bar a {
+            display: inline-block;
+            padding: 12px 16px;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-light);
+            text-decoration: none;
+            border-bottom: 3px solid transparent;
+            transition: all 0.2s;
+        }
+
+        .nav-bar a:hover { color: var(--primary); border-bottom-color: var(--primary); }
+
+        /* Content */
+        .content { max-width: 1000px; margin: 0 auto; padding: 32px 24px; }
+
+        /* Section styling */
+        .section {
+            background: var(--card-bg);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border);
+            margin-bottom: 24px;
+            overflow: hidden;
+        }
+
+        .section-header {
+            padding: 20px 24px 16px;
+            border-bottom: 1px solid #F0F0F0;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-header .section-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+
+        .section-header h2 { font-size: 18px; font-weight: 700; }
+        .section-header .section-desc { font-size: 12px; color: var(--text-light); margin-top: 2px; }
+
+        .section-body { padding: 20px 24px 24px; }
+
+        /* Subsections */
+        h3 {
+            font-size: 15px;
+            font-weight: 700;
+            margin: 20px 0 10px;
+            padding-bottom: 6px;
+            border-bottom: 1px solid #F0F0F0;
+            color: var(--secondary);
+        }
+
+        h3:first-child { margin-top: 0; }
+
+        h4 {
+            font-size: 13px;
+            font-weight: 700;
+            margin: 14px 0 6px;
+            color: var(--text);
+        }
+
+        p { font-size: 14px; margin-bottom: 10px; }
+
+        ul, ol {
+            font-size: 14px;
+            padding-left: 20px;
+            margin-bottom: 10px;
+        }
+
+        li { margin-bottom: 4px; }
+
+        strong { color: var(--secondary); }
+
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+            margin: 10px 0 16px;
+        }
+
+        th {
+            background: #F8F8F8;
+            text-align: left;
+            padding: 8px 12px;
+            font-weight: 600;
+            border-bottom: 2px solid var(--border);
+            font-size: 12px;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        td {
+            padding: 8px 12px;
+            border-bottom: 1px solid #F0F0F0;
+            vertical-align: top;
+        }
+
+        tr:last-child td { border-bottom: none; }
+
+        /* Callout boxes */
+        .callout {
+            border-radius: var(--radius-sm);
+            padding: 12px 16px;
+            margin: 12px 0;
+            font-size: 13px;
+        }
+
+        .callout-important {
+            background: #FFF3E0;
+            border-left: 4px solid var(--amber);
+        }
+
+        .callout-tip {
+            background: #E8F5E9;
+            border-left: 4px solid var(--accent);
+        }
+
+        .callout-warning {
+            background: #FFEBEE;
+            border-left: 4px solid #D32F2F;
+        }
+
+        .callout-info {
+            background: #E3F2FD;
+            border-left: 4px solid var(--blue);
+        }
+
+        .callout-chatbot {
+            background: #F3E5F5;
+            border-left: 4px solid var(--purple);
+        }
+
+        .callout strong { display: block; font-size: 12px; margin-bottom: 2px; }
+
+        /* Quick reference cards */
+        .quick-ref {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin: 12px 0;
+        }
+
+        .quick-ref-card {
+            background: #FAFAFA;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            padding: 12px;
+        }
+
+        .quick-ref-card .qr-label {
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-light);
+            margin-bottom: 4px;
+        }
+
+        .quick-ref-card .qr-value {
+            font-size: 15px;
+            font-weight: 700;
+        }
+
+        .quick-ref-card .qr-detail {
+            font-size: 12px;
+            color: var(--text-light);
+            margin-top: 2px;
+        }
+
+        /* Step lists */
+        .steps { counter-reset: step; list-style: none; padding-left: 0; }
+
+        .steps li {
+            counter-increment: step;
+            padding: 8px 0 8px 36px;
+            position: relative;
+            border-bottom: 1px solid #F8F8F8;
+        }
+
+        .steps li::before {
+            content: counter(step);
+            position: absolute;
+            left: 0;
+            top: 8px;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: white;
+            font-size: 12px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .steps li:last-child { border-bottom: none; }
+
+        /* Badge */
+        .badge {
+            display: inline-block;
+            font-size: 10px;
+            font-weight: 700;
+            padding: 2px 8px;
+            border-radius: 3px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            vertical-align: middle;
+        }
+
+        .badge-escalate { background: #FFEBEE; color: #C62828; }
+        .badge-self { background: #E8F5E9; color: #2E7D32; }
+        .badge-chatbot { background: #F3E5F5; color: #6A1B9A; }
+        .badge-transfer { background: #E3F2FD; color: #1565C0; }
+
+        /* Icon backgrounds */
+        .icon-orange { background: #FFF3E0; }
+        .icon-green { background: #E8F5E9; }
+        .icon-blue { background: #E3F2FD; }
+        .icon-purple { background: #F3E5F5; }
+        .icon-red { background: #FFEBEE; }
+        .icon-teal { background: #E0F2F1; }
+        .icon-amber { background: #FFF8E1; }
+
+        /* Divider */
+        .divider { border: none; border-top: 2px solid #F0F0F0; margin: 8px 0; }
+
+        /* Print */
+        @media print {
+            body { background: white; }
+            .header { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            .nav-bar { display: none; }
+            .section { break-inside: avoid; page-break-inside: avoid; }
+            .content { padding: 16px; }
+        }
+
+        @media (max-width: 768px) {
+            .quick-ref { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ================================================================ -->
+<!-- HEADER                                                            -->
+<!-- ================================================================ -->
+<div class="header">
+    <h1>Phone Support Rep Guide</h1>
+    <div class="subtitle">Everything you need to assist merchants and resellers calling RRS</div>
+    <div class="doc-meta">
+        <span>Rate Remover Software</span>
+        <span>February 2026</span>
+        <span>Confidential &mdash; Internal Use Only</span>
+    </div>
+</div>
+
+<!-- ================================================================ -->
+<!-- NAVIGATION                                                        -->
+<!-- ================================================================ -->
+<nav class="nav-bar">
+    <a href="#overview">Company</a>
+    <a href="#product">Product</a>
+    <a href="#dual-pricing">Dual Pricing</a>
+    <a href="#workflow">Merchant Workflow</a>
+    <a href="#partstech">PartsTech</a>
+    <a href="#quickbooks">QuickBooks</a>
+    <a href="#terminals">Terminals</a>
+    <a href="#mobile">Mobile App</a>
+    <a href="#callers">Who's Calling</a>
+    <a href="#troubleshooting">Troubleshooting</a>
+    <a href="#escalation">Escalation</a>
+    <a href="#contacts">Contacts</a>
+</nav>
+
+<div class="content">
+
+<!-- ================================================================ -->
+<!-- 1. COMPANY OVERVIEW                                               -->
+<!-- ================================================================ -->
+<div class="section" id="overview">
+    <div class="section-header">
+        <div class="section-icon icon-orange">&#127965;</div>
+        <div>
+            <h2>Company Overview</h2>
+            <div class="section-desc">What RRS is and what we do</div>
+        </div>
+    </div>
+    <div class="section-body">
+
+        <h3>What Is Rate Remover Software?</h3>
+        <p><strong>Rate Remover Software (RRS)</strong> is a point-of-sale and invoicing platform built specifically for <strong>independent auto repair shops</strong>. Our software enables compliant <strong>dual pricing</strong> (also called "cash discount"), which lets shop owners pass card processing costs to customers who pay by card &mdash; legally and transparently.</p>
+
+        <p>Think of it like gas station pricing: one price for cash, a slightly higher price for card. The software handles all the math automatically.</p>
+
+        <div class="quick-ref">
+            <div class="quick-ref-card">
+                <div class="qr-label">Software URLs</div>
+                <div class="qr-value">auto.myrateremover.com</div>
+                <div class="qr-detail">Auto repair version (most merchants)</div>
+            </div>
+            <div class="quick-ref-card">
+                <div class="qr-label">General Version</div>
+                <div class="qr-value">inv.myrateremover.com</div>
+                <div class="qr-detail">For non-auto businesses</div>
+            </div>
+            <div class="quick-ref-card">
+                <div class="qr-label">Mobile App</div>
+                <div class="qr-value">app.myrateremover.com</div>
+                <div class="qr-detail">Progressive Web App (not in app stores)</div>
+            </div>
+            <div class="quick-ref-card">
+                <div class="qr-label">Support Email</div>
+                <div class="qr-value">support@shoprateremover.com</div>
+                <div class="qr-detail">Main support inbox</div>
+            </div>
+        </div>
+
+        <h3>What the Software Includes</h3>
+        <ul>
+            <li><strong>Invoicing &amp; Estimates</strong> &mdash; Create estimates, get customer approval, convert to repair orders, then invoices</li>
+            <li><strong>Dual Pricing</strong> &mdash; Automatic cash/card price calculation (see Dual Pricing section)</li>
+            <li><strong>PartsTech Integration</strong> &mdash; Parts lookup, VIN decoding, labor guides</li>
+            <li><strong>Card Payment Processing</strong> &mdash; Dejavoo terminals and payment links</li>
+            <li><strong>QuickBooks Online Sync</strong> &mdash; One-way sync of invoices</li>
+            <li><strong>Reporting</strong> &mdash; Daily transaction reports, CSV exports, batch reports</li>
+            <li><strong>SMS &amp; Email</strong> &mdash; Send estimates and payment links via text or email</li>
+            <li><strong>Customer &amp; Vehicle Management</strong> &mdash; Track customers and vehicles</li>
+        </ul>
+
+        <h3>Pricing Plans</h3>
+        <table>
+            <tr><th>Plan</th><th>Price</th><th>What's Included</th></tr>
+            <tr>
+                <td><strong>Essentials</strong></td>
+                <td>$59/month</td>
+                <td>Invoicing, estimates, dual pricing, PartsTech, Dejavoo, reporting, CSV exports</td>
+            </tr>
+            <tr>
+                <td><strong>Pro</strong></td>
+                <td>$119/month</td>
+                <td>Everything in Essentials + SMS/email estimates, digital signature approval</td>
+            </tr>
+            <tr>
+                <td><strong>Labor Guide</strong></td>
+                <td>Included with Pro</td>
+                <td>MOTOR labor guide (repair time guidelines). Included at no extra cost with the Pro plan.</td>
+            </tr>
+        </table>
+
+        <h3>Payment Processing</h3>
+        <p>RRS partners with <strong>Electronic Payments Inc. (EPI)</strong> as our payment processor. Card transactions are processed through <strong>Dejavoo</strong> terminals. Merchants receive daily deposits to their bank account (net of processing fees).</p>
+
+        <div class="callout callout-chatbot">
+            <strong>Chatbot Handles:</strong>
+            General company info, pricing questions, feature lists. If a caller asks basic "what does the software do?" questions, the chatbot can answer these too.
+        </div>
+    </div>
+</div>
+
+<!-- ================================================================ -->
+<!-- 2. PRODUCT DETAIL                                                 -->
+<!-- ================================================================ -->
+<div class="section" id="product">
+    <div class="section-header">
+        <div class="section-icon icon-blue">&#128187;</div>
+        <div>
+            <h2>Product &amp; Features</h2>
+            <div class="section-desc">How the software works for merchants</div>
+        </div>
+    </div>
+    <div class="section-body">
+
+        <h3>User Roles</h3>
+        <table>
+            <tr><th>Role</th><th>Can Do</th><th>Cannot Do</th></tr>
+            <tr>
+                <td><strong>Admin</strong></td>
+                <td>Everything &mdash; config, integrations, users, reports, invoices</td>
+                <td>&mdash;</td>
+            </tr>
+            <tr>
+                <td><strong>Merchant User</strong></td>
+                <td>Create estimates/invoices, accept payments, view reports</td>
+                <td>Admin config, integration setup, user management</td>
+            </tr>
+            <tr>
+                <td><strong>Technician</strong></td>
+                <td>View assigned repair orders, order parts via PartsTech</td>
+                <td>See customer pricing, access financial data</td>
+            </tr>
+        </table>
+
+        <h3>Core Features</h3>
+        <h4>Estimates &amp; Invoices</h4>
+        <ul>
+            <li>Create estimates with parts, labor, diagnostic fees, shop supplies</li>
+            <li>Send estimates via SMS or email with approval link</li>
+            <li>Customer can approve or reject digitally</li>
+            <li>Approved estimates become Repair Orders (for the tech) then Invoices</li>
+            <li>Both cash and card prices shown on estimates and invoices</li>
+        </ul>
+
+        <h4>Payment Collection</h4>
+        <ul>
+            <li><strong>Card via terminal</strong> &mdash; customer taps/inserts/swipes at Dejavoo device</li>
+            <li><strong>Card via payment link</strong> &mdash; sent by SMS or email for remote payment</li>
+            <li><strong>Cash/check</strong> &mdash; recorded manually in the software</li>
+            <li><strong>Split payment</strong> &mdash; part cash, part card (each at its respective price)</li>
+        </ul>
+
+        <h4>Reporting</h4>
+        <ul>
+            <li><strong>Daily Transaction Report</strong> &mdash; all invoices paid, payment methods, amounts, card fees, expected deposits</li>
+            <li>CSV exports for external analysis</li>
+            <li>Dashboard summaries and batch reports</li>
+        </ul>
+
+        <h3>Configuration (Admin Only)</h3>
+        <p>Merchants configure these in <strong>Admin &gt; Configuration</strong>:</p>
+        <ul>
+            <li>Non-cash rate percentage (typically 4%)</li>
+            <li>Sales tax rate and taxable/non-taxable settings</li>
+            <li>Dejavoo terminal credentials (TPN, AuthKey, Ecom AuthKey, Register ID)</li>
+            <li>PartsTech connection</li>
+            <li>QuickBooks Online connection</li>
+        </ul>
+    </div>
+</div>
+
+<!-- ================================================================ -->
+<!-- 3. DUAL PRICING                                                   -->
+<!-- ================================================================ -->
+<div class="section" id="dual-pricing">
+    <div class="section-header">
+        <div class="section-icon icon-green">&#128176;</div>
+        <div>
+            <h2>Dual Pricing Explained</h2>
+            <div class="section-desc">The core concept &mdash; know this inside and out</div>
+        </div>
+    </div>
+    <div class="section-body">
+
+        <h3>What Is Dual Pricing?</h3>
+        <p>Dual pricing displays <strong>two prices</strong> for every item:</p>
+        <ul>
+            <li><strong>Cash Price</strong> &mdash; the base price (what the merchant enters)</li>
+            <li><strong>Card Price</strong> &mdash; base price + non-cash fee (calculated automatically)</li>
+        </ul>
+        <p>If the customer pays cash, they pay the lower price. If they pay by card, the slightly higher price covers the processing cost. The software handles all the math.</p>
+
+        <h3>Example</h3>
+        <table>
+            <tr><th></th><th>Cash</th><th>Card (4% fee)</th></tr>
+            <tr><td>Repair service</td><td>$100.00</td><td>$104.00</td></tr>
+            <tr><td>Sales tax (8%)</td><td>$8.00</td><td>$8.32</td></tr>
+            <tr><td><strong>Total</strong></td><td><strong>$108.00</strong></td><td><strong>$112.32</strong></td></tr>
+        </table>
+
+        <div class="callout callout-important">
+            <strong>Key Detail: Sales Tax</strong>
+            The non-cash fee applies ONLY to the sale amount, NOT to the sales tax itself. The software handles this automatically. If a merchant asks why tax is slightly different between cash and card &mdash; this is why.
+        </div>
+
+        <h3>Why Not Just "Surcharge"?</h3>
+        <table>
+            <tr><th>Aspect</th><th>Surcharging</th><th>Dual Pricing (What We Do)</th></tr>
+            <tr><td>Display</td><td>Separate surcharge line on receipt</td><td>Two prices shown for each item</td></tr>
+            <tr><td>Legal</td><td>Illegal in NY; restricted elsewhere</td><td>Legal in all 50 states</td></tr>
+            <tr><td>Compliance</td><td>Often violates Visa/MC rules</td><td>Compliant when properly implemented</td></tr>
+            <tr><td>Customer feel</td><td>Feels like a penalty</td><td>Feels like natural pricing (gas station model)</td></tr>
+        </table>
+
+        <h3>The Gas Station Comparison</h3>
+        <p>When callers or merchants question dual pricing, use this: <em>"It works just like gas station pricing &mdash; one price for cash, one for credit. Customers see and understand both prices upfront. No surprises."</em></p>
+
+        <div class="callout callout-chatbot">
+            <strong>Chatbot Handles:</strong>
+            Basic dual pricing explanations, "how does cash discount work?" questions. Escalate to a rep if the caller has compliance-specific or state law questions.
+        </div>
+    </div>
+</div>
+
+<!-- ================================================================ -->
+<!-- 4. MERCHANT WORKFLOW                                               -->
+<!-- ================================================================ -->
+<div class="section" id="workflow">
+    <div class="section-header">
+        <div class="section-icon icon-teal">&#128260;</div>
+        <div>
+            <h2>Merchant Workflow</h2>
+            <div class="section-desc">End-to-end process a merchant follows daily</div>
+        </div>
+    </div>
+    <div class="section-body">
+
+        <ol class="steps">
+            <li><strong>Customer arrives</strong> &mdash; Merchant creates or selects the customer, enters vehicle info (make/model/year or VIN)</li>
+            <li><strong>Create Estimate</strong> &mdash; Look up parts via PartsTech, add labor/misc items. System auto-calculates cash and card prices.</li>
+            <li><strong>Send for Approval</strong> &mdash; Send estimate by text or email. Customer clicks Approve or Reject.</li>
+            <li><strong>Repair Order</strong> &mdash; Approved estimate becomes a Repair Order (printed for tech, no pricing shown). Tech adds fulfillment notes during work.</li>
+            <li><strong>Create Invoice</strong> &mdash; When work is done, Repair Order converts to Invoice. Feedback notes added.</li>
+            <li><strong>Collect Payment</strong> &mdash; Customer pays by card (terminal or link), cash, check, or split. Software calculates correct price per method.</li>
+            <li><strong>Settlement</strong> &mdash; Card transactions settle daily. Merchant checks Daily Transaction Report to reconcile.</li>
+            <li><strong>QuickBooks Sync</strong> &mdash; If connected, invoice auto-syncs to QB Online (one-way only).</li>
+        </ol>
+
+        <div class="callout callout-tip">
+            <strong>Common Call:</strong>
+            "My estimate didn't go through" &mdash; ask if they sent via text or email, verify the customer's phone/email is correct, and confirm they have a Pro plan (texting requires Pro).
+        </div>
+    </div>
+</div>
+
+<!-- ================================================================ -->
+<!-- 5. PARTSTECH                                                      -->
+<!-- ================================================================ -->
+<div class="section" id="partstech">
+    <div class="section-header">
+        <div class="section-icon icon-amber">&#128295;</div>
+        <div>
+            <h2>PartsTech Integration</h2>
+            <div class="section-desc">Parts lookup, VIN decoding, and labor guides</div>
+        </div>
+    </div>
+    <div class="section-body">
+
+        <h3>What PartsTech Provides</h3>
+        <ul>
+            <li><strong>Parts catalog</strong> &mdash; search, pricing, supplier inventory</li>
+            <li><strong>VIN decoding</strong> &mdash; identify vehicle specs from VIN</li>
+            <li><strong>License plate lookup</strong> &mdash; vehicle lookup by plate</li>
+            <li><strong>Labor guides</strong> &mdash; repair time estimates (included with Pro plan)</li>
+        </ul>
+
+        <h3>Pricing &amp; Billing</h3>
+        <table>
+            <tr><th>Item</th><th>Cost</th><th>Billed By</th></tr>
+            <tr><td>PartsTech Free</td><td>$0</td><td>PartsTech</td></tr>
+            <tr><td>PartsTech Plus/Complete</td><td>Varies</td><td>PartsTech (direct)</td></tr>
+            <tr><td>Labor Guide (MOTOR)</td><td>Included with Pro</td><td>No additional cost on the Pro plan</td></tr>
+        </table>
+
+        <div class="callout callout-info">
+            <strong>Important:</strong>
+            The Labor Guide is included with the Pro plan at no additional cost. Merchants do NOT need a paid PartsTech subscription to use it.
+        </div>
+
+        <h3>Common PartsTech Issues</h3>
+        <table>
+            <tr><th>Issue</th><th>Solution</th></tr>
+            <tr><td>Can't connect PartsTech</td><td>Check credentials in Admin &gt; Configuration. Re-authenticate.</td></tr>
+            <tr><td>Parts not showing</td><td>Verify PartsTech subscription is active and internet is connected</td></tr>
+            <tr><td>VIN lookup failing</td><td>Try license plate lookup instead. Verify VIN format (17 characters).</td></tr>
+            <tr><td>Labor guide not working</td><td>Verify merchant is on the Pro plan (Labor Guide is included with Pro). Check with RRS billing.</td></tr>
+        </table>
+
+        <div class="callout callout-warning">
+            <strong>Escalation:</strong>
+            Technical PartsTech issues (catalog errors, ordering problems, supplier issues) should be directed to PartsTech support, not RRS. If the issue is the <em>connection between RRS and PartsTech</em>, that's us.
+        </div>
+
+        <div class="callout callout-chatbot">
+            <strong>Chatbot Handles:</strong>
+            Basic PartsTech setup steps, "how do I connect PartsTech" questions, and general feature explanations.
+        </div>
+    </div>
+</div>
+
+<!-- ================================================================ -->
+<!-- 6. QUICKBOOKS                                                     -->
+<!-- ================================================================ -->
+<div class="section" id="quickbooks">
+    <div class="section-header">
+        <div class="section-icon icon-green">&#128202;</div>
+        <div>
+            <h2>QuickBooks Integration</h2>
+            <div class="section-desc">One-way sync to QuickBooks Online only</div>
+        </div>
+    </div>
+    <div class="section-body">
+
+        <div class="callout callout-warning">
+            <strong>Critical Limitations:</strong>
+            <ul style="margin:4px 0 0 16px;">
+                <li><strong>QuickBooks Online only</strong> &mdash; Desktop and Self-Employed are NOT supported</li>
+                <li><strong>One-way sync only</strong> &mdash; RRS pushes to QB. Changes in QB do NOT sync back.</li>
+                <li>All edits must be made in RRS first &mdash; QB updates automatically</li>
+            </ul>
+        </div>
+
+        <h3>What Syncs</h3>
+        <ul>
+            <li>Invoices (when Repair Order becomes Invoice) &mdash; including amounts, line items, customers</li>
+            <li>Customers are auto-created in QB</li>
+            <li>Line items are auto-created in QB</li>
+        </ul>
+
+        <h3>What Does NOT Sync</h3>
+        <ul>
+            <li>Estimates (only invoices)</li>
+            <li>Split payment details (only the total)</li>
+            <li>Vehicle information or technician notes</li>
+        </ul>
+
+        <h3>How Cash/Card Amounts Work in QB</h3>
+        <ol class="steps">
+            <li>Invoice syncs to QB at the <strong>card price</strong> initially</li>
+            <li>If merchant records a <strong>cash/check payment</strong> in RRS, system sends an adjustment to reduce the QB invoice to the cash amount</li>
+            <li>If merchant records a <strong>card payment</strong>, amount stays as-is in QB</li>
+        </ol>
+
+        <h3>Things Merchants Must NOT Do in QB</h3>
+        <table>
+            <tr><th>Action</th><th>Why It's a Problem</th></tr>
+            <tr><td>Edit invoices in QB</td><td>Breaks sync &mdash; QB version becomes out of sync with RRS</td></tr>
+            <tr><td>Change invoice amounts in QB</td><td>RRS doesn't know about the change</td></tr>
+            <tr><td>Delete invoices in QB</td><td>Creates residual sync issues</td></tr>
+            <tr><td>Rename items in QB</td><td>Creates duplicates on next sync</td></tr>
+        </table>
+
+        <h3>Troubleshooting Checklist</h3>
+        <table>
+            <tr><th>Issue</th><th>Solution</th></tr>
+            <tr><td>Sync fails</td><td>Check if merchant is logged into QB Online. Reconnect in Admin &gt; Configuration.</td></tr>
+            <tr><td>Tax mismatch</td><td>Verify RRS tax settings match QB settings (tax-inclusive vs exclusive)</td></tr>
+            <tr><td>Duplicate customers</td><td>Use consistent naming. Consolidate duplicates in QB.</td></tr>
+            <tr><td>Invoice shows wrong amount</td><td>Payment wasn't recorded in RRS. Record payment method &mdash; QB updates automatically.</td></tr>
+            <tr><td>Token expired</td><td>Disconnect and reconnect QB in Admin &gt; Configuration.</td></tr>
+        </table>
+
+        <div class="callout callout-chatbot">
+            <strong>Chatbot Handles:</strong>
+            Basic QB sync setup steps, "how do I connect QuickBooks" questions, and common QB troubleshooting.
+        </div>
+    </div>
+</div>
+
+<!-- ================================================================ -->
+<!-- 7. TERMINALS                                                      -->
+<!-- ================================================================ -->
+<div class="section" id="terminals">
+    <div class="section-header">
+        <div class="section-icon icon-purple">&#128179;</div>
+        <div>
+            <h2>Dejavoo Terminals &amp; Hardware</h2>
+            <div class="section-desc">Payment terminals, setup, and troubleshooting</div>
+        </div>
+    </div>
+    <div class="section-body">
+
+        <h3>Terminal Setup Requirements</h3>
+        <p>Every merchant needs <strong>four items</strong> from EPI/Dejavoo to connect their terminal:</p>
+        <table>
+            <tr><th>Item</th><th>Format</th><th>What It Is</th></tr>
+            <tr><td><strong>TPN</strong></td><td>12 digits</td><td>Terminal Processing Number &mdash; merchant's processing account ID</td></tr>
+            <tr><td><strong>AuthKey</strong></td><td>10 chars (case sensitive)</td><td>Authentication for terminal (card-present) transactions</td></tr>
+            <tr><td><strong>Ecom AuthKey</strong></td><td>100-170 chars (case sensitive)</td><td>Authentication for payment links (card-not-present)</td></tr>
+            <tr><td><strong>Register ID</strong></td><td>7 digits</td><td>Links to the specific terminal device</td></tr>
+        </table>
+
+        <div class="callout callout-important">
+            <strong>Critical:</strong>
+            All dual pricing math happens inside RRS. The terminal receives the final amount only. If the terminal also adds fees, the customer gets double-charged. The Dejavoo terminal should NOT have any surcharge or cash discount program enabled on its side.
+        </div>
+
+        <h3>Display Name Rules</h3>
+        <p>When creating a merchant account: <strong>letters and spaces only</strong>. No special characters, no apostrophes, no numbers.</p>
+        <ul>
+            <li>"Dan's Auto" must be entered as "Dans Auto"</li>
+            <li>"A&amp;B Repair" must be "A B Repair"</li>
+        </ul>
+
+        <h3>Available Hardware</h3>
+        <table>
+            <tr><th>Terminal</th><th>Monthly Fee</th><th>Notes</th></tr>
+            <tr><td>Dejavoo Z8</td><td>None</td><td>IP/WiFi</td></tr>
+            <tr><td>Dejavoo P1</td><td>$7.95 (1st) / $3.00 (add'l)</td><td>Standard option</td></tr>
+            <tr><td>Dejavoo QD4</td><td>None</td><td>IP/WiFi</td></tr>
+            <tr><td>Valor VL100</td><td>$4.95 (1st) / $1.00 (add'l)</td><td>Budget option</td></tr>
+        </table>
+
+        <p><strong>Free terminal:</strong> Merchants processing $5,000+/month qualify for a free terminal device.</p>
+        <p><strong>PIN pads:</strong> All PIN pads require a $25 encryption fee. Prices range from $154 (Valor VL300) to $204 (Dejavoo QD5).</p>
+
+        <h3>Shipping</h3>
+        <table>
+            <tr><th>Method</th><th>Cost</th><th>Time</th></tr>
+            <tr><td>Ground</td><td>Free</td><td>5-7 days</td></tr>
+            <tr><td>3-Day</td><td>$35</td><td>3 days</td></tr>
+            <tr><td>2-Day</td><td>$45</td><td>2 days</td></tr>
+            <tr><td>Overnight</td><td>$60</td><td>Next day</td></tr>
+            <tr><td>Priority Overnight</td><td>$85</td><td>Next day (early)</td></tr>
+        </table>
+
+        <div class="callout callout-important">
+            <strong>ACH Timing:</strong>
+            ACH approval may take up to 5 business days before hardware ships, even if the merchant paid for expedited shipping.
+        </div>
+
+        <h3>Common Terminal Issues</h3>
+        <table>
+            <tr><th>Issue</th><th>First Steps</th><th>Escalate To</th></tr>
+            <tr><td>Terminal not connecting</td><td>Verify TPN, AuthKey, Register ID entered correctly (case sensitive). Check WiFi/network.</td><td>Dejavoo Tech Support</td></tr>
+            <tr><td>Payment declined</td><td>Check if terminal is online. Verify merchant account is active with EPI.</td><td>Dejavoo Tech Support</td></tr>
+            <tr><td>Double-charging fees</td><td>Check if terminal has its own surcharge program enabled. It should NOT.</td><td>RRS Dev Team</td></tr>
+            <tr><td>Payment link not working</td><td>Verify Ecom AuthKey is entered. Check expiration.</td><td>Dejavoo Tech Support</td></tr>
+            <tr><td>Hardware damage / malfunction</td><td>Document the issue.</td><td>Dejavoo Tech Support</td></tr>
+        </table>
+
+        <div class="callout callout-chatbot">
+            <strong>Chatbot Handles:</strong>
+            Basic "how do I set up my terminal" steps and credential entry guidance. Escalate hardware issues and connection failures to a live rep.
+        </div>
+    </div>
+</div>
+
+<!-- ================================================================ -->
+<!-- 8. MOBILE APP                                                     -->
+<!-- ================================================================ -->
+<div class="section" id="mobile">
+    <div class="section-header">
+        <div class="section-icon icon-blue">&#128241;</div>
+        <div>
+            <h2>Mobile App</h2>
+            <div class="section-desc">Progressive Web App &mdash; not in app stores</div>
+        </div>
+    </div>
+    <div class="section-body">
+
+        <div class="callout callout-info">
+            <strong>Not a Native App:</strong>
+            RRS uses a Progressive Web App (PWA) at <strong>app.myrateremover.com</strong>. It is NOT downloaded from the App Store or Google Play. Merchants add it to their home screen from the browser.
+        </div>
+
+        <h3>iPhone / iPad Installation</h3>
+        <ol class="steps">
+            <li>Open <strong>app.myrateremover.com</strong> in <strong>Safari</strong> (must be Safari, not Chrome)</li>
+            <li>Tap the <strong>Share button</strong> (square with up arrow)</li>
+            <li>Scroll down, tap <strong>"Add to Home Screen"</strong></li>
+            <li>Name it (e.g., "RRS") and tap <strong>Add</strong></li>
+        </ol>
+
+        <h3>Android Installation</h3>
+        <ol class="steps">
+            <li>Open <strong>app.myrateremover.com</strong> in <strong>Chrome</strong> (must be Chrome, not Samsung Internet)</li>
+            <li>Tap the <strong>three-dot menu</strong> (top right)</li>
+            <li>Tap <strong>"Install app"</strong> or <strong>"Add to Home Screen"</strong></li>
+            <li>Tap <strong>Install</strong></li>
+        </ol>
+
+        <h3>Common Mobile Issues</h3>
+        <table>
+            <tr><th>Issue</th><th>Solution</th></tr>
+            <tr><td>"I can't find it in the App Store"</td><td>It's not there. Walk them through the PWA install steps above.</td></tr>
+            <tr><td>"Add to Home Screen" missing</td><td>Must use Safari on iPhone or Chrome on Android. Other browsers don't support PWA install.</td></tr>
+            <tr><td>App opens in browser, not fullscreen</td><td>Reinstall following steps above. Should launch fullscreen after fresh install.</td></tr>
+            <tr><td>Keeps asking for password</td><td>Cache may be corrupted. Clear Safari/Chrome cache, then reinstall.</td></tr>
+        </table>
+
+        <div class="callout callout-chatbot">
+            <strong>Chatbot Handles:</strong>
+            Full mobile app installation walk-throughs for iPhone and Android. This is one of the most common support questions.
+        </div>
+    </div>
+</div>
+
+<!-- ================================================================ -->
+<!-- 9. WHO'S CALLING                                                  -->
+<!-- ================================================================ -->
+<div class="section" id="callers">
+    <div class="section-header">
+        <div class="section-icon icon-amber">&#128222;</div>
+        <div>
+            <h2>Who's Calling &amp; Why</h2>
+            <div class="section-desc">Understand the different caller types</div>
+        </div>
+    </div>
+    <div class="section-body">
+
+        <h3>Caller Types</h3>
+        <table>
+            <tr><th>Caller Type</th><th>Calling On</th><th>Typical Questions</th></tr>
+            <tr>
+                <td><strong>Merchant</strong><br><span style="font-size:11px;color:#999;">Shop owner or staff</span></td>
+                <td>(855) 446-3483</td>
+                <td>Software issues, terminal problems, billing, QuickBooks sync, PartsTech help, payment questions</td>
+            </tr>
+            <tr>
+                <td><strong>Reseller / Agent</strong><br><span style="font-size:11px;color:#999;">Sells RRS to merchants</span></td>
+                <td>(315) 203-1697</td>
+                <td>Commission questions, merchant onboarding help, demo account requests, certification questions</td>
+            </tr>
+            <tr>
+                <td><strong>PartsTech Caller</strong><br><span style="font-size:11px;color:#999;">Merchant with parts order issue</span></td>
+                <td>(855) then press 2</td>
+                <td>PartsTech order problems &mdash; transferred to PartsTech directly</td>
+            </tr>
+            <tr>
+                <td><strong>ISO Group Member</strong><br><span style="font-size:11px;color:#999;">Independent Sales Organization</span></td>
+                <td>(315) 203-1697 or (855) 446-3483</td>
+                <td>Software licensing, ISO portal access, merchant boarding questions, their own merchant issues</td>
+            </tr>
+            <tr>
+                <td><strong>Lifelong Merchant Services</strong><br><span style="font-size:11px;color:#999;">ISO / Reseller partner</span></td>
+                <td>Via Vonage extension</td>
+                <td>Their own merchant pipeline &mdash; handled by their team via dedicated extension</td>
+            </tr>
+        </table>
+
+        <h3>Reseller Program Quick Reference</h3>
+        <p>Resellers sell RRS to merchants and earn commissions on payment processing residuals. There are several tiers:</p>
+        <table>
+            <tr><th>Tier</th><th>What They Do</th><th>Commission</th></tr>
+            <tr><td><strong>Referral Partner</strong></td><td>Send leads; RRS closes</td><td>TBD</td></tr>
+            <tr><td><strong>Direct Agent</strong></td><td>Close their own deals</td><td>60% of residuals</td></tr>
+            <tr><td><strong>Equity Partner</strong></td><td>Strategic partners</td><td>90% of residuals</td></tr>
+            <tr><td><strong>ISO Group</strong></td><td>Organization that manages their own agents and boards merchants independently</td><td>Varies by agreement</td></tr>
+        </table>
+
+        <div class="callout callout-tip">
+            <strong>Key Context:</strong>
+            If a reseller calls about commissions, they're paid on the <strong>5th of each month</strong>. Residuals come from EPI. If they haven't received payment, check with Scott or Nicole.
+        </div>
+
+        <h3>ISO Groups (Independent Sales Organizations)</h3>
+
+        <div class="callout callout-important">
+            <strong>ISOs Are Different from Direct Agents:</strong>
+            ISO groups operate at a higher level than direct agents. They are equipped to <strong>board their own software users</strong> using a license key, and they <strong>board their own merchant payment accounts</strong> as well. ISO owners log into their <strong>ISO Portal</strong> at the same URL merchants use (auto.myrateremover.com or inv.myrateremover.com) but with a separate email address specific to their ISO account.
+        </div>
+
+        <table>
+            <tr><th>ISO Group</th><th>Key People</th><th>Location</th><th>Notes</th></tr>
+            <tr>
+                <td><strong>Shannon Devery</strong></td>
+                <td>Shannon Devery (Owner), John Rodrigues (Staff)</td>
+                <td>Alhambra, CA</td>
+                <td>&mdash;</td>
+            </tr>
+            <tr>
+                <td><strong>Max Value Payments</strong></td>
+                <td>Robert Fojo, Ryan Wilkenson, Rob Wilkenson</td>
+                <td>Beverly, MA</td>
+                <td>&mdash;</td>
+            </tr>
+            <tr>
+                <td><strong>Lifelong Merchant Services</strong></td>
+                <td>Kermit Lowry (CEO), Nick Ruggiero (COO), Ashby Green (CTO)</td>
+                <td>Atlanta, GA</td>
+                <td>Also boards merchants through RRS (not just independently). Email: support@llmerchantservices.com</td>
+            </tr>
+            <tr>
+                <td><strong>Jesse Marshall</strong></td>
+                <td>Jesse Marshall</td>
+                <td>Sarasota, FL</td>
+                <td>Sarasota POS</td>
+            </tr>
+            <tr>
+                <td><strong>Brian Marshall</strong></td>
+                <td>Brian Marshall</td>
+                <td>Rockingham, NH</td>
+                <td>&mdash;</td>
+            </tr>
+            <tr>
+                <td><strong>Adrian Iannicitto</strong></td>
+                <td>Adrian Iannicitto</td>
+                <td>Miami, FL</td>
+                <td>&mdash;</td>
+            </tr>
+        </table>
+
+        <h4>ISO Portal Quick Reference</h4>
+        <ul>
+            <li><strong>Access URL:</strong> Same as merchant software (auto.myrateremover.com or inv.myrateremover.com)</li>
+            <li><strong>Login:</strong> ISO-specific email address (different from any personal merchant account)</li>
+            <li><strong>Capabilities:</strong> Board new merchants using license keys, manage their merchant accounts, view their portfolio</li>
+            <li><strong>Payment accounts:</strong> ISOs board their own merchant payment processing accounts (separate from RRS-boarded merchants)</li>
+        </ul>
+
+        <div class="callout callout-tip">
+            <strong>If an ISO calls with portal issues:</strong>
+            Verify they are logging in with their ISO-specific email (not a personal or merchant email). If access issues persist, escalate to Scott or the Dev Team.
+        </div>
+
+        <h3>Key Reseller Partners (Non-ISO)</h3>
+        <p>These partners operate as direct agents or referral partners, not ISOs:</p>
+        <table>
+            <tr><th>Partner</th><th>Key People</th><th>Notes</th></tr>
+            <tr>
+                <td colspan="3" style="color: var(--text-light); font-style: italic;">Additional direct agents and referral partners exist &mdash; check with Nicole for the current roster.</td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<!-- ================================================================ -->
+<!-- 10. TROUBLESHOOTING                                               -->
+<!-- ================================================================ -->
+<div class="section" id="troubleshooting">
+    <div class="section-header">
+        <div class="section-icon icon-red">&#128736;</div>
+        <div>
+            <h2>Troubleshooting Quick Reference</h2>
+            <div class="section-desc">Most common issues and first steps</div>
+        </div>
+    </div>
+    <div class="section-body">
+
+        <h3>Software / Login Issues</h3>
+        <table>
+            <tr><th>Issue</th><th>First Steps</th><th>Escalate?</th></tr>
+            <tr><td>Can't log in / forgot password</td><td>Use "Forgot Password" link. Password reset email sent via SendGrid.</td><td><span class="badge badge-self">Self-serve</span></td></tr>
+            <tr><td>Not receiving password reset email</td><td>Check spam/junk folder. Verify email address is correct.</td><td><span class="badge badge-escalate">Escalate</span> to Dev Team if email confirmed correct</td></tr>
+            <tr><td>Page not loading</td><td>Clear browser cache. Try a different browser. Check internet.</td><td><span class="badge badge-escalate">Escalate</span> if persists</td></tr>
+            <tr><td>Feature not available</td><td>Check plan level (Essentials vs Pro). SMS/email requires Pro.</td><td><span class="badge badge-self">Plan upgrade</span></td></tr>
+        </table>
+
+        <h3>Payment &amp; Terminal Issues</h3>
+        <table>
+            <tr><th>Issue</th><th>First Steps</th><th>Escalate?</th></tr>
+            <tr><td>Terminal won't process</td><td>Check WiFi. Verify credentials in Admin &gt; Config (case sensitive). Restart terminal.</td><td><span class="badge badge-transfer">Dejavoo Tech</span></td></tr>
+            <tr><td>Card declined</td><td>Have customer try another card. Check if merchant account is active.</td><td><span class="badge badge-transfer">Dejavoo Tech</span></td></tr>
+            <tr><td>Deposit not matching expected</td><td>Review Daily Transaction Report. Compare expected vs actual deposit. Check for processing fees.</td><td><span class="badge badge-escalate">Escalate</span> if discrepancy found</td></tr>
+            <tr><td>Payment link not sending</td><td>Verify Ecom AuthKey entered. Check customer phone/email. Confirm Pro plan for SMS.</td><td><span class="badge badge-escalate">Escalate</span> if config is correct</td></tr>
+        </table>
+
+        <h3>PartsTech Issues</h3>
+        <table>
+            <tr><th>Issue</th><th>First Steps</th><th>Escalate?</th></tr>
+            <tr><td>PartsTech not connected</td><td>Re-enter credentials in Admin &gt; Config. Test connection.</td><td><span class="badge badge-chatbot">Chatbot</span> for setup steps</td></tr>
+            <tr><td>VIN lookup failing</td><td>Verify VIN is 17 characters. Try license plate lookup.</td><td><span class="badge badge-transfer">PartsTech</span> if persists</td></tr>
+            <tr><td>Parts catalog issues</td><td>This is a PartsTech issue, not RRS.</td><td><span class="badge badge-transfer">PartsTech Support</span></td></tr>
+        </table>
+
+        <h3>QuickBooks Issues</h3>
+        <table>
+            <tr><th>Issue</th><th>First Steps</th><th>Escalate?</th></tr>
+            <tr><td>Sync not working</td><td>Verify logged into QB Online. Disconnect &amp; reconnect in Admin &gt; Config.</td><td><span class="badge badge-chatbot">Chatbot</span> for basic steps</td></tr>
+            <tr><td>Wrong amount in QB</td><td>Record payment method in RRS first. QB adjusts automatically.</td><td><span class="badge badge-self">Self-serve</span></td></tr>
+            <tr><td>Duplicate customers/items</td><td>Use consistent naming in RRS. Consolidate duplicates in QB.</td><td><span class="badge badge-self">Self-serve</span></td></tr>
+            <tr><td>"I use QuickBooks Desktop"</td><td>Not supported. QB Online only.</td><td>N/A</td></tr>
+        </table>
+
+        <h3>Mobile App Issues</h3>
+        <table>
+            <tr><th>Issue</th><th>First Steps</th><th>Escalate?</th></tr>
+            <tr><td>"Where do I download the app?"</td><td>Not in app stores. Walk through PWA install (see Mobile App section).</td><td><span class="badge badge-chatbot">Chatbot</span> handles this</td></tr>
+            <tr><td>App won't install</td><td>Must use Safari (iPhone) or Chrome (Android). Other browsers won't work.</td><td><span class="badge badge-self">Self-serve</span></td></tr>
+            <tr><td>App keeps logging out</td><td>Clear cache and reinstall PWA.</td><td><span class="badge badge-escalate">Escalate</span> if persists</td></tr>
+        </table>
+    </div>
+</div>
+
+<!-- ================================================================ -->
+<!-- 11. ESCALATION PATHS                                              -->
+<!-- ================================================================ -->
+<div class="section" id="escalation">
+    <div class="section-header">
+        <div class="section-icon icon-red">&#128680;</div>
+        <div>
+            <h2>Escalation &amp; Chatbot Scope</h2>
+            <div class="section-desc">What you handle, what the chatbot handles, and when to escalate</div>
+        </div>
+    </div>
+    <div class="section-body">
+
+        <h3>Chatbot Capabilities</h3>
+        <p>Callers have access to our chatbots for self-service. Here's what the chatbots can handle so you know what callers may have already tried:</p>
+        <table>
+            <tr><th>Category</th><th>Chatbot Can Handle</th></tr>
+            <tr><td>Company Info</td><td>What RRS does, pricing plans, feature lists</td></tr>
+            <tr><td>Dual Pricing</td><td>Basic concept explanation, gas station analogy</td></tr>
+            <tr><td>Mobile App</td><td>Full install walk-throughs for iPhone and Android</td></tr>
+            <tr><td>PartsTech</td><td>Setup steps, connection instructions</td></tr>
+            <tr><td>QuickBooks</td><td>Setup steps, basic troubleshooting</td></tr>
+            <tr><td>Terminal Setup</td><td>Credential entry guidance, basic configuration</td></tr>
+            <tr><td>General How-To</td><td>Creating estimates, invoices, adding customers</td></tr>
+        </table>
+
+        <div class="callout callout-info">
+            <strong>When callers reach you, they may have already tried the chatbot.</strong> Ask: "Have you tried our online chat? What did it suggest?" This avoids repeating the same steps and shows you where the chatbot left off.
+        </div>
+
+        <h3>Phone Rep Responsibilities</h3>
+        <table>
+            <tr><th>You Handle</th><th>Details</th></tr>
+            <tr><td>Account-specific troubleshooting</td><td>Issues the chatbot can't solve because they need account context</td></tr>
+            <tr><td>Terminal connection failures</td><td>Walk through credential verification, then escalate to Rick or Dejavoo if needed</td></tr>
+            <tr><td>Payment discrepancies</td><td>Help merchants reconcile daily reports. Escalate unresolved discrepancies.</td></tr>
+            <tr><td>QuickBooks sync failures</td><td>Walk through reconnection steps. Escalate persistent issues.</td></tr>
+            <tr><td>Billing &amp; subscription questions</td><td>Plan changes, billing dates, Labor Guide billing</td></tr>
+            <tr><td>Reseller support</td><td>Commission inquiries, onboarding status, demo accounts</td></tr>
+            <tr><td>Merchant onboarding assistance</td><td>Help new merchants through initial setup</td></tr>
+        </table>
+
+        <h3>Escalation Decision Tree</h3>
+        <table>
+            <tr><th>Situation</th><th>Escalate To</th><th>Method</th></tr>
+            <tr><td>Hardware issue / terminal damage</td><td><strong>Dejavoo Tech Support</strong></td><td>1-877-358-6797 or devsupport@denovosystem.com</td></tr>
+            <tr><td>Reseller commission dispute</td><td><strong>Nicole</strong> or <strong>Scott</strong></td><td>Message &mdash; do NOT promise amounts</td></tr>
+            <tr><td>Onboarding a new merchant</td><td><strong>Nicole</strong> or <strong>Elisabeth</strong></td><td>Schedule via Calendly</td></tr>
+            <tr><td>Software bug / unexpected behavior</td><td><strong>Dev Team</strong> (Zac Mason)</td><td>Email support@ with details + screenshots</td></tr>
+            <tr><td>PartsTech catalog/ordering issues</td><td><strong>PartsTech Support</strong></td><td>Direct caller to PartsTech help center</td></tr>
+            <tr><td>Dejavoo technical / declined cards</td><td><strong>Dejavoo Tech Support</strong></td><td>1-877-358-6797 or devsupport@denovosystem.com</td></tr>
+            <tr><td>Compliance / legal question about pricing</td><td><strong>Scott</strong></td><td>Do NOT give legal advice &mdash; escalate immediately</td></tr>
+            <tr><td>Demo account request</td><td><strong>Elisabeth</strong></td><td>She creates demo accounts and sends starter packs</td></tr>
+            <tr><td>Caller is angry / threatening</td><td><strong>Scott</strong></td><td>Take message, assure callback. Do not argue.</td></tr>
+        </table>
+
+        <div class="callout callout-warning">
+            <strong>Never:</strong>
+            <ul style="margin:4px 0 0 16px;">
+                <li>Give legal or compliance advice about dual pricing legality</li>
+                <li>Promise specific commission amounts to resellers</li>
+                <li>Share other merchants' or resellers' information</li>
+                <li>Make promises about feature timelines or release dates</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- ================================================================ -->
+<!-- 12. CONTACTS                                                      -->
+<!-- ================================================================ -->
+<div class="section" id="contacts">
+    <div class="section-header">
+        <div class="section-icon icon-teal">&#128209;</div>
+        <div>
+            <h2>Quick Reference &mdash; Contacts &amp; Links</h2>
+            <div class="section-desc">Key contacts, support channels, and useful links</div>
+        </div>
+    </div>
+    <div class="section-body">
+
+        <h3>RRS Internal Team</h3>
+        <table>
+            <tr><th>Name</th><th>Role</th><th>When to Contact</th></tr>
+            <tr><td><strong>Scott Gibbens</strong></td><td>Founder / CEO</td><td>Compliance questions, escalated issues, reseller disputes</td></tr>
+            <tr><td><strong>Nicole</strong></td><td>Director of Reseller Development</td><td>Reseller calls, onboarding support, commission questions</td></tr>
+            <tr><td><strong>Elisabeth</strong></td><td>Admin Support</td><td>Demo accounts, starter packs, GHL setup, merchant onboarding</td></tr>
+            <tr><td><strong>Zac Mason</strong></td><td>Lead Developer</td><td>Software bugs, technical issues (via support email)</td></tr>
+        </table>
+
+        <h3>External Support Contacts</h3>
+        <table>
+            <tr><th>Service</th><th>Contact</th><th>Use For</th></tr>
+            <tr><td><strong>Dejavoo Tech Support</strong></td><td>devsupport@denovosystem.com</td><td>Terminal technical issues</td></tr>
+            <tr><td><strong>Dejavoo Account</strong></td><td>support@dejavoo.io</td><td>Account-level issues</td></tr>
+            <tr><td><strong>Dejavoo Phone</strong></td><td>1-877-358-6797</td><td>Urgent terminal issues</td></tr>
+            <tr><td><strong>EPI File Build</strong></td><td>filebuild@electronicpayments.com</td><td>New terminal setup (TPN, AuthKey, etc.)</td></tr>
+            <tr><td><strong>PartsTech Help</strong></td><td>partstech.my.site.com/help/s/</td><td>Parts catalog, ordering, supplier issues</td></tr>
+        </table>
+
+        <h3>Key URLs</h3>
+        <table>
+            <tr><th>Resource</th><th>URL</th></tr>
+            <tr><td>Auto Repair Software</td><td>auto.myrateremover.com</td></tr>
+            <tr><td>General Business Software</td><td>inv.myrateremover.com</td></tr>
+            <tr><td>Mobile App (PWA)</td><td>app.myrateremover.com</td></tr>
+            <tr><td>Support Email</td><td>support@shoprateremover.com</td></tr>
+            <tr><td>Merchant Support Phone</td><td>(855) 446-3483</td></tr>
+            <tr><td>Reseller Support Phone</td><td>(315) 203-1697</td></tr>
+        </table>
+
+        <h3>Support Hours</h3>
+        <div class="quick-ref">
+            <div class="quick-ref-card">
+                <div class="qr-label">Merchant Support</div>
+                <div class="qr-value">(855) 446-3483</div>
+                <div class="qr-detail">8AM &ndash; 8PM Eastern, 7 days</div>
+            </div>
+            <div class="quick-ref-card">
+                <div class="qr-label">Reseller Support</div>
+                <div class="qr-value">(315) 203-1697</div>
+                <div class="qr-detail">Mon&ndash;Fri, 8AM &ndash; 5PM Eastern</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</div><!-- end .content -->
+
+</body>
+</html>
