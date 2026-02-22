@@ -62,6 +62,12 @@ RRS Company/
 ├── Suitability Form/                   # Lead qualification tool
 │   ├── feature-fit-form.html           # 28-feature assessment + GHL form
 │   └── Auto Repair Version - Clear Background.png
+├── knowledge-base-site/                # Centralized KB (Netlify deploy)
+│   ├── kb-data.json                    # Single source of truth for all projects
+│   ├── kb-loader.js                    # DOM injection helper
+│   ├── build.js                        # Generates kb-data.js from JSON
+│   ├── _headers                        # CORS headers
+│   └── netlify.toml
 ├── RRS-Knowledge-Base.md               # Master knowledge base
 ├── website-projects-summary.md         # Website project details
 ├── rrs-logo.png                        # Company logo
@@ -79,7 +85,31 @@ RRS Company/
 | **Mobile App** | `ScottGibbensproject/mobile-app` | Netlify | Auto-deploy on push |
 | **Investor Information** | `ScottGibbensproject/investor-information` | Netlify | Auto-deploy on push |
 | **Suitability Form** | `ScottGibbensproject/merchant-suitability-form` | shoprateremover.com | Manual upload |
+| **Knowledge Base** | `ScottGibbensproject/rrs-knowledge-base` | Netlify (`rrs-kb.netlify.app`) | Auto-deploy on push |
 | **epi-pay-gateway** | — | Railway | Nixpacks |
+
+### Centralized Knowledge Base
+
+The **Knowledge Base site** (`rrs-kb.netlify.app`) is the single source of truth for shared data across all projects. It serves:
+- `/kb-data.json` — for server-side fetch (Chatbot serverless function)
+- `/kb-data.js` — for browser script tag (sets `window.RRS_KB`)
+- `/kb-loader.js` — DOM injector (reads `data-kb` attributes and populates elements)
+
+**Update workflow:** Edit `kb-data.json` in the `rrs-knowledge-base` repo → push → Netlify auto-deploys → all projects get new data automatically.
+
+**Consuming projects:**
+- Chatbot (`chat.js`) — fetches JSON server-side with 5-min cache
+- Mobile App, Company Overview, Phone Support Rep Guide, Merchant Onboarding — `<script>` tags + `data-kb` attributes
+- Suitability Form — loads features from `window.RRS_KB.features`
+
+### Where Projects Are Used
+
+- **Development Overview** — Embedded on shoprateremover.com and in 2 places within the reseller member area (agents.myrateremover.com)
+- **Chatbot** — Hosted on OpenAI, embedded on support center dashboard, agent member center, linked from myrateremover.com/mobile, linked on Mobile App
+- **Suitability Form** — Linked on Mobile App
+- **Mobile App** — Installed as PWA from app.myrateremover.com
+- **Company Dashboard** — Internal staff tool (Netlify)
+- **Investor Information** — Password-gated portal for investors (Netlify)
 
 ## Related Projects (External)
 

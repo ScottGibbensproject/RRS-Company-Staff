@@ -402,18 +402,18 @@
             <tr><th>Plan</th><th>Price</th><th>What's Included</th></tr>
             <tr>
                 <td><strong>Essentials</strong></td>
-                <td>$59/month</td>
-                <td>Invoicing, estimates, dual pricing, PartsTech, Dejavoo, reporting, CSV exports</td>
+                <td data-kb="pricing.essentials.label">$59/month</td>
+                <td data-kb="pricing.essentials.includes">All software features (invoicing, estimates, dual pricing, PartsTech, Dejavoo, QuickBooks sync, reporting, mobile app)</td>
             </tr>
             <tr>
                 <td><strong>Pro</strong></td>
-                <td>$119/month</td>
-                <td>Everything in Essentials + SMS/email estimates, digital signature approval</td>
+                <td data-kb="pricing.pro.label">$119/month</td>
+                <td data-kb="pricing.pro.includes">Everything in Essentials + MOTOR Labor Guide (repair time guidelines)</td>
             </tr>
             <tr>
                 <td><strong>Labor Guide</strong></td>
                 <td>Included with Pro</td>
-                <td>MOTOR labor guide (repair time guidelines). Included at no extra cost with the Pro plan.</td>
+                <td data-kb="pricing.proOnlyDescription">Repair time estimates — comparable to Mitchell1. Included with Pro at no additional cost.</td>
             </tr>
         </table>
 
@@ -1114,10 +1114,10 @@
         <h3>External Support Contacts</h3>
         <table>
             <tr><th>Service</th><th>Contact</th><th>Use For</th></tr>
-            <tr><td><strong>Dejavoo Tech Support</strong></td><td>devsupport@denovosystem.com</td><td>Terminal technical issues</td></tr>
-            <tr><td><strong>Dejavoo Account</strong></td><td>support@dejavoo.io</td><td>Account-level issues</td></tr>
-            <tr><td><strong>Dejavoo Phone</strong></td><td>1-877-358-6797</td><td>Urgent terminal issues</td></tr>
-            <tr><td><strong>EPI File Build</strong></td><td>filebuild@electronicpayments.com</td><td>New terminal setup (TPN, AuthKey, etc.)</td></tr>
+            <tr><td><strong>Dejavoo Tech Support</strong></td><td data-kb="dejavoo.techEmail">devsupport@denovosystem.com</td><td>Terminal technical issues</td></tr>
+            <tr><td><strong>Dejavoo Account</strong></td><td data-kb="dejavoo.accountEmail">support@dejavoo.io</td><td>Account-level issues</td></tr>
+            <tr><td><strong>Dejavoo Phone</strong></td><td data-kb="dejavoo.phone">1-877-358-6797</td><td>Urgent terminal issues</td></tr>
+            <tr><td><strong>EPI File Build</strong></td><td data-kb="dejavoo.fileBuild">filebuild@electronicpayments.com</td><td>New terminal setup (TPN, AuthKey, etc.)</td></tr>
             <tr><td><strong>PartsTech Help</strong></td><td>partstech.my.site.com/help/s/</td><td>Parts catalog, ordering, supplier issues</td></tr>
         </table>
 
@@ -1127,21 +1127,21 @@
             <tr><td>Auto Repair Software</td><td>auto.myrateremover.com</td></tr>
             <tr><td>General Business Software</td><td>inv.myrateremover.com</td></tr>
             <tr><td>Mobile App (PWA)</td><td>app.myrateremover.com</td></tr>
-            <tr><td>Support Email</td><td>support@shoprateremover.com</td></tr>
-            <tr><td>Merchant Support Phone</td><td>(855) 446-3483</td></tr>
-            <tr><td>Reseller Support Phone</td><td>(315) 203-1697</td></tr>
+            <tr><td>Support Email</td><td data-kb="contacts.supportEmail">support@shoprateremover.com</td></tr>
+            <tr><td>Merchant Support Phone</td><td data-kb="contacts.merchantPhone">(855) 446-3483</td></tr>
+            <tr><td>Reseller Support Phone</td><td data-kb="contacts.resellerPhone">(315) 203-1697</td></tr>
         </table>
 
         <h3>Support Hours</h3>
         <div class="quick-ref">
             <div class="quick-ref-card">
                 <div class="qr-label">Merchant Support</div>
-                <div class="qr-value">(855) 446-3483</div>
+                <div class="qr-value" data-kb="contacts.merchantPhone">(855) 446-3483</div>
                 <div class="qr-detail">8AM &ndash; 8PM Eastern, 7 days</div>
             </div>
             <div class="quick-ref-card">
                 <div class="qr-label">Reseller Support</div>
-                <div class="qr-value">(315) 203-1697</div>
+                <div class="qr-value" data-kb="contacts.resellerPhone">(315) 203-1697</div>
                 <div class="qr-detail">Mon&ndash;Fri, 8AM &ndash; 5PM Eastern</div>
             </div>
         </div>
@@ -1149,6 +1149,10 @@
 </div>
 
 </div><!-- end .content -->
+
+<!-- Central Knowledge Base (auto-syncs pricing, contacts, URLs) -->
+<script src="https://rrs-kb.netlify.app/kb-data.js"></script>
+<script src="https://rrs-kb.netlify.app/kb-loader.js"></script>
 
 </body>
 </html>

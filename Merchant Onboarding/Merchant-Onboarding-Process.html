@@ -588,18 +588,18 @@
                     <tr><th>Plan</th><th>Monthly</th><th>What's Included</th></tr>
                     <tr>
                         <td><strong>Essentials</strong></td>
-                        <td>$59/mo</td>
-                        <td>Invoicing, estimates, dual pricing, PartsTech integration, Dejavoo terminal payments, daily reports, CSV exports</td>
+                        <td data-kb="pricing.essentials.shortLabel">$59/mo</td>
+                        <td data-kb="pricing.essentials.includes">All software features (invoicing, estimates, dual pricing, PartsTech, Dejavoo, QuickBooks sync, reporting, mobile app)</td>
                     </tr>
                     <tr>
                         <td><strong>Pro</strong></td>
-                        <td>$119/mo</td>
-                        <td>Everything in Essentials + send estimates by text &amp; email, customer approval links, digital signatures</td>
+                        <td data-kb="pricing.pro.shortLabel">$119/mo</td>
+                        <td data-kb="pricing.pro.includes">Everything in Essentials + MOTOR Labor Guide (repair time guidelines)</td>
                     </tr>
                     <tr>
                         <td><strong>Labor Guide</strong></td>
                         <td>Included with Pro</td>
-                        <td>MOTOR labor time guides (comparable to Mitchell1). Included at no extra cost with the Pro plan. Works with free or paid PartsTech.</td>
+                        <td data-kb="pricing.proOnlyDescription">Repair time estimates — comparable to Mitchell1. Included with Pro at no additional cost.</td>
                     </tr>
                 </table>
 
@@ -660,12 +660,12 @@
                     <li><strong>Onboarding call</strong> &mdash; we'll set everything up together and make sure you're comfortable before going live</li>
                 </ol>
 
-                <p>If you're ready to move forward, let your agent know and they'll get the application started. If you have any questions at all, reply to this email or call us at <strong>(855) 446-3483</strong>.</p>
+                <p>If you're ready to move forward, let your agent know and they'll get the application started. If you have any questions at all, reply to this email or call us at <strong data-kb="contacts.merchantPhone">(855) 446-3483</strong>.</p>
 
                 <div class="email-signature">
                     Looking forward to working with you,<br>
                     <strong>The Rate Remover Software Team</strong><br>
-                    support@shoprateremover.com | (855) 446-3483
+                    <span data-kb="contacts.supportEmail">support@shoprateremover.com</span> | <span data-kb="contacts.merchantPhone">(855) 446-3483</span>
                 </div>
             </div>
         </div>
@@ -756,12 +756,12 @@
 
                 <div class="email-section-title">Questions?</div>
 
-                <p>Reply to this email or call us at <strong>(855) 446-3483</strong>. We're here to help.</p>
+                <p>Reply to this email or call us at <strong data-kb="contacts.merchantPhone">(855) 446-3483</strong>. We're here to help.</p>
 
                 <div class="email-signature">
                     Welcome aboard,<br>
                     <strong>The Rate Remover Software Team</strong><br>
-                    support@shoprateremover.com | (855) 446-3483
+                    <span data-kb="contacts.supportEmail">support@shoprateremover.com</span> | <span data-kb="contacts.merchantPhone">(855) 446-3483</span>
                 </div>
             </div>
         </div>
@@ -847,7 +847,7 @@
                 <div class="email-signature">
                     See you at onboarding,<br>
                     <strong>The Rate Remover Software Team</strong><br>
-                    support@shoprateremover.com | (855) 446-3483
+                    <span data-kb="contacts.supportEmail">support@shoprateremover.com</span> | <span data-kb="contacts.merchantPhone">(855) 446-3483</span>
                 </div>
             </div>
         </div>
@@ -1004,6 +1004,10 @@
 </div>
 
 </div><!-- end .content -->
+
+<!-- Central Knowledge Base (auto-syncs pricing, contacts, URLs) -->
+<script src="https://rrs-kb.netlify.app/kb-data.js"></script>
+<script src="https://rrs-kb.netlify.app/kb-loader.js"></script>
 
 </body>
 </html>

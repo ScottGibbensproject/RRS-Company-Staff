@@ -1,0 +1,936 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RRS Company Overview — Rate Remover Software</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #E05A33;
+            --primary-dark: #C74A28;
+            --primary-light: #F07050;
+            --secondary: #2D2D2D;
+            --accent: #4CAF50;
+            --blue: #2196F3;
+            --purple: #7C4DFF;
+            --amber: #FF9800;
+            --teal: #009688;
+            --bg: #F5F5F5;
+            --card-bg: #FFFFFF;
+            --border: #E0E0E0;
+            --text: #333333;
+            --text-light: #666666;
+            --radius-sm: 6px;
+            --radius-md: 10px;
+            --radius-lg: 16px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--secondary) 0%, #3D3D3D 50%, #4D4D4D 100%);
+            color: white;
+            padding: 32px 40px;
+        }
+
+        .header h1 { font-size: 28px; font-weight: 800; margin-bottom: 4px; }
+        .header .subtitle { font-size: 14px; color: #BBBBBB; }
+        .header .doc-meta { margin-top: 12px; display: flex; gap: 24px; font-size: 13px; color: #999; }
+        .header .doc-meta span { display: flex; align-items: center; gap: 6px; }
+
+        .nav-bar {
+            background: white;
+            border-bottom: 2px solid var(--primary);
+            padding: 0 24px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            overflow-x: auto;
+            white-space: nowrap;
+        }
+
+        .nav-bar a {
+            display: inline-block;
+            padding: 12px 16px;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-light);
+            text-decoration: none;
+            border-bottom: 3px solid transparent;
+            transition: all 0.2s;
+        }
+
+        .nav-bar a:hover { color: var(--primary); border-bottom-color: var(--primary); }
+
+        .content { max-width: 1000px; margin: 0 auto; padding: 32px 24px; }
+
+        .section {
+            background: var(--card-bg);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border);
+            margin-bottom: 24px;
+            overflow: hidden;
+        }
+
+        .section-header {
+            padding: 20px 24px 16px;
+            border-bottom: 1px solid #F0F0F0;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-header .section-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+
+        .section-header h2 { font-size: 18px; font-weight: 700; }
+        .section-header .section-desc { font-size: 12px; color: var(--text-light); margin-top: 2px; }
+
+        .section-body { padding: 20px 24px 24px; }
+
+        h3 {
+            font-size: 15px;
+            font-weight: 700;
+            margin: 20px 0 10px;
+            padding-bottom: 6px;
+            border-bottom: 1px solid #F0F0F0;
+            color: var(--secondary);
+        }
+
+        h3:first-child { margin-top: 0; }
+
+        h4 {
+            font-size: 13px;
+            font-weight: 700;
+            margin: 14px 0 6px;
+            color: var(--text);
+        }
+
+        p { font-size: 14px; margin-bottom: 10px; }
+
+        ul, ol {
+            font-size: 14px;
+            padding-left: 20px;
+            margin-bottom: 10px;
+        }
+
+        li { margin-bottom: 4px; }
+
+        strong { color: var(--secondary); }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+            margin: 10px 0 16px;
+        }
+
+        th {
+            background: #F8F8F8;
+            text-align: left;
+            padding: 8px 12px;
+            font-weight: 600;
+            border-bottom: 2px solid var(--border);
+            font-size: 12px;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        td {
+            padding: 8px 12px;
+            border-bottom: 1px solid #F0F0F0;
+            vertical-align: top;
+        }
+
+        tr:last-child td { border-bottom: none; }
+
+        .callout {
+            border-radius: var(--radius-sm);
+            padding: 12px 16px;
+            margin: 12px 0;
+            font-size: 13px;
+        }
+
+        .callout-important { background: #FFF3E0; border-left: 4px solid var(--amber); }
+        .callout-tip { background: #E8F5E9; border-left: 4px solid var(--accent); }
+        .callout-warning { background: #FFEBEE; border-left: 4px solid #D32F2F; }
+        .callout-info { background: #E3F2FD; border-left: 4px solid var(--blue); }
+        .callout-purple { background: #F3E5F5; border-left: 4px solid var(--purple); }
+
+        .callout strong { display: block; font-size: 12px; margin-bottom: 2px; }
+
+        .quick-ref {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin: 12px 0;
+        }
+
+        .quick-ref-card {
+            background: #FAFAFA;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            padding: 12px;
+        }
+
+        .quick-ref-card .qr-label {
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-light);
+            margin-bottom: 4px;
+        }
+
+        .quick-ref-card .qr-value {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--secondary);
+        }
+
+        .quick-ref-card .qr-detail {
+            font-size: 12px;
+            color: var(--text-light);
+            margin-top: 2px;
+        }
+
+        /* Connection diagram */
+        .conn-diagram {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            margin: 16px 0;
+        }
+
+        .conn-row {
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+            flex-wrap: wrap;
+        }
+
+        .conn-source {
+            background: var(--secondary);
+            color: white;
+            padding: 10px 16px;
+            border-radius: var(--radius-sm);
+            font-size: 13px;
+            font-weight: 700;
+            min-width: 160px;
+            text-align: center;
+            flex-shrink: 0;
+        }
+
+        .conn-arrow {
+            display: flex;
+            align-items: center;
+            color: var(--primary);
+            font-size: 20px;
+            font-weight: 700;
+            flex-shrink: 0;
+            padding-top: 4px;
+        }
+
+        .conn-targets {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .conn-target {
+            background: #FFF3E0;
+            border: 1px solid #FFE0B2;
+            padding: 8px 12px;
+            border-radius: var(--radius-sm);
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .conn-target.embed { background: #E3F2FD; border-color: #BBDEFB; }
+        .conn-target.link { background: #E8F5E9; border-color: #C8E6C9; }
+        .conn-target.host { background: #F3E5F5; border-color: #E1BEE7; }
+
+        .badge {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .badge-netlify { background: #E8F5E9; color: #2E7D32; }
+        .badge-firebase { background: #FFF3E0; color: #E65100; }
+        .badge-siteground { background: #F3E5F5; color: #6A1B9A; }
+        .badge-railway { background: #E3F2FD; color: #1565C0; }
+        .badge-manual { background: #FFF8E1; color: #F57F17; }
+        .badge-auto { background: #E8F5E9; color: #2E7D32; }
+
+        .tag {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        .tag-public { background: #E8F5E9; color: #2E7D32; }
+        .tag-reseller { background: #E3F2FD; color: #1565C0; }
+        .tag-internal { background: #FFF3E0; color: #E65100; }
+
+        @media print {
+            .nav-bar { display: none; }
+            .header { background: var(--secondary) !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            .section { break-inside: avoid; }
+            body { background: white; }
+            .content { max-width: 100%; padding: 16px; }
+        }
+
+        @media (max-width: 600px) {
+            .header { padding: 24px 20px; }
+            .header h1 { font-size: 22px; }
+            .content { padding: 16px; }
+            .quick-ref { grid-template-columns: 1fr; }
+            .conn-row { flex-direction: column; }
+            .conn-arrow { transform: rotate(90deg); }
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <h1>Rate Remover Software — Company Overview</h1>
+    <div class="subtitle">Complete guide to our company, projects, team, and operations</div>
+    <div class="doc-meta">
+        <span>Last Updated: February 2026</span>
+        <span>Classification: Internal</span>
+    </div>
+</div>
+
+<div class="nav-bar">
+    <a href="#company">Company</a>
+    <a href="#team">Team</a>
+    <a href="#product">Product</a>
+    <a href="#projects">Projects</a>
+    <a href="#connections">Connections</a>
+    <a href="#domains">Domains</a>
+    <a href="#revenue">Revenue</a>
+    <a href="#kb">Knowledge Base</a>
+    <a href="#services">Services</a>
+    <a href="#support">Support</a>
+</div>
+
+<div class="content">
+
+    <!-- 1. Company Overview -->
+    <div class="section" id="company">
+        <div class="section-header">
+            <div class="section-icon" style="background: #FFF3E0; color: var(--primary);">1</div>
+            <div>
+                <h2>Company Overview</h2>
+                <div class="section-desc">Who we are and what we do</div>
+            </div>
+        </div>
+        <div class="section-body">
+            <div class="quick-ref">
+                <div class="quick-ref-card">
+                    <div class="qr-label">Legal Entity</div>
+                    <div class="qr-value" data-kb="company.legalName">Rate Remover Software, Inc.</div>
+                    <div class="qr-detail">Delaware C-Corporation (formed <span data-kb="company.formed">August 2025</span>)</div>
+                </div>
+                <div class="quick-ref-card">
+                    <div class="qr-label">Company Type</div>
+                    <div class="qr-value">SaaS + Payments</div>
+                    <div class="qr-detail">Dual pricing software & merchant processing</div>
+                </div>
+                <div class="quick-ref-card">
+                    <div class="qr-label">Target Market</div>
+                    <div class="qr-value" data-kb="company.targetMarket">Auto Repair Shops</div>
+                    <div class="qr-detail">Independent single & small multi-location shops</div>
+                </div>
+                <div class="quick-ref-card">
+                    <div class="qr-label">Active Merchants</div>
+                    <div class="qr-value" data-kb="company.activeMerchants">17</div>
+                    <div class="qr-detail">Auto repair shops on the platform</div>
+                </div>
+            </div>
+
+            <h3>Core Value Proposition</h3>
+            <ul>
+                <li>Enables compliant <strong>dual pricing</strong> (cash vs card pricing) — not surcharging</li>
+                <li>Automatically calculates card prices by embedding processing costs into pricing</li>
+                <li>Legal in all 50 states, aligned with card brand rules and state regulations</li>
+                <li>Tightly integrated with payment processing workflows</li>
+                <li>Built specifically for the auto repair industry</li>
+            </ul>
+
+            <h3>Strategic Position</h3>
+            <ul>
+                <li>Standalone SaaS product that also serves as a strategic acquisition engine for merchant services residual revenue</li>
+                <li>Partners with <strong>Electronic Payments Inc. (EPI)</strong> for merchant account processing</li>
+                <li>Payment gateway via <strong>Dejavoo/iPOSpays</strong></li>
+                <li>Reseller program (<strong>Pipeline Builder</strong>) to scale merchant acquisition</li>
+            </ul>
+
+            <div class="callout callout-important">
+                <strong>Strategic Guardrails</strong>
+                Training is mandatory for all closing resellers. Quality of merchants > quantity. Software quality and compliance take priority over short-term growth. Does not support agnostic processing at scale.
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. Team & Roles -->
+    <div class="section" id="team">
+        <div class="section-header">
+            <div class="section-icon" style="background: #E3F2FD; color: var(--blue);">2</div>
+            <div>
+                <h2>Team & Roles</h2>
+                <div class="section-desc">Who does what at RRS</div>
+            </div>
+        </div>
+        <div class="section-body">
+            <h3>Internal Team</h3>
+            <table>
+                <tr><th>Name</th><th>Role</th><th>Responsibilities</th></tr>
+                <tr><td><strong>Scott Gibbens</strong></td><td>Founder / Owner</td><td>Product, sales, strategy, development management, compliance</td></tr>
+                <tr><td><strong>Nicole Devery</strong></td><td>Director of Reseller Development</td><td>Reseller development, merchant demos, support, commission oversight</td></tr>
+                <tr><td><strong>Elisabeth Geiwitz</strong></td><td>Admin Support</td><td>Lead generation, merchant demos, GHL setup, demo accounts</td></tr>
+                <tr><td><strong>Beth</strong></td><td>GHL Specialist</td><td>Go High Level platform management and automation workflows</td></tr>
+            </table>
+
+            <h3>Development Team</h3>
+            <table>
+                <tr><th>Name</th><th>Company</th><th>Role</th></tr>
+                <tr><td><strong>Zac</strong></td><td>JMA Resources</td><td>Lead Developer</td></tr>
+                <tr><td><strong>Pachia</strong></td><td>FYC Labs</td><td>Junior Developer</td></tr>
+            </table>
+
+            <h3>Key External Partners</h3>
+            <table>
+                <tr><th>Organization</th><th>Contact</th><th>Relationship</th></tr>
+                <tr><td><strong>Lifelong Merchant Services</strong></td><td>Kermit Lowry (CEO), Nick Ruggiero (COO)</td><td>ISO Group — boards merchants through RRS, has own agents</td></tr>
+                <tr><td><strong>Electronic Payments Inc. (EPI)</strong></td><td>—</td><td>Payment processor partner — handles merchant accounts</td></tr>
+                <tr><td><strong>Dejavoo / iPOSpays</strong></td><td>devsupport@denovosystem.com</td><td>Card terminal provider and payment gateway</td></tr>
+            </table>
+        </div>
+    </div>
+
+    <!-- 3. Software Product -->
+    <div class="section" id="product">
+        <div class="section-header">
+            <div class="section-icon" style="background: #E8F5E9; color: var(--accent);">3</div>
+            <div>
+                <h2>Software Product</h2>
+                <div class="section-desc">Features, pricing, and technology</div>
+            </div>
+        </div>
+        <div class="section-body">
+            <h3>Pricing Plans</h3>
+            <table>
+                <tr><th>Plan</th><th>Price</th><th>Includes</th></tr>
+                <tr><td><strong>Essentials</strong></td><td data-kb="pricing.essentials.label">$59/month</td><td data-kb="pricing.essentials.includes">All software features (invoicing, estimates, dual pricing, PartsTech, Dejavoo, QuickBooks sync, reporting, mobile app)</td></tr>
+                <tr><td><strong>Pro</strong></td><td data-kb="pricing.pro.label">$119/month</td><td data-kb="pricing.pro.includes">Everything in Essentials + MOTOR Labor Guide (repair time guidelines)</td></tr>
+            </table>
+            <div class="callout callout-info">
+                <strong>Legacy Pricing</strong>
+                Some early merchants are grandfathered at $34/month or $44/month. The Labor Guide is the only difference between Essentials and Pro.
+            </div>
+
+            <h3>Core Features</h3>
+            <div class="quick-ref">
+                <div class="quick-ref-card">
+                    <div class="qr-label">Invoicing</div>
+                    <div class="qr-value">Estimates & Invoices</div>
+                    <div class="qr-detail">Create, send, and track with dual pricing</div>
+                </div>
+                <div class="quick-ref-card">
+                    <div class="qr-label">Payments</div>
+                    <div class="qr-value">Dejavoo Integration</div>
+                    <div class="qr-detail">Card terminals + hosted payment page</div>
+                </div>
+                <div class="quick-ref-card">
+                    <div class="qr-label">Parts</div>
+                    <div class="qr-value">PartsTech Integration</div>
+                    <div class="qr-detail">Parts lookup, VIN decoding, supplier ordering</div>
+                </div>
+                <div class="quick-ref-card">
+                    <div class="qr-label">Accounting</div>
+                    <div class="qr-value">QuickBooks Sync</div>
+                    <div class="qr-detail">One-way sync of invoices to QBO</div>
+                </div>
+                <div class="quick-ref-card">
+                    <div class="qr-label">Mobile</div>
+                    <div class="qr-value">PWA App</div>
+                    <div class="qr-detail">Install to home screen — no app store</div>
+                </div>
+                <div class="quick-ref-card">
+                    <div class="qr-label">Pro Only</div>
+                    <div class="qr-value">MOTOR Labor Guide</div>
+                    <div class="qr-detail">Repair time estimates, included with Pro</div>
+                </div>
+            </div>
+
+            <h3>Technology Stack</h3>
+            <table>
+                <tr><th>Layer</th><th>Technology</th><th>Details</th></tr>
+                <tr><td>Backend</td><td>F# / .NET 7.x / Giraffe</td><td>Main application server</td></tr>
+                <tr><td>Frontend</td><td>Vue.js 3 / TypeScript / Tailwind CSS</td><td>Custom Webpack setup</td></tr>
+                <tr><td>Database</td><td>PostgreSQL</td><td>Cloud SQL on GCP</td></tr>
+                <tr><td>Infrastructure</td><td>Google Cloud Platform</td><td>App Engine, Cloud Run, Cloud SQL</td></tr>
+                <tr><td>CDN</td><td>Cloudflare</td><td>Content delivery and security</td></tr>
+                <tr><td>Email</td><td>SendGrid</td><td>Transactional emails</td></tr>
+                <tr><td>SMS</td><td>Twilio</td><td>SMS notifications (future: voice)</td></tr>
+            </table>
+
+            <h3>Planned Features (Roadmap)</h3>
+            <ul>
+                <li>Text/email estimates with approval links and digital signatures</li>
+                <li>Two-way SMS communication with customers</li>
+                <li>Per-user/merchant phone numbers (Twilio/Vonage)</li>
+                <li>Technician pay matrix and reporting</li>
+                <li>Service bay visual management (drag-and-drop)</li>
+                <li>Split payments (multiple tenders per invoice)</li>
+                <li>API for third-party shop systems (Tekmetric, Mitchell 1)</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- 4. Project Registry -->
+    <div class="section" id="projects">
+        <div class="section-header">
+            <div class="section-icon" style="background: #F3E5F5; color: var(--purple);">4</div>
+            <div>
+                <h2>Project Registry</h2>
+                <div class="section-desc">Every project, where it's hosted, and how it deploys</div>
+            </div>
+        </div>
+        <div class="section-body">
+            <table>
+                <tr><th>Project</th><th>Description</th><th>GitHub Repo</th><th>Hosting</th><th>Deploy</th></tr>
+                <tr>
+                    <td><strong>RRS Company Staff</strong></td>
+                    <td>Master project — documentation, KB, procedures</td>
+                    <td>RRS-Company-Staff</td>
+                    <td>—</td>
+                    <td><span class="badge badge-auto">Git Push</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Company Dashboard</strong></td>
+                    <td>Internal staff flowcharts — GHL automations, onboarding, workflows</td>
+                    <td>company-dashboard</td>
+                    <td><span class="badge badge-netlify">Netlify</span></td>
+                    <td><span class="badge badge-auto">Auto on push</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Development Overview</strong></td>
+                    <td>Public software changelog — embedded on websites</td>
+                    <td>Development-Overview</td>
+                    <td><span class="badge badge-netlify">Netlify</span></td>
+                    <td><span class="badge badge-auto">Auto on push</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Chatbot</strong></td>
+                    <td>AI support assistant — 4 role-based versions (Reseller, Merchant, General, Internal)</td>
+                    <td>support-chat-bot</td>
+                    <td><span class="badge badge-netlify">Netlify + Functions</span></td>
+                    <td><span class="badge badge-auto">Auto on push</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Mobile App</strong></td>
+                    <td>PWA portal — 12 service cards linking to all RRS tools</td>
+                    <td>mobile-app</td>
+                    <td><span class="badge badge-netlify">Netlify</span></td>
+                    <td><span class="badge badge-auto">Auto on push</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Investor Information</strong></td>
+                    <td>Password-gated investor portal — overview, cap table, calculator</td>
+                    <td>investor-information</td>
+                    <td><span class="badge badge-netlify">Netlify</span></td>
+                    <td><span class="badge badge-auto">Auto on push</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Suitability Form</strong></td>
+                    <td>Lead qualification — 28-feature assessment with GHL capture</td>
+                    <td>merchant-suitability-form</td>
+                    <td>shoprateremover.com</td>
+                    <td><span class="badge badge-manual">Manual upload</span></td>
+                </tr>
+                <tr>
+                    <td><strong>epi-pay-gateway</strong></td>
+                    <td>Payment gateway server & RR Pay SDK</td>
+                    <td>—</td>
+                    <td><span class="badge badge-railway">Railway</span></td>
+                    <td><span class="badge badge-auto">Nixpacks</span></td>
+                </tr>
+                <tr>
+                    <td><strong>myrateremover.com</strong></td>
+                    <td>Public website — React + WordPress hybrid, general landing</td>
+                    <td>General-Version-Website</td>
+                    <td><span class="badge badge-siteground">Siteground</span></td>
+                    <td><span class="badge badge-manual">Build + FTP</span></td>
+                </tr>
+                <tr>
+                    <td><strong>shoprateremover.com</strong></td>
+                    <td>Auto repair industry website — React, blog, contact forms</td>
+                    <td>—</td>
+                    <td><span class="badge badge-firebase">Firebase</span></td>
+                    <td><span class="badge badge-auto">GitHub Actions</span></td>
+                </tr>
+            </table>
+
+            <div class="callout callout-tip">
+                <strong>All GitHub repos are under the ScottGibbensproject organization</strong>
+                Sub-projects within RRS Company have their own git repos and are excluded from the parent RRS-Company-Staff repo via .gitignore.
+            </div>
+        </div>
+    </div>
+
+    <!-- 5. Project Connections -->
+    <div class="section" id="connections">
+        <div class="section-header">
+            <div class="section-icon" style="background: #FFF3E0; color: var(--amber);">5</div>
+            <div>
+                <h2>Project Connections</h2>
+                <div class="section-desc">How projects link to and embed within each other</div>
+            </div>
+        </div>
+        <div class="section-body">
+            <p>Each project below shows where it's embedded or linked. Understanding these connections is critical before making changes — updating one project may affect multiple places.</p>
+
+            <div class="conn-diagram">
+                <div class="conn-row">
+                    <div class="conn-source">Development Overview</div>
+                    <div class="conn-arrow">&rarr;</div>
+                    <div class="conn-targets">
+                        <div class="conn-target embed">Embedded on shoprateremover.com</div>
+                        <div class="conn-target embed">Embedded in agents.myrateremover.com (2 places)</div>
+                    </div>
+                </div>
+
+                <div class="conn-row">
+                    <div class="conn-source">Chatbot</div>
+                    <div class="conn-arrow">&rarr;</div>
+                    <div class="conn-targets">
+                        <div class="conn-target host">Hosted on OpenAI + Netlify Functions</div>
+                        <div class="conn-target embed">Embedded on support center dashboard</div>
+                        <div class="conn-target embed">Embedded in agent member center</div>
+                        <div class="conn-target link">Linked from myrateremover.com/mobile</div>
+                        <div class="conn-target link">Linked on Mobile App</div>
+                    </div>
+                </div>
+
+                <div class="conn-row">
+                    <div class="conn-source">Suitability Form</div>
+                    <div class="conn-arrow">&rarr;</div>
+                    <div class="conn-targets">
+                        <div class="conn-target host">Hosted on shoprateremover.com</div>
+                        <div class="conn-target link">Linked on Mobile App</div>
+                    </div>
+                </div>
+
+                <div class="conn-row">
+                    <div class="conn-source">Mobile App (PWA)</div>
+                    <div class="conn-arrow">&rarr;</div>
+                    <div class="conn-targets">
+                        <div class="conn-target host">Installed from app.myrateremover.com</div>
+                        <div class="conn-target link">Links to: Chatbot, Suitability Form, CRM, Demo Account, Pipeline Builder, PartsTech Help, Schedule Demo + 5 more</div>
+                    </div>
+                </div>
+
+                <div class="conn-row">
+                    <div class="conn-source">epi-pay-gateway</div>
+                    <div class="conn-arrow">&rarr;</div>
+                    <div class="conn-targets">
+                        <div class="conn-target host">Railway production server</div>
+                        <div class="conn-target embed">SDK embedded on myrateremover.com</div>
+                    </div>
+                </div>
+
+                <div class="conn-row">
+                    <div class="conn-source">Knowledge Base</div>
+                    <div class="conn-arrow">&rarr;</div>
+                    <div class="conn-targets">
+                        <div class="conn-target embed">Content in Chatbot prompts (chat.js)</div>
+                        <div class="conn-target embed">Content in Phone Support Rep Guide</div>
+                        <div class="conn-target embed">Content in Merchant Onboarding docs</div>
+                        <div class="conn-target embed">Content in Suitability Form features</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="callout callout-warning">
+                <strong>Change Impact</strong>
+                When updating pricing, features, or contact info, check all connected projects. The Knowledge Base content is embedded (copied) into multiple projects — changes must be synced manually.
+            </div>
+        </div>
+    </div>
+
+    <!-- 6. Domains & URLs -->
+    <div class="section" id="domains">
+        <div class="section-header">
+            <div class="section-icon" style="background: #E3F2FD; color: var(--blue);">6</div>
+            <div>
+                <h2>Domains & URLs</h2>
+                <div class="section-desc">Every domain, subdomain, and endpoint</div>
+            </div>
+        </div>
+        <div class="section-body">
+            <h3>Public Domains</h3>
+            <table>
+                <tr><th>URL</th><th>Purpose</th><th>Hosting</th></tr>
+                <tr><td><strong>myrateremover.com</strong></td><td>General software landing site (React + WordPress)</td><td>Siteground</td></tr>
+                <tr><td><strong>shoprateremover.com</strong></td><td>Auto repair industry website</td><td>Firebase</td></tr>
+                <tr><td><strong>app.myrateremover.com</strong></td><td>Mobile app (PWA) — install to home screen</td><td>Netlify</td></tr>
+                <tr><td><strong>auto.myrateremover.com</strong></td><td>Auto repair merchant login portal</td><td>GCP</td></tr>
+                <tr><td><strong>inv.myrateremover.com</strong></td><td>General merchant login portal</td><td>GCP</td></tr>
+                <tr><td><strong>agents.myrateremover.com</strong></td><td>Reseller member area & certification course</td><td>WordPress</td></tr>
+            </table>
+
+            <h3>API & Gateway Endpoints</h3>
+            <table>
+                <tr><th>Endpoint</th><th>Environment</th><th>Purpose</th></tr>
+                <tr><td>https://rr-pay-production.up.railway.app</td><td>Production</td><td>RR Pay Gateway (SDK + API)</td></tr>
+                <tr><td>http://localhost:3000</td><td>Local Dev</td><td>Gateway development server</td></tr>
+                <tr><td>https://payment.ipospays.com/api/v1/external-payment-transaction</td><td>Production</td><td>Dejavoo payment processing</td></tr>
+                <tr><td>https://payment.ipospays.tech/api/v1/external-payment-transaction</td><td>Sandbox</td><td>Dejavoo testing</td></tr>
+            </table>
+
+            <h3>Netlify Sites</h3>
+            <table>
+                <tr><th>Project</th><th>Auto-Deploy From</th><th>Build Command</th><th>Publish Dir</th></tr>
+                <tr><td>Company Dashboard</td><td>company-dashboard / main</td><td>None (static)</td><td>/</td></tr>
+                <tr><td>Development Overview</td><td>Development-Overview / main</td><td>None (static)</td><td>/</td></tr>
+                <tr><td>Chatbot</td><td>support-chat-bot / main</td><td>npm run build</td><td>dist/</td></tr>
+                <tr><td>Mobile App</td><td>mobile-app / main</td><td>None (static)</td><td>/</td></tr>
+                <tr><td>Investor Information</td><td>investor-information / main</td><td>None (static)</td><td>/</td></tr>
+            </table>
+        </div>
+    </div>
+
+    <!-- 7. Revenue & Reseller Program -->
+    <div class="section" id="revenue">
+        <div class="section-header">
+            <div class="section-icon" style="background: #E8F5E9; color: var(--accent);">7</div>
+            <div>
+                <h2>Revenue & Reseller Program</h2>
+                <div class="section-desc">How we make money and our reseller ecosystem</div>
+            </div>
+        </div>
+        <div class="section-body">
+            <h3>Revenue Streams</h3>
+            <div class="quick-ref">
+                <div class="quick-ref-card">
+                    <div class="qr-label">Stream 1</div>
+                    <div class="qr-value">SaaS Subscriptions</div>
+                    <div class="qr-detail">$59-$119/month per merchant</div>
+                </div>
+                <div class="quick-ref-card">
+                    <div class="qr-label">Stream 2</div>
+                    <div class="qr-value">Processing Residuals</div>
+                    <div class="qr-detail">Monthly residuals from merchant card processing via EPI</div>
+                </div>
+                <div class="quick-ref-card">
+                    <div class="qr-label">Stream 3</div>
+                    <div class="qr-value">Pipeline Builder</div>
+                    <div class="qr-detail">$29/month reseller subscription program</div>
+                </div>
+            </div>
+
+            <h3>Reseller Tiers</h3>
+            <table>
+                <tr><th>Tier</th><th>Description</th><th>Revenue Share</th><th>Requirements</th><th>Count</th></tr>
+                <tr><td><strong>Referral Partner</strong></td><td>Sends leads, RRS handles everything</td><td>TBD</td><td>None</td><td>TBD</td></tr>
+                <tr><td><strong>Direct Agent</strong></td><td>Closes own deals, RRS assists</td><td>60% to agent</td><td>Certification course</td><td>8</td></tr>
+                <tr><td><strong>Equity Partner</strong></td><td>Higher share + investment</td><td>90% to agent</td><td>$10K investment + cert</td><td>1 (10 sub-agents)</td></tr>
+                <tr><td><strong>ISO Group</strong></td><td>Own processing, pays RRS monthly</td><td>20% net to RRS</td><td>Certification</td><td>1 (15 agents)</td></tr>
+                <tr><td style="color: var(--text-light);">Authorized Provider (legacy)</td><td style="color: var(--text-light);">No longer offered</td><td style="color: var(--text-light);">0% to RRS</td><td style="color: var(--text-light);">Investment</td><td style="color: var(--text-light);">3</td></tr>
+            </table>
+
+            <h3>Commission Structure</h3>
+            <h4>EPI Tier System</h4>
+            <table>
+                <tr><th>Tier</th><th>RRS Share of Merchant Profit</th><th>Status</th></tr>
+                <tr><td>Tier E</td><td>80%</td><td>—</td></tr>
+                <tr><td>Tier F</td><td>90%</td><td>Current tier for most merchants</td></tr>
+            </table>
+
+            <h4>Agent Splits (from RRS share)</h4>
+            <table>
+                <tr><th>Agent Type</th><th>Agent Gets</th><th>RRS Keeps</th></tr>
+                <tr><td>Standard Direct Agent</td><td>60%</td><td>40%</td></tr>
+                <tr><td>Equity Partner</td><td>90%</td><td>10%</td></tr>
+            </table>
+
+            <div class="callout callout-info">
+                <strong>Nicole's Commission</strong>
+                Nicole Devery receives 20% of RRS agent overrides (applies only to agent overrides, not direct merchant residuals). Agents are paid by EPI on the 5th of each month.
+            </div>
+
+            <h3>EPI Master Codes</h3>
+            <table>
+                <tr><th>Code</th><th>Group</th><th>Active Agents</th></tr>
+                <tr><td><strong>RTRMVR</strong></td><td>Rate Remover Software</td><td>12 agents (RTRM01-RTRM12)</td></tr>
+                <tr><td><strong>SGINY</strong></td><td>Scott Gibbens Group</td><td>4 active (Scott, Tyler, Elisabeth, Steven C Roberts)</td></tr>
+            </table>
+        </div>
+    </div>
+
+    <!-- 8. Knowledge Base Structure -->
+    <div class="section" id="kb">
+        <div class="section-header">
+            <div class="section-icon" style="background: #FFF3E0; color: var(--amber);">8</div>
+            <div>
+                <h2>Knowledge Base Structure</h2>
+                <div class="section-desc">How our documentation is organized and classified</div>
+            </div>
+        </div>
+        <div class="section-body">
+            <h3>Classification System</h3>
+            <table>
+                <tr><th>Tag</th><th>Audience</th><th>Description</th></tr>
+                <tr><td><span class="tag tag-public">PUBLIC</span></td><td>Anyone</td><td>Website visitors, prospects, merchants</td></tr>
+                <tr><td><span class="tag tag-reseller">RESELLER</span></td><td>Certified agents</td><td>Direct Agents, Equity Partners, ISO Groups</td></tr>
+                <tr><td><span class="tag tag-internal">INTERNAL</span></td><td>Team only</td><td>Scott, Nicole, Elisabeth, developers</td></tr>
+            </table>
+
+            <h3>Knowledge Base Files</h3>
+            <table>
+                <tr><th>File</th><th>Audience</th><th>Content</th></tr>
+                <tr><td><strong>RRS-Knowledge-Base.md</strong></td><td>All levels</td><td>Master KB — company overview, revenue, team, reseller program, tech stack, changelog, agents, commissions</td></tr>
+                <tr><td><strong>knowledge-base/public-kb.md</strong></td><td><span class="tag tag-public">PUBLIC</span></td><td>Company overview, pricing, features, mobile app installation, dual pricing FAQ</td></tr>
+                <tr><td><strong>knowledge-base/reseller-kb.md</strong></td><td><span class="tag tag-reseller">RESELLER</span></td><td>Certification course details (10 lessons), prospecting scripts, demo guidance, pricing for sales</td></tr>
+                <tr><td><strong>knowledge-base/internal-kb.md</strong></td><td><span class="tag tag-internal">INTERNAL</span></td><td>Admin procedures, GHL setup, user management, technical operations</td></tr>
+            </table>
+
+            <h3>Where KB Content Is Consumed</h3>
+            <ul>
+                <li><strong>Chatbot (chat.js)</strong> — System prompts contain embedded KB content for each audience version</li>
+                <li><strong>Phone Support Rep Guide</strong> — Comprehensive reference built from KB data</li>
+                <li><strong>Merchant Onboarding Process</strong> — Pricing, features, and PartsTech details from KB</li>
+                <li><strong>Suitability Form</strong> — Feature list and availability status from KB</li>
+            </ul>
+
+            <div class="callout callout-warning">
+                <strong>Sync Requirement</strong>
+                KB content is copied (not dynamically linked) into each project. When updating pricing, features, or contacts in the KB files, you must also update the Chatbot prompts, Rep Guide, and other consuming projects.
+            </div>
+        </div>
+    </div>
+
+    <!-- 9. External Services -->
+    <div class="section" id="services">
+        <div class="section-header">
+            <div class="section-icon" style="background: #F3E5F5; color: var(--purple);">9</div>
+            <div>
+                <h2>External Services</h2>
+                <div class="section-desc">Third-party platforms and integrations</div>
+            </div>
+        </div>
+        <div class="section-body">
+            <table>
+                <tr><th>Service</th><th>Category</th><th>Used For</th></tr>
+                <tr><td><strong>Go High Level (GHL)</strong></td><td>CRM & Marketing</td><td>Reseller CRM, email automation, booking forms, lead capture, workflow triggers</td></tr>
+                <tr><td><strong>OpenAI</strong></td><td>AI</td><td>GPT-4o-mini powers the support chatbot (serverless via Netlify Functions)</td></tr>
+                <tr><td><strong>Google Gemini</strong></td><td>AI</td><td>Chatbot on myrateremover.com</td></tr>
+                <tr><td><strong>Dejavoo / iPOSpays</strong></td><td>Payments</td><td>Card terminals (SPIN/HPP) and payment gateway</td></tr>
+                <tr><td><strong>Electronic Payments (EPI)</strong></td><td>Payments</td><td>Merchant account processing partner</td></tr>
+                <tr><td><strong>PartsTech</strong></td><td>Auto Repair</td><td>Parts lookup, labor guides, VIN decoding, supplier ordering</td></tr>
+                <tr><td><strong>QuickBooks Online</strong></td><td>Accounting</td><td>One-way invoice sync from RRS software</td></tr>
+                <tr><td><strong>Twilio</strong></td><td>Communications</td><td>SMS notifications (future: voice)</td></tr>
+                <tr><td><strong>SendGrid</strong></td><td>Email</td><td>Transactional email delivery</td></tr>
+                <tr><td><strong>Zapier</strong></td><td>Automation</td><td>Syncing data between GHL, course platform, and merchant sign-up</td></tr>
+                <tr><td><strong>Cloudflare</strong></td><td>Infrastructure</td><td>CDN and security for main application</td></tr>
+                <tr><td><strong>Google Cloud Platform</strong></td><td>Infrastructure</td><td>App Engine, Cloud Run, Cloud SQL (PostgreSQL)</td></tr>
+                <tr><td><strong>Netlify</strong></td><td>Hosting</td><td>5 projects: Dashboard, Changelog, Chatbot, Mobile App, Investor Portal</td></tr>
+                <tr><td><strong>Firebase</strong></td><td>Hosting</td><td>shoprateremover.com hosting + analytics</td></tr>
+                <tr><td><strong>Siteground</strong></td><td>Hosting</td><td>myrateremover.com (React + WordPress hybrid)</td></tr>
+                <tr><td><strong>Railway</strong></td><td>Hosting</td><td>epi-pay-gateway server (Nixpacks deployment)</td></tr>
+                <tr><td><strong>WooCommerce</strong></td><td>E-Commerce</td><td>SaaS subscription billing on myrateremover.com</td></tr>
+                <tr><td><strong>Calendly</strong></td><td>Scheduling</td><td>Meeting scheduling</td></tr>
+                <tr><td><strong>Zoom / Google Meet</strong></td><td>Meetings</td><td>Video meetings and demos</td></tr>
+            </table>
+        </div>
+    </div>
+
+    <!-- 10. Support & Contacts -->
+    <div class="section" id="support">
+        <div class="section-header">
+            <div class="section-icon" style="background: #E8F5E9; color: var(--accent);">10</div>
+            <div>
+                <h2>Support & Contacts</h2>
+                <div class="section-desc">Phone numbers, emails, and escalation</div>
+            </div>
+        </div>
+        <div class="section-body">
+            <h3>RRS Support</h3>
+            <div class="quick-ref">
+                <div class="quick-ref-card">
+                    <div class="qr-label">Merchant Phone</div>
+                    <div class="qr-value" data-kb="contacts.merchantPhone">(855) 446-3483</div>
+                    <div class="qr-detail">Via eVoice — forwards to Vonage system</div>
+                </div>
+                <div class="quick-ref-card">
+                    <div class="qr-label">Reseller Phone</div>
+                    <div class="qr-value" data-kb="contacts.resellerPhone">(315) 203-1697</div>
+                    <div class="qr-detail">Via Vonage — extensions for routing</div>
+                </div>
+                <div class="quick-ref-card">
+                    <div class="qr-label">Support Email</div>
+                    <div class="qr-value" data-kb="contacts.supportEmail">support@shoprateremover.com</div>
+                    <div class="qr-detail">Primary support contact</div>
+                </div>
+                <div class="quick-ref-card">
+                    <div class="qr-label">Hours</div>
+                    <div class="qr-value" data-kb="contacts.hours">Mon-Fri 8AM-5PM ET</div>
+                    <div class="qr-detail">After hours: <span data-kb="contacts.afterHours">Posh Answering Service</span></div>
+                </div>
+            </div>
+
+            <h3>Dejavoo / Terminal Support</h3>
+            <table>
+                <tr><th>Type</th><th>Contact</th></tr>
+                <tr><td>Technical Support</td><td data-kb="dejavoo.techEmail">devsupport@denovosystem.com</td></tr>
+                <tr><td>Account Support</td><td data-kb="dejavoo.accountEmail">support@dejavoo.io</td></tr>
+                <tr><td>Phone</td><td data-kb="dejavoo.phoneFormatted">1-877-DJVOSYS (1-877-358-6797)</td></tr>
+                <tr><td>New Terminal Setup</td><td data-kb="dejavoo.fileBuild">filebuild@electronicpayments.com</td></tr>
+            </table>
+
+            <h3>Escalation Path</h3>
+            <ol>
+                <li><strong>First response:</strong> Chatbot (available 24/7 for common questions)</li>
+                <li><strong>Phone support:</strong> Rep handles using Phone Support Rep Guide</li>
+                <li><strong>Technical issues:</strong> Escalate to Zac (Lead Developer)</li>
+                <li><strong>Terminal/hardware:</strong> Escalate to Dejavoo Tech Support</li>
+                <li><strong>Reseller disputes:</strong> Escalate to Nicole or Scott</li>
+                <li><strong>Compliance/billing:</strong> Escalate to Scott</li>
+            </ol>
+        </div>
+    </div>
+
+</div>
+
+<!-- Central Knowledge Base (auto-syncs pricing, contacts, URLs) -->
+<script src="https://rrs-kb.netlify.app/kb-data.js"></script>
+<script src="https://rrs-kb.netlify.app/kb-loader.js"></script>
+
+</body>
+</html>
