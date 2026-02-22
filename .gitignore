@@ -15,3 +15,12 @@ Thumbs.db
 
 # Database files
 *.db
+
+# Sub-projects with their own GitHub repos
+Chatbot/
+Company Dashboard/
+Development Overview/
+Investor Information/
+Mobile App/
+Suitability Form/
+project-tracker/

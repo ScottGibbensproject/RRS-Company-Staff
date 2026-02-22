@@ -168,10 +168,10 @@ Integration settings are in the 'Configuration' section within the 'Admin' box. 
 - How to configure supplier accounts within the platform
 
 **Labor Guide Video (1:42)**
-- Optional Labor Guide by MOTOR: $60.00/month
+- MOTOR Labor Guide: Included with Pro plan at no additional cost
 - Provides shop owners with repair time guidelines
 - Comparable to Mitchell1
-- *Update: Paid PartsTech subscription is NOT required for Labor Guide*
+- Paid PartsTech subscription is NOT required for Labor Guide
 
 ### Lesson 7: Prospecting Scripts & Tips (7:19)
 https://agents.myrateremover.com/lesson/seven-prospecting-scripts-tips/
@@ -294,8 +294,8 @@ https://agents.myrateremover.com/lesson/ten-customer-service/
 ## Pricing (For Merchant Sales)
 
 ### SaaS Subscriptions
-- **Essentials:** $44/month
-- **Pro:** $59/month (includes texting and email estimates)
+- **Essentials:** $59/month
+- **Pro:** $119/month (includes everything from Essentials + Labor Guide)
 
 ### Payment Processing
 Merchant processing residuals when merchants process through RRS.

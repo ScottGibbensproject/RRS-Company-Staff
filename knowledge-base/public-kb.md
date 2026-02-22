@@ -32,8 +32,8 @@
 ## Pricing
 
 ### SaaS Subscriptions
-- **Essentials:** $44/month
-- **Pro:** $59/month (includes texting and email estimates)
+- **Essentials:** $59/month
+- **Pro:** $119/month (includes everything from Essentials + Labor Guide)
 
 ### Payment Processing
 Merchant processing residuals available when merchants process through RRS.

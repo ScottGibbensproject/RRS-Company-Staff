@@ -48,8 +48,8 @@
 
 ### Revenue Streams
 1. **SaaS Subscriptions**
-   - Essentials: $44/month
-   - Pro: $59/month (includes texting and email estimates)
+   - Essentials: $59/month (legacy merchants grandfathered at $34 or $44)
+   - Pro: $119/month (includes everything from Essentials + Labor Guide)
 
 2. **Merchant Processing Residuals** (when merchants process through RRS)
 

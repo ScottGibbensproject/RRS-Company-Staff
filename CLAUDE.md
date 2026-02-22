@@ -14,7 +14,7 @@ This document provides context for AI assistants working on Rate Remover Softwar
 
 ```
 RRS Company/
-├── Company Flowcharts/                 # GHL & process flowcharts (Netlify deploy)
+├── Company Dashboard/                  # GHL & process flowcharts (Netlify deploy)
 │   ├── index.html                      # Landing page
 │   ├── ghl-automations.html
 │   ├── ghl-cheatsheet.html
@@ -46,11 +46,40 @@ RRS Company/
 │   ├── Pipeline-Builder-Program-Outline.html
 │   ├── Pipeline-Builder-Program-Plan.md
 │   └── Pipeline-Builder-Task-Assignments.html
+├── Chatbot/                            # AI support chatbot (Netlify deploy)
+│   ├── src/                            # React components & pages
+│   ├── netlify/functions/chat.js       # OpenAI serverless function
+│   └── netlify.toml
+├── Mobile App/                         # PWA portal app (Netlify deploy)
+│   ├── index.html                      # Main app with 12 service cards
+│   ├── service-worker.js               # Auto-update cache (bump CACHE_NAME)
+│   └── manifest.json
+├── Investor Information/               # Investor portal (Netlify deploy)
+│   ├── index.html                      # Password gate (access code)
+│   ├── Investor-Overview.html          # Full investor deck
+│   ├── Investor_contact.html           # Investment calculator
+│   └── netlify.toml
+├── Suitability Form/                   # Lead qualification tool
+│   ├── feature-fit-form.html           # 28-feature assessment + GHL form
+│   └── Auto Repair Version - Clear Background.png
 ├── RRS-Knowledge-Base.md               # Master knowledge base
 ├── website-projects-summary.md         # Website project details
 ├── rrs-logo.png                        # Company logo
 └── CLAUDE.md                           # This file
 ```
+
+## GitHub Repos & Deployment
+
+| Project | GitHub Repo | Hosting | Deploy Method |
+|---------|-------------|---------|---------------|
+| **RRS Company (Staff)** | `ScottGibbensproject/RRS-Company-Staff` | — | Master project repo |
+| **Company Dashboard** | `ScottGibbensproject/company-dashboard` | Netlify | Auto-deploy on push |
+| **Development Overview** | `ScottGibbensproject/Development-Overview` | Netlify | Auto-deploy on push |
+| **Chatbot** | `ScottGibbensproject/support-chat-bot` | Netlify + Functions | Auto-deploy on push |
+| **Mobile App** | `ScottGibbensproject/mobile-app` | Netlify | Auto-deploy on push |
+| **Investor Information** | `ScottGibbensproject/investor-information` | Netlify | Auto-deploy on push |
+| **Suitability Form** | `ScottGibbensproject/merchant-suitability-form` | shoprateremover.com | Manual upload |
+| **epi-pay-gateway** | — | Railway | Nixpacks |
 
 ## Related Projects (External)
 
@@ -59,7 +88,6 @@ RRS Company/
 | **epi-pay-gateway** | `C:\Users\scott\Desktop\epi-pay-gateway` | Payment gateway server & SDK |
 | **myrateremover.com** | TBD | Public website (uses payment SDK) |
 | **RRS Bookkeeping** | `C:\Users\scott\Desktop\RRS Bookkeeping` | Confidential bookkeeping data |
-| **Investor Information** | `C:\Users\scott\Desktop\RRS Apps\Investor Information` | Investor docs (Netlify deploy) |
 | **LifeLong** | `C:\Users\scott\Desktop\LifeLong` | Lifelong Merchant Services collaboration |
 | **Project Tracker** | `C:\Users\scott\Desktop\Project Tracker` | Task management dashboard (Node.js) |
 
